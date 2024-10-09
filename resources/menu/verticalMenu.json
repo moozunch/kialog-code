@@ -1,0 +1,31 @@
+{
+  "menu": [
+    {
+      "menuHeader": "Main Menu"
+    },
+    {
+      "name": "Home",
+      "icon": "menu-icon tf-icons mdi mdi-home",
+      "slug": "home",
+      "url": "home"
+    },
+    {
+      "name": "Message",
+      "icon": "menu-icon tf-icons mdi mdi-message",
+      "slug": "Message",
+      "url": "message"
+    },
+    {
+      "name": "Topic",
+      "icon": "menu-icon tf-icons mdi mdi-book-open",
+      "slug": "Topic",
+      "url": "topic"
+    },
+    {
+      "name": "Bookmarks",
+      "icon": "menu-icon tf-icons mdi mdi-bookmark-multiple",
+      "slug": "Bookmarks",
+      "url": "bookmarks"
+    }
+  ]
+}

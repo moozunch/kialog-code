@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{-- <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{ asset('css/style1.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/mobilequeries.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/mobilequeires.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style1.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Kialog</title>
 </head>
@@ -14,7 +13,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
                 <a class="navbar-brand" href="#">
-                    <img src="{{ asset('assets/svg/KIALOG.png') }}" alt="Kialog Logo" height="30">
+                    <img src="{{ asset('assets/svg/kialogtext.svg') }}" alt="Kialog Logo" height="30">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -72,7 +71,7 @@
         <section class="section3">
             <div class="containersec3">
                 <h2>Our Values</h2>
-                <img src="{{ asset('assets/svg/values.png') }}" alt="Value" class="img-fluid">
+                <img src="{{ asset('assets/svg/values.svg') }}" alt="Value" class="img-fluid">
             </div>
         </section>
 
@@ -173,6 +172,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="scripts/interactive1.js"></script>
+    <<script src="{{ asset('assets/js/interactive1.js') }}"></script>
 </body>
 </html>

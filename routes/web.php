@@ -48,6 +48,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostinganController;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\AuthController;
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -125,3 +126,7 @@ Route::get('/bookmarks', [BookmarksController::class, 'index']);
 //LandingPage
 Route::get('/landingpage', [LandingPageController::class, 'index']);
 Route::get('/', [LandingPageController::class, 'index']);
+
+//signup signin landing
+Route::post('/signin', [AuthController::class, 'signin']);
+Route::post('/signup', [AuthController::class, 'signup']);

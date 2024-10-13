@@ -122,7 +122,8 @@ Route::get('/message', [MessageController::class, 'index'])->name('Messages');
 Route::get('/topic', [TopicController::class, 'index']);
 
 //Bookmarks
-Route::get('/bookmarks', [BookmarksController::class, 'index']);
+Route::get('/bookmarks', [BookmarksController::class, 'index'])->name('bookmarks.index');
+Route::post('/bookmarks/{postId}', [BookmarksController::class, 'toggleBookmark'])->name('bookmarks.store');
 
 //LandingPage
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage');

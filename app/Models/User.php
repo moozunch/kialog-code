@@ -16,4 +16,8 @@ class User extends Authenticatable
   protected $hidden = [
     'password', 'remember_token',
   ];
+  public function bookmarks()
+  {
+      return $this->hasMany(Bookmarks::class);
+  }
 }

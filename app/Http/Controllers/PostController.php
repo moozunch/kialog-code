@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookmarks;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -50,4 +51,24 @@ class PostController extends Controller
 
     return redirect()->back()->with('success', 'Post created successfully!');
   }
+
+  public function bookmark(Request $request, $postId)
+{
+    $userId = auth()->id(); // Mengambil ID user yang sedang login
+
+    // Cek apakah postingan sudah di-bookmark oleh user
+    $bookmark = Bookmarks::where('user_id', $userId)
+                        ->where('post_id', $postId)
+                        ->first();
+
+    if (!$bookmark) {
+        // Jika belum, tambahkan ke tabel Bookmark
+        Bookmarks::create([
+            'user_id' => $userId,
+            'post_id' => $postId,
+        ]);
+    }
+
+    return redirect()->back()->with('success', 'Postingan berhasil disimpan ke bookmark!');
+}
 }

@@ -21,10 +21,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Edu Space</a>
+            <a class="nav-link" href="#">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Discussion</a>
@@ -44,8 +44,8 @@
     <div class="containersec1">
       <article class="content">
         <h1>The Hub For Lifelong Learners</h1>
-        <img src="{{ asset('assets/img/landing-page/image_replacerhori.png') }}" class="imagehori" alt="image">
-        <img src="{{ asset('assets/img/landing-page/image_replacervertical.png') }}" class="imagevertical" alt="image">
+        <img src="{{ asset('assets/img/illustrations/illustration1.png') }}" class="imagehori" alt="image">
+        <img src="{{ asset('assets/img/illustrations/illustration2.png') }}" class="imagevertical" alt="image">
         <div class="textlanding">
           <p class="paraghraph1">Explore, discuss, and evolve your understanding in a community built for education.</p>
           <p class="paraghraph2">From Student For Student.</p>
@@ -57,7 +57,7 @@
     <div class="containersec2">
       <article>
         <div class="image">
-          <img src="{{ asset('assets/img/landing-page/image_replacerhori.png') }}" class="imagehori" alt="image">
+          <img src="{{ asset('assets/img/illustrations/illustration3.png') }}" class="imagehori" alt="image">
         </div>
         <div class="text">
           <h2>About Us</h2>
@@ -193,7 +193,7 @@
           </div>
           <div class="form-group">
             <label for="signupPassword">Password</label>
-            <input type="password" class="form-control" id="signupPassword" name="password" required oninput="validatePassword()">
+            <input type="password" class="form-control" id="signupPassword" name="password" required placeholder="Password" oninput="validatePassword()">
             <small id="passwordWarning" class="text-danger" style="display: none;">Password must be at least 6 characters long.</small>
           </div>
           <script>

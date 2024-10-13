@@ -1,6 +1,15 @@
 html {
   width: 100%;
+  overflow: auto;
 }
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(207, 179, 138, 0.6)),
+  radial-gradient(circle, rgba(44, 165, 99, 0.3), rgba(255, 255, 255, 0.2));
+  backdrop-filter: blur(20px);
+}
+
 
 * {
   margin: 0;
@@ -9,16 +18,19 @@ html {
   flex-wrap: wrap;
   color: var(--black);
 }
+
 #main {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 :root {
   --primary-color: #2C6822;
   --primary-secondary-color: #1b3e15;
   --black: #2E2E2E;
   --white: #FFFFFF;
+  --primary-gradient: linear-gradient(45deg, #2E2E2E, #2C6822);
 }
 
 nav {
@@ -28,6 +40,10 @@ nav {
   padding: 70px;
   background-color: transparent;
   width: 100%;
+  position: sticky !important;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 nav img {
@@ -49,12 +65,6 @@ nav ul li a {
   text-decoration: none;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
-}
-
-.nav-item:hover {
-  color: var(--primary-color);
-  text-decoration: underline;
-  text-underline-offset: 0.625rem;
 }
 
 #signinbutton {
@@ -96,8 +106,7 @@ nav ul li a {
   justify-content: center;
 }
 
-/*Section 1*/
-
+/* Section 1 */
 .section1 {
   display: flex;
   justify-content: center;
@@ -106,37 +115,42 @@ nav ul li a {
   width: 100%;
 }
 
-.containersec1{
+.containersec1 {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80rem;
   height: max(30rem, 100%);
-  justify-content: space-evenly;
   padding: 2rem 2rem;
 }
 
-.section1 h1{
+.section1 h1 {
   font-weight: bold;
   font-size: 4rem;
+  align-self: center;
+  margin-left: 4rem;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 4rem;
 }
 
-.section1 .imagehori{
+.section1 .imagehori {
   width: 30rem;
   margin-right: 2rem;
-  margin-top: -15.6rem;
-  /*margin-left: 4.2rem;*/
+  margin-top: -12rem;
 }
-
 
 .section1 .imagevertical {
   height: 30rem;
   margin-left: 2rem;
-
+  margin-bottom: 4rem;
 }
 
 .section1 p {
   max-width: 20rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  margin-left: 2rem;
 }
 
 .section1 .paraghraph1 {
@@ -146,65 +160,9 @@ nav ul li a {
 
 .section1 .paraghraph2 {
   color: var(--primary-color);
-
 }
 
-.modal-header {
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
-}
-
-.modal-title {
-  color: var(--black);
-}
-
-.modal-body {
-  padding: 2rem;
-}
-
-.modal-footer {
-  border-top: 1px solid #dee2e6;
-}
-
-button[type="submit"] {
-  background-color: var(--primary-color);
-  color: var(--white);
-  border: 1px solid var(--primary-color);
-  border-radius: 12px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover,
-button[type="submit"]:active,
-button[type="submit"]:focus {
-  background-color: var(--primary-secondary-color);
-}
-
-.modal-dialog{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100% - 1rem);
-}
-
-.modal-content {
-  margin: auto;
-}
-
-#signinEmail:focus,
-#signinPassword:focus,
-#signupEmail:focus,
-#signupPassword:focus {
-  border-color: var(--primary-color);
-  outline: none;
-}
-
-.modal-header{
-  font-weight: bold;
-}
-
+/* Section 2 */
 .section2 {
   display: flex;
   justify-content: center;
@@ -213,8 +171,10 @@ button[type="submit"]:focus {
   width: 100%;
 }
 
-.containersec2{
+.containersec2 {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80rem;
   height: max(30rem, 100%);
   padding: 2rem 2rem;
@@ -226,7 +186,7 @@ button[type="submit"]:focus {
   margin-left: 4rem;
 }
 
-.section2 .text{
+.section2 .text {
   max-width: 25rem;
   margin-left: 2rem;
   text-align: end;
@@ -235,36 +195,37 @@ button[type="submit"]:focus {
 
 .section2 h2 {
   font-weight: bold;
-  font-size: 3rem;
-}
-.section2 p {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
-.containersec2 article { /*notice container only change what's inside it which is only the article tag */
+.section2 p {
+  font-size: 1rem;
+  text-align: justify;
+  max-width: 12rem;
+}
+
+.containersec2 article {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
 }
 
-
-.containersec3 h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  align-self: center;
-}
-
-.section3{
+/* Section 3 */
+.section3 {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2rem;
   margin-top: 2rem;
   width: 100%;
 }
 
-
-.containersec3{
+.containersec3 {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 80rem;
   height: max(30rem, 100%);
   padding: 2rem 2rem;
@@ -275,6 +236,13 @@ button[type="submit"]:focus {
   align-self: center;
 }
 
+.containersec3 h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  align-self: center;
+}
+
+/* Section 4 */
 .section4 {
   display: flex;
   justify-content: center;
@@ -283,17 +251,9 @@ button[type="submit"]:focus {
   width: 100%;
 }
 
-/*.containersec4 {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    width: 80rem;*/
-/*    height: max(30rem, 100%);*/
-/*    padding: 2rem 2rem;*/
-/*}*/
-
 .rowloc {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 100%;
 }
@@ -301,7 +261,6 @@ button[type="submit"]:focus {
 .rowloc img {
   width: 20rem;
 }
-
 
 .person {
   display: flex;
@@ -331,3 +290,69 @@ button[type="submit"]:focus {
 .person img[src="img/fathan.png"] {
   margin-left: -1rem;
 }
+
+.navbar-nav {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px;
+}
+
+.navbar-nav a {
+  text-decoration: none;
+  color: black;
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+.navbar-nav a:hover {
+  color: var(--primary-color);
+}
+
+.navbar-nav::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-nav a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  position: relative;
+}
+
+.navbar-nav a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: var(--primary-color);
+  position: absolute;
+  width: 0;
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s ease;
+}
+
+.navbar-nav a:hover::after {
+  width: 100%; /* The line will slide from left to right */
+}
+
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  color: var(--white) !important;
+  border: 1px solid var(--primary-secondary-color) !important;
+  border-radius: 12px !important;
+  padding: 0.5rem 1rem !important;
+  margin-left: 0.1rem !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s !important;
+}
+
+.btn-primary:hover{
+  background-color: var(--primary-secondary-color) !important;
+}
+

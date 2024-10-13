@@ -48,5 +48,4 @@ class AuthController extends Controller
 
     return redirect('/'); // Redirect to the landing page or login page
   }
-
 }

@@ -1,6 +1,6 @@
 @extends('layouts/contentNavbarLayout')
 
-@section('title', 'Dashboard - Analytics')
+@section('title', 'Home')
 
 @section('vendor-style')
   <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
@@ -76,7 +76,16 @@
         <div>
           <button class="btn btn-light btn-sm"><i class="mdi mdi-thumb-up-outline"></i> {{ $post->likes }}</button>
           <button class="btn btn-light btn-sm"><i class="mdi mdi-comment-outline"></i> {{ $post->comments }}</button>
-          <button class="btn btn-light btn-sm"><i class="mdi mdi-bookmark-outline"></i></button>
+          <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
+            @csrf
+            <button type="submit" class="btn btn-light btn-sm">
+                @if($post->bookmarks && !$post->bookmarks->isEmpty())
+               <i class="mdi mdi-bookmark"></i> <!-- Bookmarked icon -->
+                @else
+                    <i class="mdi mdi-bookmark-outline"></i> <!-- Not bookmarked icon -->
+                @endif
+            </button>
+         </form>
           <button class="btn btn-light btn-sm"><i class="mdi mdi-share-outline"></i></button>
         </div>
       </div>

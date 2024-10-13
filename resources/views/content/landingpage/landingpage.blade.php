@@ -133,6 +133,8 @@
   </div>
 </div>
 
+
+
 <!-- Sign-Up Modal -->
 <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -156,8 +158,21 @@
           </div>
           <div class="form-group">
             <label for="signupPassword">Password</label>
-            <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Password" required>
+            <input type="password" class="form-control" id="signupPassword" name="password" required oninput="validatePassword()">
+            <small id="passwordWarning" class="text-danger" style="display: none;">Password must be at least 6 characters long.</small>
           </div>
+          <script>
+            function validatePassword() {
+              const passwordField = document.getElementById('signupPassword');
+              const warningMessage = document.getElementById('passwordWarning');
+
+              if (passwordField.value.length < 6) {
+                warningMessage.style.display = 'block';
+              } else {
+                warningMessage.style.display = 'none';
+              }
+            }
+          </script>
           <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
       </div>

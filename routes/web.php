@@ -141,4 +141,4 @@ Route::post('/signup', [AuthController::class, 'signup']);
 
 //Posts - Home
 Route::resource('posts', PostController::class);
-
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

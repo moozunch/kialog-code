@@ -116,17 +116,16 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('/signin') }}" method="POST">
+        <form action="{{ route('signin') }}" method="POST">
           @csrf
           <div class="form-group">
             <label for="signinUsername">Username</label>
-            <input type="text" class="form-control" id="signinUsername" name="username" placeholder="Enter username">
+            <input type="text" class="form-control" id="signinUsername" name="username" placeholder="Enter username" required>
           </div>
           <div class="form-group">
             <label for="signinPassword">Password</label>
-            <input type="password" class="form-control" id="signinPassword" name="password" placeholder="Password">
+            <input type="password" class="form-control" id="signinPassword" name="password" placeholder="Password" required>
           </div>
-          <input type="hidden" name="action" value="signin">
           <button type="submit" class="btn btn-primary">Sign In</button>
         </form>
       </div>
@@ -145,21 +144,20 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('/signup') }}" method="POST">
+        <form action="{{ route('signup') }}" method="POST">
           @csrf
           <div class="form-group">
             <label for="signupEmail">Email address</label>
-            <input type="email" class="form-control" id="signupEmail" name="email" placeholder="Enter email">
+            <input type="email" class="form-control" id="signupEmail" name="email" placeholder="Enter email" required>
           </div>
           <div class="form-group">
             <label for="signupUsername">Username</label>
-            <input type="text" class="form-control" id="signupUsername" name="username" placeholder="Enter username">
+            <input type="text" class="form-control" id="signupUsername" name="username" placeholder="Enter username" required>
           </div>
           <div class="form-group">
             <label for="signupPassword">Password</label>
-            <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Password">
+            <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Password" required>
           </div>
-          <input type="hidden" name="action" value="signup">
           <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
       </div>

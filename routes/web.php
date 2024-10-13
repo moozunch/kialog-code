@@ -45,10 +45,11 @@ use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\PostinganController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\AuthController;
+
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -112,7 +113,7 @@ Route::get('/form/layouts-vertical', [VerticalForm::class, 'index'])->name('form
 Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('form-layouts-horizontal');
 
 //home
-Route::get('/home', [PostinganController::class, 'index']);
+Route::get('/home', [PostController::class, 'index']);
 
 //Messages
 Route::get('/message', [MessageController::class, 'index'])->name('Messages');
@@ -124,9 +125,20 @@ Route::get('/topic', [TopicController::class, 'index']);
 Route::get('/bookmarks', [BookmarksController::class, 'index']);
 
 //LandingPage
-Route::get('/landingpage', [LandingPageController::class, 'index']);
+Route::get('/', [LandingPageController::class, 'index'])->name('landingpage');
 Route::get('/', [LandingPageController::class, 'index']);
 
 //signup signin landing
 Route::post('/signin', [AuthController::class, 'signin']);
 Route::post('/signup', [AuthController::class, 'signup']);
+
+
+Route::get('/signin', [AuthController::class, 'showSignInForm'])->name('signin');
+Route::post('/signin', [AuthController::class, 'signin']);
+
+Route::get('/signup', [AuthController::class, 'showSignUpForm'])->name('signup');
+Route::post('/signup', [AuthController::class, 'signup']);
+
+//Posts - Home
+Route::resource('posts', PostController::class);
+

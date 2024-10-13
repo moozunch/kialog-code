@@ -113,7 +113,7 @@ Route::get('/form/layouts-vertical', [VerticalForm::class, 'index'])->name('form
 Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('form-layouts-horizontal');
 
 //home
-Route::get('/home', [PostController::class, 'index']);
+Route::get('/home', [PostController::class, 'index'])->name('home');
 
 //Messages
 Route::get('/message', [MessageController::class, 'index'])->name('Messages');

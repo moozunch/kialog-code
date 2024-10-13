@@ -116,18 +116,53 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ route('signin') }}" method="POST">
-          @csrf
-          <div class="form-group">
-            <label for="signinUsername">Username</label>
-            <input type="text" class="form-control" id="signinUsername" name="username" placeholder="Enter username" required>
-          </div>
-          <div class="form-group">
-            <label for="signinPassword">Password</label>
-            <input type="password" class="form-control" id="signinPassword" name="password" placeholder="Password" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Sign In</button>
-        </form>
+        <div class="modal-body">
+
+          <div id="signinError" class="alert alert-danger" style="display: none;"></div>
+          <form id="signinForm">
+            @csrf
+            <div class="form-group">
+              <label for="signinUsername">Username</label>
+              <input type="text" class="form-control" id="signinUsername" name="username" placeholder="Enter username" required>
+            </div>
+            <div class="form-group">
+              <label for="signinPassword">Password</label>
+              <input type="password" class="form-control" id="signinPassword" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+
+            <script>
+              document.getElementById('signinForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const form = event.target;
+                const formData = new FormData(form);
+                const errorDiv = document.getElementById('signinError');
+
+                fetch('{{ route('signin') }}', {
+                  method: 'POST',
+                  headers: {
+                    'X-CSRF-TOKEN': formData.get('_token'),
+                    'Accept': 'application/json',
+                  },
+                  body: formData,
+                })
+                  .then(response => response.json())
+                  .then(data => {
+                    if (data.success) {
+                      window.location.href = data.redirect;
+                    } else {
+                      errorDiv.textContent = data.message;
+                      errorDiv.style.display = 'block';
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                  });
+              });
+            </script>
+          </form>
+        </div>
       </div>
     </div>
   </div>

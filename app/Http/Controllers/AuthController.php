@@ -14,10 +14,10 @@ class AuthController extends Controller
 
     if (Auth::attempt($credentials)) {
       $request->session()->regenerate();
-      return redirect()->intended('home'); // Change 'home' to your intended route
+      return response()->json(['success' => true, 'redirect' => route('home')]);
     }
 
-    return redirect()->route('landingpage')->withErrors('Login failed');
+    return response()->json(['success' => false, 'message' => 'Invalid username or password.']);
   }
 
   public function signup(Request $request)

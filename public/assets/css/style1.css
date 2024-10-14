@@ -32,8 +32,6 @@ html {
   --primary-gradient: linear-gradient(45deg, #2E2E2E, #2C6822);
 }
 
-
-
 nav {
   display: flex;
   justify-content: space-between;
@@ -41,7 +39,11 @@ nav {
   padding: 70px;
   background-color: transparent;
   width: 100%;
+<<<<<<< HEAD
 
+=======
+  position: fixed;
+>>>>>>> 58e1a468795c5b119ac6fe156345f5250cac46aa
 }
 
 nav img {
@@ -109,7 +111,7 @@ nav ul li a {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 4rem;
   width: 100%;
 }
 

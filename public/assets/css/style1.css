@@ -21,6 +21,14 @@ html {
   --white: #FFFFFF;
 }
 
+header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  height: 70px;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -28,6 +36,7 @@ nav {
   padding: 70px;
   background-color: transparent;
   width: 100%;
+  position: fixed;
 }
 
 nav img {
@@ -102,7 +111,7 @@ nav ul li a {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 4rem;
   width: 100%;
 }
 

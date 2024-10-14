@@ -3,13 +3,12 @@ html {
   overflow: auto;
 }
 
-body {
-  margin: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(207, 179, 138, 0.6)),
-  radial-gradient(circle, rgba(44, 165, 99, 0.3), rgba(255, 255, 255, 0.2));
-  backdrop-filter: blur(20px);
-}
-
+/*body {*/
+/*  margin: 0;*/
+/*  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(207, 179, 138, 0.6)),*/
+/*  radial-gradient(circle, rgba(44, 165, 99, 0.3), rgba(255, 255, 255, 0.2));*/
+/*  backdrop-filter: blur(20px);*/
+/*}*/
 
 * {
   margin: 0;
@@ -33,6 +32,8 @@ body {
   --primary-gradient: linear-gradient(45deg, #2E2E2E, #2C6822);
 }
 
+
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -40,10 +41,7 @@ nav {
   padding: 70px;
   background-color: transparent;
   width: 100%;
-  position: sticky !important;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+
 }
 
 nav img {
@@ -338,7 +336,7 @@ nav ul li a {
 }
 
 .navbar-nav a:hover::after {
-  width: 100%; /* The line will slide from left to right */
+  width: 100%;
 }
 
 .btn-primary {
@@ -356,3 +354,6 @@ nav ul li a {
   background-color: var(--primary-secondary-color) !important;
 }
 
+.no-scroll {
+  overflow: hidden;
+}

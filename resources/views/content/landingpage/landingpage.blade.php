@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ asset('assets/css/mobilequeires.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/style1.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/headerblur.css') }}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>Kialog</title>
 </head>
@@ -44,8 +45,11 @@
     <div class="containersec1">
       <article class="content">
         <h1>The Hub For Lifelong Learners</h1>
-        <img src="{{ asset('assets/img/illustrations/illustration1.png') }}" class="imagehori" alt="image">
-        <img src="{{ asset('assets/img/illustrations/illustration2.png') }}" class="imagevertical" alt="image">
+        <div class="illustration1"></div>
+        <div class="image-container">
+          <img src="{{ asset('assets/img/illustrations/illustration1.png') }}" class="imagehori" alt="image">
+          <img src="{{ asset('assets/img/illustrations/illustration2.png') }}" class="imagevertical" alt="image">
+        </div>
         <div class="textlanding">
           <p class="paraghraph1">Explore, discuss, and evolve your understanding in a community built for education.</p>
           <p class="paraghraph2">From Student For Student.</p>
@@ -89,11 +93,11 @@
         </div>
       </div>
       <div class = rowloc>
-        <div class="person">
+        <div class="person natasya">
           <img src="{{ asset('assets/img/landing-page/natasya.png') }}" alt="Natasya">
           <p><strong>Natasya</strong> Sabina Br. Ginting</p>
         </div>
-        <div class="person">
+        <div class="person fathan">
           <img src="{{ asset('assets/img/landing-page/fathan.png') }}" alt="Alfathan">
           <p><strong>Alfathan</strong> Bagas Kurnia</p>
         </div>
@@ -107,7 +111,7 @@
 
 <!-- Sign-In Modal -->
 <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered-absolute">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="signinModalLabel">Sign In</h5>

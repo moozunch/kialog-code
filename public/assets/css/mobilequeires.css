@@ -1,141 +1,151 @@
-@media (max-width: 944px) {
-  /*before 768*/
+@media (max-width: 998px) {
 
   * {
-      padding: 0rem 0.5rem;
-      overflow-x: hidden;
-      flex-wrap: wrap;
-  }
-  nav img {
-      height: 10px;
+    padding: 0.5rem;
+    overflow-x: hidden !important;
   }
 
-  /*section 1*/
-  .section1 {
-      flex-direction: column;
-      align-items: center;
+  nav img{
+    height: 20px !important;
   }
 
-  .containersec1 {
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 0;
+  main, .containersec1, .content {
+    flex-direction: column !important;
+    flex-flow: wrap !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
-  .containersec1 article{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+  .containersec1, .containersec2, .containersec3, .containersec4 {
+    width: 100% !important;
   }
 
-  .containersec1 article content {
-      padding: 0 0;
-      margin: 0 0;
+  .section1, .section2, .section3, .section4 {
+    flex-direction: column !important;
+  }
+
+  .section1 h1, .section1 p {
+    text-align: center !important;
+    margin: 1rem 0 !important;
   }
 
   .section1 h1 {
-      align-self: start;
-      max-width: 70%;
-      font-size: 2rem;
-      flex-wrap: wrap;
+    font-size: 2.3rem !important;
+    flex-flow: wrap !important;
+    text-align: center !important;
+    padding: 0 1.5rem !important;
   }
 
+  .section1 .content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-flow: wrap !important;
+  }
+
+  .section1 .textlanding {
+    margin-top: 20px;
+  }
+
+  .section1 .content {
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center;
+  }
 
   .section1 .imagehori {
-      width: 100%;
-      max-width: 18rem;
-      height: auto;
-      margin-top: -2rem;
-      margin-right: 0;
-      margin-left: 0;
-  }
-
-  .imagehori {
-      margin-top: 0;
+    width: 20rem !important;
+    height: auto !important;
+    display: none;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
   }
 
   .section1 .imagevertical {
-      height: 25rem;
-      margin-left: 0;
-      margin-right: 0;
-      margin-top: 2rem;
-      align-self: center;
+    width: 20rem !important;
+    height: auto !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
   }
 
   .section1 p {
-      font-size: 1rem;
-      text-align: justify;
-      max-width: 16rem;
-  }
-
-  .section1 .paraghraph1 {
-      margin-top: 1rem;
-  }
-
-  .section1 .paraghraph2 {
-      margin-top: 0.5rem;
-  }
-
-
-  .section2 article{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-
-  .section2 {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .containersec2 {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-  }
-
-  .section2 .imagehori{
-      margin-right: 0;
-      margin-left: 0;
-      width: 100%;
-      height: auto;
-      max-width: 25rem;
-  }
-
-  .section2 .text {
-      max-width: 30rem;
-      margin-left: 0;
-      margin-right: 0;
-      margin-top: 2rem;
-      display: flex;
-      text-align: justify;
+    margin: 10px 0 !important;
+    font-size: 1rem !important;
+    max-width: 15rem !important;
+    text-align: justify !important;
   }
 
   .section2 h2 {
-      font-size: 1.5rem;
+    align-self: center !important;
+    text-align: center !important;
+  }
+
+  .section2 .text {
+    text-align: justify !important;
+    margin: 0 !important;
+    max-width: 15rem !important;
+  }
+
+  .section2, .containersec2 {
+    align-items: center !important;
+    justify-items: center !important;
+    padding: 0;
   }
 
   .section2 p {
-      font-size: 1rem;
+    max-width: 15rem !important;
   }
 
-  .containersec3 h2{
-      font-size: 1.5rem;
+  .section2 .imagehori {
+    width: 20rem !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
   }
 
-  .containersec3 img {
-      width: 80%;
-      height: auto;
+  .section4 .imagehori {
+    width: 20rem !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
   }
 
-  .person img[src="img/fathan.png"] + p {
-      margin-left: -1rem;
+  .section4 h2 {
+    align-self: center !important;
+    text-align: center !important;
+    font-size: 2rem !important;
   }
 
+  .section4 p {
+    align-self: center !important;
+    text-align: center !important;
+    font-size: 1rem !important;
+  }
 
+  .section3 {
+    margin-left: 0 !important;
+  }
 
+  .section3 h2 {
+    align-self: center !important;
+    text-align: center !important;
+    font-size: 2rem !important;
+  }
 
+  .containersec3 {
+    align-items: center !important;
+    justify-items: center !important;
+    padding: 0;
+  }
+
+  .fathan {
+    margin-left: -1rem;
+    margin-top: -4rem !important;
+  }
+
+  .fathan p, .natasya p {
+    margin-top: -1rem !important;
+  }
+
+  .natasya {
+    margin-top: -1rem !important;
+  }
 }

@@ -143,3 +143,6 @@ Route::post('/signup', [AuthController::class, 'signup']);
 //Posts - Home
 Route::resource('posts', PostController::class);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//Setting - Profile
+Route::get('/settings', [AccountSettingsAccount::class, 'index'])->name('settings');

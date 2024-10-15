@@ -18,14 +18,16 @@
 
   @foreach($bookmarks as $bookmark)
   <div class="card mt-2">
-    {{-- <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="Post Image"> --}}
+    @if($bookmark->image)
+        <img src="{{ asset('storage/' . $bookmark->image) }}" class="card-img-top" alt="Post Image">
+      @endif
     <div class="card-body">
       <div class="row mb-2 align-items-center">
         <div class="col-1">
-          <img src="{{ asset('assets/img/avatars/2.png') }}" alt="Profile Picture" class="rounded-circle" width="50px">
+          <img src="{{ $bookmark->user->profile_image ? asset($bookmark->user->profile_image) : asset('assets/img/avatars/1.png') }}"  alt="Profile Picture" class="rounded-circle" width="50px">
         </div>
         <div class="col">
-          <h5 class="card-title"> </h5>
+          <h5 class="card-title">{{ $bookmark->user->name }}</h5>
         </div>
       </div>
       <div class="row">

@@ -74,7 +74,18 @@
       <div class="card-footer d-flex justify-content-between align-items-center">
         <small class="text-muted">Posted on {{ $post->created_at->format('F j, Y') }}</small>
         <div>
-          <button class="btn btn-light btn-sm"><i class="mdi mdi-thumb-up-outline"></i> {{ $post->likes }}</button>
+          <form action="{{ route('posts.like', $post->id) }}" method="POST" style="display: inline;">
+            @csrf
+            {{-- <button class="btn btn-light btn-sm"><i class="mdi mdi-thumb-up-outline"></i> {{ $post->likes }}</button> --}}
+            <button type="submit" class="btn btn-light btn-sm">
+              @if($post->likes > 0)
+             <i class="mdi mdi-thumb-up"></i> <!-- Bookmarked icon -->
+              @else
+                  <i class="mdi mdi-thum-up-outline"></i> <!-- Not bookmarked icon -->
+              @endif
+              {{ $post->likes }}
+          </button>
+        </form>
           <button class="btn btn-light btn-sm"><i class="mdi mdi-comment-outline"></i> {{ $post->comments }}</button>
           <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
             @csrf

@@ -52,6 +52,22 @@ class PostController extends Controller
     return redirect()->back()->with('success', 'Post created successfully!');
   }
 
+  public function like($id)
+{
+    $post = Post::findOrFail($id);
+    $user = auth()->user();
+
+    if (!$user) {
+        return redirect()->back()->with('error', 'User not authenticated.');
+    }
+
+    // Increment the likes count
+    $post->likes += 1;
+    $post->save();
+
+    return redirect()->back()->with('success', 'Post liked successfully!');
+}
+
   public function bookmark(Request $request, $postId)
 {
     $userId = auth()->id(); // Mengambil ID user yang sedang login

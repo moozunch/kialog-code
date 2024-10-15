@@ -125,6 +125,9 @@ Route::get('/topic', [TopicController::class, 'index']);
 Route::get('/bookmarks', [BookmarksController::class, 'index'])->name('bookmarks.index');
 Route::post('/bookmarks/{postId}', [BookmarksController::class, 'toggleBookmark'])->name('bookmarks.store');
 
+//Post - Like
+Route::post('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like');
+
 //LandingPage
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage');
 Route::get('/', [LandingPageController::class, 'index']);

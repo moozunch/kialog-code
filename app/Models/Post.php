@@ -17,12 +17,16 @@ class Post extends Model
   }
 
   public function bookmarks()
-{
+  {
     return $this->hasMany(Bookmarks::class);
-}
+  }
 
-public function likedByUsers()
-    {
-        return $this->belongsToMany(User::class, 'post_user_likes')->withTimestamps();
-    }
+  public function userLikes()
+  {
+    return $this->hasMany(PostUserLike::class);
+  }
+  public function likedByUsers()
+  {
+    return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id')->withTimestamps();
+  }
 }

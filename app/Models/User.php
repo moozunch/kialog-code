@@ -12,18 +12,22 @@ class User extends Authenticatable
   use HasApiTokens, HasFactory, Notifiable;
 
   protected $fillable = [
-    'name', 'email', 'username', 'password',
+    'name',
+    'email',
+    'username',
+    'password',
   ];
 
   protected $hidden = [
-    'password', 'remember_token',
+    'password',
+    'remember_token',
   ];
   public function bookmarks()
   {
-      return $this->hasMany(Bookmarks::class);
+    return $this->hasMany(Bookmarks::class);
   }
   public function likedPosts()
-  {
-      return $this->belongsToMany(Post::class, 'post_user_likes')->withTimestamps();
-  }
+    {
+        return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id')->withTimestamps();
+    }
 }

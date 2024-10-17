@@ -119,7 +119,9 @@ Route::get('/home', [PostController::class, 'index'])->name('home');
 Route::get('/message', [MessageController::class, 'index'])->name('Messages');
 
 //Topic
-Route::get('/topic', [TopicController::class, 'index']);
+Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
+Route::post('/topics', [TopicController::class, 'store'])->name('topics.store');
+
 
 //Bookmarks
 Route::get('/bookmarks', [BookmarksController::class, 'index'])->name('bookmarks.index');

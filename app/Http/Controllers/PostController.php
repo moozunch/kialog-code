@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Bookmarks;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\PostUserLike;
 
 class PostController extends Controller
 {
@@ -53,38 +56,39 @@ class PostController extends Controller
   }
 
   public function like($id)
-{
-    $post = Post::findOrFail($id);
-    $user = auth()->user();
+  {
+    $userId = auth()->id();
 
-    if (!$user) {
-        return redirect()->back()->with('error', 'User not authenticated.');
+    $like = PostUserLike::where('user_id', $userId)->where('post_id', $id)->first();
+    if ($like) {
+      PostUserLike::where('user_id', $userId)->where('post_id', $id)->delete();
+    } else {
+      PostUserLike::create([
+        'user_id' => $userId,
+        'post_id' => $id,
+      ]);
     }
 
-    // Increment the likes count
-    $post->likes += 1;
-    $post->save();
-
     return redirect()->back()->with('success', 'Post liked successfully!');
-}
+  }
 
   public function bookmark(Request $request, $postId)
-{
+  {
     $userId = auth()->id(); // Mengambil ID user yang sedang login
 
     // Cek apakah postingan sudah di-bookmark oleh user
     $bookmark = Bookmarks::where('user_id', $userId)
-                        ->where('post_id', $postId)
-                        ->first();
+      ->where('post_id', $postId)
+      ->first();
 
     if (!$bookmark) {
-        // Jika belum, tambahkan ke tabel Bookmark
-        Bookmarks::create([
-            'user_id' => $userId,
-            'post_id' => $postId,
-        ]);
+      // Jika belum, tambahkan ke tabel Bookmark
+      Bookmarks::create([
+        'user_id' => $userId,
+        'post_id' => $postId,
+      ]);
     }
 
     return redirect()->back()->with('success', 'Postingan berhasil disimpan ke bookmark!');
-}
+  }
 }

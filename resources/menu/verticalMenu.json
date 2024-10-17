@@ -19,7 +19,7 @@
       "name": "Topic",
       "icon": "menu-icon tf-icons mdi mdi-book-open",
       "slug": "Topic",
-      "url": "topic"
+      "url": "topics"
     },
     {
       "name": "Bookmarks",

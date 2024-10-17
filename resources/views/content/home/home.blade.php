@@ -78,12 +78,12 @@
             @csrf
             {{-- <button class="btn btn-light btn-sm"><i class="mdi mdi-thumb-up-outline"></i> {{ $post->likes }}</button> --}}
             <button type="submit" class="btn btn-light btn-sm">
-              @if($post->likes > 0)
+              @if($post->userLikes && !$post->userLikes->isEmpty())
              <i class="mdi mdi-thumb-up"></i> <!-- Bookmarked icon -->
               @else
-                  <i class="mdi mdi-thum-up-outline"></i> <!-- Not bookmarked icon -->
+                  <i class="mdi mdi-thumb-up-outline"></i> <!-- Not bookmarked icon -->
               @endif
-              {{ $post->likes }}
+              {{ $post->userLikes->count() }}
           </button>
         </form>
           <button class="btn btn-light btn-sm"><i class="mdi mdi-comment-outline"></i> {{ $post->comments }}</button>

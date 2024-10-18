@@ -41,7 +41,6 @@ class PostController extends Controller
 
     $post = new Post();
     $post->message = $request->message;
-    $post->likes = 0;
     $post->comments = 0;
     $post->user_id = auth()->id();
 

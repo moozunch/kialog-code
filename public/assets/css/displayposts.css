@@ -1,0 +1,27 @@
+/* Container holding the images */
+.post-images {
+  display: grid;
+  grid-gap: 10px;
+  max-width: 100%;
+  padding: 20px;
+  justify-content: center;
+}
+
+/* Single image should be centered */
+.post-images img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0 auto; /* Ensure image is centered */
+}
+
+/* For 2 images, create 2 equal columns */
+.post-images.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* For 3 or 4 images, use a 2x2 grid */
+.post-images.grid-3, .post-images.grid-4 {
+  grid-template-columns: repeat(2, 1fr);
+}

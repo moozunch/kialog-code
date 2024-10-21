@@ -4,6 +4,7 @@
 
 @section('vendor-style')
   <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
+  <link rel="stylesheet" href="{{ asset('assets/css/displayposts.css') }}">
 @endsection
 
 @section('vendor-script')
@@ -13,6 +14,7 @@
 @section('page-script')
   <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
 @endsection
+
 
 @section('content')
   <div class="above d-flex justify-content-between">
@@ -30,6 +32,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              {{--Post Form--}}
               <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
@@ -37,8 +40,8 @@
                   <textarea class="form-control" id="message-text" name="message" placeholder="What's going on!"></textarea>
                 </div>
                 <div class="mb-3">
-                  <label for="post-image" class="col-form-label">Upload Image:</label>
-                  <input type="file" class="form-control" id="post-image" name="image">
+                  <label for="post-images" class="col-form-label">Upload Images:</label>
+                  <input type="file" class="form-control" id="post-images" name="images[]" multiple> <!-- Allow multiple files -->
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -54,9 +57,6 @@
 
   @foreach($posts as $post)
     <div class="card mt-2">
-      @if($post->image)
-        <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="Post Image">
-      @endif
       <div class="card-body">
         <div class="row mb-2 align-items-center">
           <div class="col-1">
@@ -64,43 +64,60 @@
           </div>
           <div class="col">
             <h5 class="card-title">{{ $post->user->name }}</h5>
+            <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
           </div>
-        </div>
-        <div class="row">
-          <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
         </div>
         <p class="card-text">{{ $post->message }}</p>
       </div>
+
+      @if($post->images)
+        @php
+          $images = json_decode($post->images);
+          $imageCount = count($images);
+        @endphp
+
+          <!-- Center the images container -->
+        <div class="d-flex justify-content-center">
+          <div class="post-images {{ $imageCount == 2 ? 'grid-2' : ($imageCount > 2 ? 'grid-4' : '') }}">
+            @foreach($images as $image)
+              @if($loop->index < 4) <!-- Only display up to 4 images -->
+              <img src="{{ asset('storage/' . $image) }}" class="mb-2" alt="Post Image">
+              @endif
+            @endforeach
+          </div>
+        </div>
+      @endif
+
       <div class="card-footer d-flex justify-content-between align-items-center">
         <small class="text-muted">Posted on {{ $post->created_at->format('F j, Y') }}</small>
         <div>
           <form action="{{ route('posts.like', $post->id) }}" method="POST" style="display: inline;">
             @csrf
-            {{-- <button class="btn btn-light btn-sm"><i class="mdi mdi-thumb-up-outline"></i> {{ $post->likes }}</button> --}}
             <button type="submit" class="btn btn-light btn-sm">
               @if($post->userLikes && !$post->userLikes->isEmpty())
-             <i class="mdi mdi-thumb-up"></i> <!-- Bookmarked icon -->
+                <i class="mdi mdi-thumb-up"></i>
               @else
-                  <i class="mdi mdi-thumb-up-outline"></i> <!-- Not bookmarked icon -->
+                <i class="mdi mdi-thumb-up-outline"></i>
               @endif
               {{ $post->userLikes->count() }}
-          </button>
-        </form>
+            </button>
+          </form>
           <button class="btn btn-light btn-sm"><i class="mdi mdi-comment-outline"></i> {{ $post->comments }}</button>
           <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
             @csrf
             <button type="submit" class="btn btn-light btn-sm">
-                @if($post->bookmarks && !$post->bookmarks->isEmpty())
-               <i class="mdi mdi-bookmark"></i> <!-- Bookmarked icon -->
-                @else
-                    <i class="mdi mdi-bookmark-outline"></i> <!-- Not bookmarked icon -->
-                @endif
+              @if($post->bookmarks && !$post->bookmarks->isEmpty())
+                <i class="mdi mdi-bookmark"></i>
+              @else
+                <i class="mdi mdi-bookmark-outline"></i>
+              @endif
             </button>
-         </form>
+          </form>
           <button class="btn btn-light btn-sm"><i class="mdi mdi-share-outline"></i></button>
         </div>
       </div>
     </div>
   @endforeach
+
 
 @endsection

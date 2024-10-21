@@ -32,27 +32,39 @@ class PostController extends Controller
     return view('content.home.home', compact('posts'));
   }
 
+
   public function store(Request $request)
   {
     $request->validate([
-      'message' => 'required|string|max:255',
-      'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+      'message' => 'nullable|string|max:255',
+      'images' => 'nullable',
+      'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // Validate each image
     ]);
 
+    if (!$request->message && !$request->hasFile('images')) {
+      return redirect()->back()->withErrors(['message' => 'You must provide either a message or an image.']);
+    }
+
     $post = new Post();
-    $post->message = $request->message;
+    $post->message = $request->message ?? ' ';
     $post->comments = 0;
     $post->user_id = auth()->id();
 
-    if ($request->hasFile('image')) {
-      $imagePath = $request->file('image')->store('uploads', 'public');
-      $post->image = $imagePath;
+    if ($request->hasFile('images')) {
+      $imagePaths = [];
+      foreach ($request->file('images') as $index => $image) {
+        if ($index < 4) { // Limit to 4 images
+          $imagePaths[] = $image->store('uploads', 'public');
+        }
+      }
+      $post->images = json_encode($imagePaths); // Save paths as JSON
     }
 
     $post->save();
 
     return redirect()->back()->with('success', 'Post created successfully!');
   }
+
 
   public function like($id)
   {

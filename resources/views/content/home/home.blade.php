@@ -41,8 +41,26 @@
                 </div>
                 <div class="mb-3">
                   <label for="post-images" class="col-form-label">Upload Images:</label>
-                  <input type="file" class="form-control" id="post-images" name="images[]" multiple> <!-- Allow multiple files -->
+                  <input type="file" class="form-control" id="post-images" name="images[]" multiple accept="image/png, image/jpeg">
+                  <div id="image-preview" class="d-flex flex-wrap mt-2"></div> <!-- Preview container -->
                 </div>
+
+                <script>
+                  document.getElementById('post-images').addEventListener('change', function(event) {
+                    const previewContainer = document.getElementById('image-preview');
+                    previewContainer.innerHTML = ''; // Clear previous previews
+                    const files = event.target.files;
+                    for (const file of files) {
+                      const img = document.createElement('img');
+                      img.src = URL.createObjectURL(file);
+                      img.classList.add('img-thumbnail', 'm-2');
+                      img.style.maxHeight = '150px';
+                      previewContainer.appendChild(img);
+                    }
+                  });
+                </script>
+
+
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Post</button>

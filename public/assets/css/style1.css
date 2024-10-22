@@ -3,6 +3,11 @@ html {
   overflow-x: hidden;
 }
 
+body {
+  font-family: 'Plus Jakarta Sans Medium', sans-serif !important ;
+}
+
+
 /*body {*/
 /*  margin: 0;*/
 /*  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(207, 179, 138, 0.6)),*/

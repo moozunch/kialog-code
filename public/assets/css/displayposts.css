@@ -1,4 +1,9 @@
 /* Container holding the images */
+body {
+  font-family: 'Plus Jakarta Sans Medium', sans-serif !important ;
+}
+
+
 .post-images {
   display: grid;
   grid-gap: 10px;

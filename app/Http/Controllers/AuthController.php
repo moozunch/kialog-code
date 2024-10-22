@@ -48,4 +48,49 @@ class AuthController extends Controller
 
     return redirect('/'); // Redirect to the landing page or login page
   }
+
+  //account settings
+  public function updateAccountSettings(Request $request)
+  {
+    $request->validate([
+      'username' => 'required|string|max:255',
+      'name' => 'nullable|string|max:255', // Changed to 'name' to match the form
+      'email' => 'required|string|email|max:255',
+      'institution' => 'nullable|string|max:255',
+      'bio' => 'nullable|string|max:255',
+      'country' => 'nullable|string|max:255',
+      'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10048',
+    ]);
+
+    $user = Auth::user();
+
+    // Handle profile image upload
+    if ($request->hasFile('profile_image')) {
+      // Store the image and set the path in the database
+      $imagePath = $request->file('profile_image')->store('profile_images', 'public');
+
+      // Optionally delete the old image, if needed
+      if ($user->profile_image && \Storage::exists('public/' . $user->profile_image)) {
+        \Storage::delete('public/' . $user->profile_image);
+      }
+
+      // Update profile image path
+      $user->profile_image = $imagePath;
+    }
+
+    // Update other fields
+    $user->username = $request->input('username');
+    $user->name = $request->input('name'); // Use 'name' to match form field
+    $user->email = $request->input('email');
+    $user->institution = $request->input('institution');
+    $user->bio = $request->input('bio');
+    $user->country = $request->input('country');
+    $user->profile_image = $request->input('profile_image');
+
+    // Save updated user details
+    $user->save();
+
+    return redirect()->back()->with('success', 'Account settings updated successfully.');
+  }
+
 }

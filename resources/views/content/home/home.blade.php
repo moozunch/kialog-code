@@ -84,6 +84,22 @@
             <h5 class="card-title">{{ $post->user->name }}</h5>
             <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
           </div>
+          <div class="col-auto ml-auto delete-button">
+            <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="mdi mdi-dots-horizontal"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                  <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="dropdown-item text-danger">
+                          <i class="mdi mdi-trash-can-outline me-2"></i> Delete
+                      </button>
+                  </form>
+              </li>
+          </ul>
+          </div>
         </div>
         <p class="card-text">{{ $post->message }}</p>
       </div>

@@ -152,3 +152,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Setting - Profile
 Route::get('/settings', [AccountSettingsAccount::class, 'index'])->name('settings');
+
+//delete-post
+Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');

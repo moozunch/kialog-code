@@ -102,4 +102,21 @@ class PostController extends Controller
 
     return redirect()->back()->with('success', 'Postingan berhasil disimpan ke bookmark!');
   }
+
+  public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+
+        // Delete associated images if any
+        // if ($post->images) {
+        //     $images = json_decode($post->images);
+        //     foreach ($images as $image) {
+        //         Storage::delete('public/' . $image);
+        //     }
+        // }
+
+        $post->delete();
+
+        return redirect()->back()->with('success', 'Post deleted successfully!');
+    }
 }

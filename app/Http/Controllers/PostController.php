@@ -21,11 +21,8 @@ class PostController extends Controller
     $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
 
     foreach ($posts as $post) {
-      if (!$post->user->profile_image) {
-        $post->user->profile_image = 'assets/img/avatars/1.png'; // Set the path to your default image
-      }
       if (!$post->user->name) {
-        $post->user->name = 'Default Name'; // Set the default name
+        $post->user->name = 'Default Name';
       }
     }
 

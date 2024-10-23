@@ -79,7 +79,7 @@
       <div class="card-body">
         <div class="row mb-2 align-items-center">
           <div class="col-1">
-            <img src="{{ asset($post->user->profile_image) }}" alt="Profile Picture" class="rounded-circle" width="50px">
+            <img src="{{ Auth::user()->profile_image ? asset('storage/' . Auth::user()->profile_image) : asset('default-profile.png') }}" alt="Profile Picture" class="rounded-circle" width="50px">
           </div>
           <div class="col">
             <h5 class="card-title">{{ $post->user->name }}</h5>

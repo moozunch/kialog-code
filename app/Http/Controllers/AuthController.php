@@ -54,7 +54,7 @@ class AuthController extends Controller
   {
     $request->validate([
       'username' => 'required|string|max:255',
-      'name' => 'nullable|string|max:255', // Changed to 'name' to match the form
+      'name' => 'nullable|string|max:255',
       'email' => 'required|string|email|max:255',
       'institution' => 'nullable|string|max:255',
       'bio' => 'nullable|string|max:255',
@@ -69,7 +69,7 @@ class AuthController extends Controller
       // Store the image and set the path in the database
       $imagePath = $request->file('profile_image')->store('profile_images', 'public');
 
-      // Optionally delete the old image, if needed
+      // Delete the old profile image if it exists
       if ($user->profile_image && \Storage::exists('public/' . $user->profile_image)) {
         \Storage::delete('public/' . $user->profile_image);
       }
@@ -80,17 +80,15 @@ class AuthController extends Controller
 
     // Update other fields
     $user->username = $request->input('username');
-    $user->name = $request->input('name'); // Use 'name' to match form field
+    $user->name = $request->input('name');
     $user->email = $request->input('email');
     $user->institution = $request->input('institution');
     $user->bio = $request->input('bio');
     $user->country = $request->input('country');
-    $user->profile_image = $request->input('profile_image');
 
     // Save updated user details
     $user->save();
 
     return redirect()->back()->with('success', 'Account settings updated successfully.');
   }
-
 }

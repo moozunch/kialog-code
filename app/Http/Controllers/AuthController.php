@@ -37,7 +37,7 @@ class AuthController extends Controller
     Auth::login($user);
     $request->session()->regenerate();
 
-    return redirect()->intended('home'); // Change 'home' to your intended route
+    return redirect()->intended('home');
   }
 
   public function logout(Request $request)
@@ -46,7 +46,7 @@ class AuthController extends Controller
     $request->session()->invalidate();
     $request->session()->regenerateToken();
 
-    return redirect('/'); // Redirect to the landing page or login page
+    return redirect('/');
   }
 
   //account settings

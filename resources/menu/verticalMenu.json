@@ -11,13 +11,13 @@
     },
     {
       "name": "Message",
-      "icon": "menu-icon tf-icons mdi mdi-message",
+      "icon": "menu-icon tf-icons mdi mdi-email-outline",
       "slug": "Message",
       "url": "message"
     },
     {
       "name": "Topic",
-      "icon": "menu-icon tf-icons mdi mdi-book-open",
+      "icon": "menu-icon tf-icons mdi mdi-book-open-blank-variant",
       "slug": "Topic",
       "url": "topics"
     },

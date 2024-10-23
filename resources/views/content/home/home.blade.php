@@ -5,6 +5,7 @@
 @section('vendor-style')
   <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/displayposts.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/button.css') }}">
 @endsection
 
 @section('vendor-script')

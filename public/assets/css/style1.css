@@ -44,15 +44,11 @@ nav {
   padding: 70px;
   background-color: transparent;
   width: 100%;
-<<<<<<< HEAD
-
-=======
   position: fixed;
->>>>>>> 58e1a468795c5b119ac6fe156345f5250cac46aa
 }
 
 nav img {
-  height: 30px;
+  height: 40px;
 }
 
 nav ul {
@@ -367,5 +363,5 @@ nav ul li a {
 
 footer, footer * {
   color: var(--white) !important;
-  font-weight: 400 !important;
+  font-weight: 500 !important;
 }

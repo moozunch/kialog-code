@@ -14,7 +14,7 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
       <a class="navbar-brand" href="#">
-        <img src="{{ asset('assets/svg/kialogtext.svg') }}" alt="Kialog Logo" height="30">
+        <img src="{{ asset('assets/svg/kialogtext.svg') }}" alt="Kialog Logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

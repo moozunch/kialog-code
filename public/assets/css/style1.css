@@ -364,3 +364,8 @@ nav ul li a {
 .no-scroll {
   overflow: hidden;
 }
+
+footer, footer * {
+  color: var(--white) !important;
+  font-weight: 400 !important;
+}

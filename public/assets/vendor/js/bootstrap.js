@@ -8566,7 +8566,7 @@ __webpack_require__.r(__webpack_exports__);
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -8580,17 +8580,17 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	!function() {
@@ -8625,7 +8625,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			return result;
 /******/ 		};
 /******/ 	}();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
@@ -8637,12 +8637,12 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			}
 /******/ 		};
 /******/ 	}();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	!function() {
 /******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
 /******/ 	}();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	!function() {
 /******/ 		// define __esModule on exports
@@ -8653,11 +8653,11 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	}();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	!function() {
 /******/ 		// no baseURI
-/******/ 		
+/******/
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
@@ -8676,19 +8676,19 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			"assets/vendor/libs/apex-charts/apex-charts": 0,
 /******/ 			"assets/vendor/css/theme-default": 0
 /******/ 		};
-/******/ 		
+/******/
 /******/ 		// no chunk on demand loading
-/******/ 		
+/******/
 /******/ 		// no prefetching
-/******/ 		
+/******/
 /******/ 		// no preloaded
-/******/ 		
+/******/
 /******/ 		// no HMR
-/******/ 		
+/******/
 /******/ 		// no HMR manifest
-/******/ 		
+/******/
 /******/ 		__webpack_require__.O.j = function(chunkId) { return installedChunks[chunkId] === 0; };
-/******/ 		
+/******/
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = function(parentChunkLoadingFunction, data) {
 /******/ 			var chunkIds = data[0];
@@ -8715,14 +8715,14 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunkmaterio_bootstrap_html_laravel_admin_template_free"] = self["webpackChunkmaterio_bootstrap_html_laravel_admin_template_free"] || [];
+/******/
+    /******/ var chunkLoadingGlobal = self["webpackChunkkialog"] = self["webpackChunkkialog"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	}();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
@@ -8740,7 +8740,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.O(undefined, ["assets/vendor/libs/highlight/highlight-github","assets/vendor/css/pages/page-misc","assets/vendor/css/pages/page-icons","assets/vendor/css/pages/page-auth","assets/vendor/css/pages/page-account-settings","assets/vendor/css/core","assets/vendor/fonts/materialdesignicons","assets/vendor/libs/perfect-scrollbar/perfect-scrollbar","assets/vendor/libs/node-waves/node-waves","assets/vendor/libs/highlight/highlight","assets/vendor/libs/apex-charts/apex-charts","assets/vendor/css/theme-default"], function() { return __webpack_require__("./resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.scss"); })
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/vendor/libs/highlight/highlight-github","assets/vendor/css/pages/page-misc","assets/vendor/css/pages/page-icons","assets/vendor/css/pages/page-auth","assets/vendor/css/pages/page-account-settings","assets/vendor/css/core","assets/vendor/fonts/materialdesignicons","assets/vendor/libs/perfect-scrollbar/perfect-scrollbar","assets/vendor/libs/node-waves/node-waves","assets/vendor/libs/highlight/highlight","assets/vendor/libs/apex-charts/apex-charts","assets/vendor/css/theme-default"], function() { return __webpack_require__("./resources/assets/vendor/fonts/materialdesignicons.scss"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+/******/
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;

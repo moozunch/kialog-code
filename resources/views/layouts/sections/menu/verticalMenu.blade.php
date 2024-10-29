@@ -31,10 +31,10 @@
 
     {{-- active menu method --}}
     @php
-      $activeClass = null;
+      $activeClass = '';
       $currentRouteName =  Route::currentRouteName();
 
-      if ($currentRouteName === $menu->slug) {
+      if ($currentRouteName === $menu->slug || (isset($menu->submenu) && in_array($currentRouteName, (array) $menu->slug))) {
           $activeClass = 'active';
       }
       elseif (isset($menu->submenu)) {

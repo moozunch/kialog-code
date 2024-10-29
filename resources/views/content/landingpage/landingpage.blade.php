@@ -14,7 +14,7 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
       <a class="navbar-brand" href="#">
-        <img src="{{ asset('assets/svg/kialogtext.svg') }}" alt="Kialog Logo" height="30">
+        <img src="{{ asset('assets/svg/kialogtext.svg') }}" alt="Kialog Logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -106,8 +106,20 @@
   </section>
 </main>
 
-<footer>
+<footer class="bg-dark text-white py-4 text-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <!-- Company Info -->
+      <div class="col-md-6 mb-3">
+        <h5>Kialog</h5>
+        <p>Discussing hub made from student for students.</p>
+        <p>&copy; 2024 Kialog. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
 </footer>
+
+
 
 <!-- Sign-In Modal -->
 <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">

@@ -20,11 +20,11 @@
 @section('content')
   <div class="above d-flex justify-content-between">
     <div class="option d-flex mb-2">
-      <button class="btn btn-outline-primary btn-sm">For You</button>
-      <button class="btn btn-outline-secondary btn-sm ms-2">Mutual</button>
+      <button class="btn btn-style btn-outline-primary btn-sm">For You</button>
+      <button class="btn btn-style btn-outline-secondary btn-sm ms-2">Mutual</button>
     </div>
     <div class="create-post">
-      <button type="button" class="btn btn-primary btn-m" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">NEW POST</button>
+      <button type="button" class="btn btn-style btn-primary btn-m" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">NEW POST</button>
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -86,7 +86,7 @@
             <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
           </div>
           <div class="col-auto ml-auto delete-button">
-            <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
               <i class="mdi mdi-dots-horizontal"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -123,32 +123,32 @@
         </div>
       @endif
 
-      <div class="card-footer d-flex justify-content-between align-items-center">
+      <div class="card-footer d-flex justify-content-between align-items-center flex-nowrap">
         <small class="text-muted">Posted on {{ $post->created_at->format('F j, Y') }}</small>
-        <div>
+        <div class="d-flex justify-content-end flex-nowrap">
           <form action="{{ route('posts.like', $post->id) }}" method="POST" style="display: inline;">
             @csrf
-            <button type="submit" class="btn btn-light btn-sm">
+            <button type="submit" class="btn btn-like btn-no-bg btn-light btn-sm mx-1">
               @if($post->userLikes && !$post->userLikes->isEmpty())
-                <i class="mdi mdi-thumb-up"></i>
+                <i class="mdi mdi-cards-heart text-danger"></i>
               @else
-                <i class="mdi mdi-thumb-up-outline"></i>
+                <i class="mdi mdi-cards-heart-outline"></i>
               @endif
               {{ $post->userLikes->count() }}
             </button>
           </form>
-          <button class="btn btn-light btn-sm"><i class="mdi mdi-comment-outline"></i> {{ $post->comments }}</button>
+          <button class="btn btn-comment btn-no-bg btn-light btn-sm mx-1"><i class="mdi mdi-chat-outline"></i> {{ $post->comments }}</button>
           <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
             @csrf
-            <button type="submit" class="btn btn-light btn-sm">
+            <button type="submit" class="btn btn-bookmark btn-no-bg btn-light btn-sm mx-1">
               @if($post->bookmarks && !$post->bookmarks->isEmpty())
-                <i class="mdi mdi-bookmark"></i>
+                <i class="mdi mdi-bookmark text-primary"></i>
               @else
                 <i class="mdi mdi-bookmark-outline"></i>
               @endif
             </button>
           </form>
-          <button class="btn btn-light btn-sm"><i class="mdi mdi-share-outline"></i></button>
+          <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1"><i class="mdi mdi-share-outline"></i></button>
         </div>
       </div>
     </div>

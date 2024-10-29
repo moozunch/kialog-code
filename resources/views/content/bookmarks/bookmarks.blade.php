@@ -4,6 +4,8 @@
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/css/displayposts.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/button.css') }}">
 @endsection
 
 @section('vendor-script')
@@ -38,10 +40,29 @@
     <div class="card-footer d-flex justify-content-between align-items-center">
       <small class="text-muted">Posted on {{ $bookmark->post->created_at->format('F j, Y') }}</small>
       <div>
-        <button class="btn btn-light btn-sm"><i class="mdi mdi-thumb-up-outline"></i> </button>
-        <button class="btn btn-light btn-sm"><i class="mdi mdi-comment-outline"></i> </button>
-        <button class="btn btn-light btn-sm"><i class="mdi mdi-bookmark"></i> </button>
-        <button class="btn btn-light btn-sm"><i class="mdi mdi-share-outline"></i> </button>
+        <form action="{{ route('posts.like', $bookmark->post->id) }}" method="POST" style="display: inline;">
+          @csrf
+          <button type="submit" class="btn btn-like btn-no-bg btn-light btn-sm">
+            @if($bookmark->post->userLikes && !$bookmark->post->userLikes->isEmpty())
+              <i class="mdi mdi-cards-heart text-danger"></i>
+            @else
+              <i class="mdi mdi-cards-heart-outline"></i>
+            @endif
+            {{ $bookmark -> post-> userLikes->count() }}
+          </button>
+        </form>
+        <button class="btn btn-comment btn-no-bg btn-light btn-sm"><i class="mdi mdi-chat-outline"></i> {{ $bookmark -> post ->comments }}</button>
+        <form action="{{ route('bookmarks.store', $bookmark->post->id) }}" method="POST" style="display: inline;">
+          @csrf
+          <button type="submit" class="btn btn-bookmark btn-no-bg btn-light btn-sm">
+            @if($bookmark-> post ->bookmarks && !$bookmark -> post ->bookmarks->isEmpty())
+              <i class="mdi mdi-bookmark text-primary"></i>
+            @else
+              <i class="mdi mdi-bookmark-outline"></i>
+            @endif
+          </button>
+        </form>
+        <button class="btn btn-no-bg btn-share btn-light btn-sm"><i class="mdi mdi-share-outline"></i></button>
       </div>
     </div>
   </div>

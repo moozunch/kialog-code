@@ -12,19 +12,19 @@
     {
       "name": "Message",
       "icon": "menu-icon tf-icons mdi mdi-email-outline",
-      "slug": "Message",
+      "slug": "message",
       "url": "message"
     },
     {
       "name": "Topic",
       "icon": "menu-icon tf-icons mdi mdi-book-open-blank-variant",
-      "slug": "Topic",
+      "slug": "topic",
       "url": "topics"
     },
     {
       "name": "Bookmarks",
       "icon": "menu-icon tf-icons mdi mdi-bookmark-multiple",
-      "slug": "Bookmarks",
+      "slug": "bookmarks",
       "url": "bookmarks"
     }
   ]

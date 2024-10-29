@@ -48,9 +48,9 @@
             <ul class="navbar-nav flex-row align-items-center ms-auto">
 
               <!-- Place this tag where you want the button to render. -->
-              <li class="nav-item lh-1 me-3">
+              {{-- <li class="nav-item lh-1 me-3">
                 <a class="github-button" href="https://github.com/themeselection/materio-bootstrap-html-laravel-admin-template-free" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themeselection/materio-bootstrap-html-laravel-admin-template-free on GitHub">Star</a>
-              </li>
+              </li> --}}
 
               <!-- User -->
               <li class="nav-item navbar-dropdown dropdown-user dropdown">

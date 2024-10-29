@@ -153,4 +153,9 @@
   .natasya {
     margin-top: -1rem !important;
   }
+
+  footer {
+    margin-top: 4rem;
+    font-weight: lighter;
+  }
 }

@@ -117,11 +117,13 @@ Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('
 Route::get('/home', [PostController::class, 'index'])->name('home');
 
 //Messages
-Route::get('/message', [MessageController::class, 'index'])->name('Messages');
+Route::get('/message', [MessageController::class, 'index'])->name('messages');
 
 //Topic
 Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
 Route::post('/topics', [TopicController::class, 'store'])->name('topics.store');
+Route::get('/topic/{id}', [TopicController::class, 'show'])->name('topic.show');
+Route::post('/topic/join/{id}', [TopicController::class, 'join'])->name('topic.join');
 
 
 //Bookmarks

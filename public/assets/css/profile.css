@@ -1,13 +1,9 @@
-html {
-  width: 100%;
-}
-
 * {
   margin: 0;
-  padding: 0rem 0rem;
+  padding: 0rem;
   font: 1rem "Plus Jakarta Sans Medium", sans-serif;
-  flex-wrap: wrap;
-  color: var(--black);
+  /* flex-wrap: wrap;
+  color: var(--black); */
 }
 :root {
   --primary-color: #2c6822;
@@ -608,4 +604,3 @@ p.bio {
       overflow: scroll;
   }
 }
- 

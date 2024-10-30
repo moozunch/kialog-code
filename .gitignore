@@ -20,3 +20,5 @@ yarn.lock
 package-lock.log
 /.idea
 /.vscode
+
+.vercel

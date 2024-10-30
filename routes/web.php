@@ -49,7 +49,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ProfileController;
 
 // Main Page Route
 Route::get('/home', [Analytics::class, 'index']);
@@ -157,3 +157,6 @@ Route::get('/settings', [AccountSettingsAccount::class, 'index'])->name('setting
 
 //delete-post
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+//profile
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show')->middleware('auth');

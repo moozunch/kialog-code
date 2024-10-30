@@ -3,176 +3,91 @@
 @section('title', 'Message')
 
 @section('vendor-style')
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/mesage.css') }}">
 @endsection
 
 @section('vendor-script')
-<script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+<script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 @endsection
 
 @section('page-script')
-<script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
+<script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 @endsection
 
 @section('content')
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
-
-        <h5 class="font-weight-bold mb-3 text-center text-lg-start">Messages</h5>
-
+<main class="content">
+    <div class="container p-0">
+        <h1 class="h3 mb-3">Messages</h1>
         <div class="card">
-          <div class="card-body">
+            <div class="row g-0">
+                <div class="col-12 col-lg-5 col-xl-3 border-right">
+                    <div class="px-4 d-none d-md-block">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <input type="text" class="form-control my-3" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
 
-            <ul class="list-unstyled mb-0">
-              <li class="p-2 border-bottom bg-body-tertiary">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <img src="{{ asset('assets/img/avatars/6.png') }}" alt="avatar"
-                      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
-                    <div class="pt-1">
-                      <p class="fw-bold mb-0">John Doe</p>
-                      <p class="small text-muted">Hello, Are you there?</p>
+                    <a href="#" class="list-group-item list-group-item-action border-0">
+                        <div class="badge bg-success float-right">3</div>
+                        <div class="d-flex align-items-start">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+                            <div class="flex-grow-1 ml-3">
+                                Sharon Lessman
+                                <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-lg-7 col-xl-9">
+                    <div class="py-2 px-4 border-bottom d-none d-lg-block">
+                        <div class="d-flex align-items-center py-1">
+                            <div class="position-relative">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+                            </div>
+                            <div class="flex-grow-1 pl-3">
+                                <strong>Sharon Lessman</strong>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="pt-1">
-                    <p class="small text-muted mb-1">Just now</p>
-                    <span class="badge bg-danger float-end">1</span>
-                  </div>
-                </a>
-              </li>
-              <li class="p-2 border-bottom">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <img src="{{ asset('assets/img/avatars/3.png') }}" alt="avatar"
-                      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
-                    <div class="pt-1">
-                      <p class="fw-bold mb-0">Danny Smith</p>
-                      <p class="small text-muted">Lorem ipsum dolor sit.</p>
-                    </div>
-                  </div>
-                  <div class="pt-1">
-                    <p class="small text-muted mb-1">5 mins ago</p>
-                  </div>
-                </a>
-              </li>
-              <li class="p-2 border-bottom">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <img src="{{ asset('assets/img/avatars/2.png') }}" alt="avatar"
-                      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
-                    <div class="pt-1">
-                      <p class="fw-bold mb-0">Alex Steward</p>
-                      <p class="small text-muted">Lorem ipsum dolor sit.</p>
-                    </div>
-                  </div>
-                  <div class="pt-1">
-                    <p class="small text-muted mb-1">Yesterday</p>
-                  </div>
-                </a>
-              </li>
-              <li class="p-2 border-bottom">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <img src="{{ asset('assets/img/avatars/4.png') }}" alt="avatar"
-                      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
-                    <div class="pt-1">
-                      <p class="fw-bold mb-0">Ashley Olsen</p>
-                      <p class="small text-muted">Lorem ipsum dolor sit.</p>
-                    </div>
-                  </div>
-                  <div class="pt-1">
-                    <p class="small text-muted mb-1">Yesterday</p>
-                  </div>
-                </a>
-              </li>
-              <li class="p-2 border-bottom">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <img src="{{ asset('assets/img/avatars/5.png') }}" alt="avatar"
-                      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
-                    <div class="pt-1">
-                      <p class="fw-bold mb-0">Kate Moss</p>
-                      <p class="small text-muted">Lorem ipsum dolor sit.</p>
-                    </div>
-                  </div>
-                  <div class="pt-1">
-                    <p class="small text-muted mb-1">Yesterday</p>
-                  </div>
-                </a>
-              </li>
-            </ul>
 
-          </div>
+                    <div class="position-relative">
+                        <div class="chat-messages p-4">
+                            <div class="chat-message chat-message-right pb-4">
+                                <div>
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle ml-1" alt="Chris Wood" width="40" height="40">
+                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                </div>
+                                <div class="chat-bubble chat-bubble-right">
+                                    <div class="font-weight-bold mb-1">You</div>
+                                    Halo, apa kabar?
+                                </div>
+                            </div>
+
+                            <div class="chat-message chat-message-left pb-4">
+                                <div>
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+                                    <div class="text-muted small text-nowrap mt-2">2:34 am</div>
+                                </div>
+                                <div class="chat-bubble chat-bubble-left">
+                                    <div class="font-weight-bold mb-1">Sharon Lessman</div>
+                                    Kabar baik, kalau kamu?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-grow-0 py-3 px-4 border-top">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Type your message">
+                            <button class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-      </div>
-
-      <div class="col-md-6 col-lg-7 col-xl-8">
-
-        <ul class="list-unstyled">
-          <li class="d-flex justify-content-between mb-4">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
-              class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
-            <div class="card">
-              <div class="card-header d-flex justify-content-between p-3">
-                <p class="fw-bold mb-0">Brad Pitt</p>
-                <p class="text-muted small mb-0"><i class="far fa-clock"></i> 12 mins ago</p>
-              </div>
-              <div class="card-body">
-                <p class="mb-0">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                  labore et dolore magna aliqua.
-                </p>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex justify-content-between mb-4">
-            <div class="card w-100">
-              <div class="card-header d-flex justify-content-between p-3">
-                <p class="fw-bold mb-0">Lara Croft</p>
-                <p class="text-muted small mb-0"><i class="far fa-clock"></i> 13 mins ago</p>
-              </div>
-              <div class="card-body">
-                <p class="mb-0">
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                  laudantium.
-                </p>
-              </div>
-            </div>
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp" alt="avatar"
-              class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
-          </li>
-          <li class="d-flex justify-content-between mb-4">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
-              class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
-            <div class="card">
-              <div class="card-header d-flex justify-content-between p-3">
-                <p class="fw-bold mb-0">Brad Pitt</p>
-                <p class="text-muted small mb-0"><i class="far fa-clock"></i> 10 mins ago</p>
-              </div>
-              <div class="card-body">
-                <p class="mb-0">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                  labore et dolore magna aliqua.
-                </p>
-              </div>
-            </div>
-          </li>
-          <li class="bg-white mb-3">
-            <div data-mdb-input-init class="form-outline">
-              <textarea class="form-control bg-body-tertiary" id="textAreaExample2" rows="4"></textarea>
-              <label class="form-label" for="textAreaExample2">Message</label>
-            </div>
-          </li>
-          <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-rounded float-end">Send</button>
-        </ul>
-
-      </div>
-
     </div>
-
-  </div>
+</main>
 @endsection

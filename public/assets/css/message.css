@@ -24,39 +24,47 @@ body {
     margin-bottom: 15px;
 }
 
-.chat-message-left {
-    justify-content: flex-start;
-}
-
+/* Pesan dari pengguna (kanan) */
 .chat-message-right {
     flex-direction: row-reverse;
     justify-content: flex-end;
 }
 
-.chat-bubble {
+.chat-bubble-right {
+    background-color: #dcf8c6;
+    color: #333;
     max-width: 60%;
     padding: 10px 15px;
     border-radius: 15px;
-    font-size: 0.9rem;
+    border-top-right-radius: 0;
     word-wrap: break-word;
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+/* Pesan dari orang lain (kiri) */
+.chat-message-left {
+    justify-content: flex-start;
 }
 
 .chat-bubble-left {
     background-color: #f1f0f0;
+    color: #333;
+    max-width: 60%;
+    padding: 10px 15px;
+    border-radius: 15px;
     border-top-left-radius: 0;
-    margin-left: 10px;
-}
-
-.chat-bubble-right {
-    background-color: #dcf8c6;
-    border-top-right-radius: 0;
+    word-wrap: break-word;
     margin-right: 10px;
+    margin-left: 0;
 }
 
+/* Batas atas */
 .border-top {
     border-top: 1px solid #dee2e6 !important;
 }
 
+/* Input dan tombol kirim */
 .input-group input {
     border-radius: 20px 0 0 20px;
 }

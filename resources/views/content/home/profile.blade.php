@@ -2,6 +2,8 @@
 
 @section('vendor-style')
   <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/displayposts.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/button.css') }}">
 @endsection
 
 @section('profile-script')
@@ -18,10 +20,10 @@
       <div class="profile-header d-flex justify-content-between align-items-center">
         <!-- Foto Profil dan Info -->
         <div class="profile-identitas d-flex align-items-center flex-wrap">
-          <img id="profileImage" src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" alt="Foto Profil" class="rounded-circle profile-picture me-3" />
+          <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Picture" class="rounded-circle" width="150px">
           <div class="profile-info">
-            <h1>Display Name</h1>
-            <h2>Username</h2>
+            <h1>{{ $user->name  }}</h1>
+            <h2>{{ $user->username }}</h2>
           </div>
         </div>
 
@@ -194,9 +196,9 @@
 </div>
 
 <!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
 
 @endsection

@@ -7,13 +7,13 @@
 <link rel="stylesheet" href="{{ asset('assets/css/button.css') }}">
 @endsection
 
-@section('vendor-script')
+{{-- @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 @endsection
 
 @section('page-script')
 <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
-@endsection
+@endsection --}}
 
 @section('content')
 <div class="create-topic mb-4">

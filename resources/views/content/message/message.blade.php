@@ -7,13 +7,13 @@
 <link rel="stylesheet" href="{{ asset('assets/css/message.css') }}">
 @endsection
 
-@section('vendor-script')
+{{-- @section('vendor-script')
 <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 @endsection
 
 @section('page-script')
 <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
-@endsection
+@endsection --}}
 
 @section('content')
 <body>
@@ -77,6 +77,7 @@
             </div>
           </div>
         </div>
+<<<<<<< HEAD
         <div class="mesgs">
           <div class="msg_history">
             <div class="incoming_msg">
@@ -129,3 +130,8 @@
       
     </body>
 @endsection
+=======
+    </div>
+</main>
+@endsection
+>>>>>>> c5a1ea48ac71968443c80c22b1d0f88e99f647cc

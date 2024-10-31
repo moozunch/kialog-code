@@ -31,7 +31,7 @@
             @csrf
 
             <div class="d-flex align-items-start align-items-sm-center gap-4 mb-4">
-              <img src="{{ Auth::user()->profile_image ? asset('storage/' . Auth::user()->profile_image) : asset('assets/img/avatars/1.png') }}"
+              <img src="{{ Auth::user()->profile_image ? asset('storage/' . Auth::user()->profile_image) : asset('assets/img/avatars/1.png') }} " style="object-fit: cover; object-position: center"
                    alt="user-avatar" class="d-block w-px-120 h-px-120 rounded" id="uploadedAvatar" />
               <div class="button-wrapper">
                 <label for="profile_image" class="btn btn-primary me-2 mb-3" tabindex="0">

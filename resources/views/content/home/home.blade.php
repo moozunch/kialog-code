@@ -74,13 +74,15 @@
     </div>
   </div>
 
+  <!-- Display Posts -->
+
   @foreach($posts as $post)
     <div class="card mt-2">
       <div class="card-body">
         <div class="row mb-2 align-items-center">
           <div class="col-1">
-            <a href="{{ route('profile.show') }}">
-              <img src="{{ Auth::user()->profile_image ? asset('storage/' . Auth::user()->profile_image) : asset('default-profile.png') }}" alt="Profile Picture" class="rounded-circle" width="50px">
+            <a href="{{ route('profile.show', ['id' => $post->user->id]) }}">
+              <img src="{{ $post->user->profile_image ? asset('storage/' . $post->user->profile_image) : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle profile-image" width="50px" style="object-fit: cover; object-position: center">
             </a>
           </div>
           <div class="col">

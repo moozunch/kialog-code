@@ -82,7 +82,8 @@
         <div class="row mb-2 align-items-center">
           <div class="col-1">
             <a href="{{ route('profile.show', ['id' => $post->user->id]) }}">
-              <img src="{{ $post->user->profile_image ? asset('storage/' . $post->user->profile_image) : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle profile-image" width="50px" style="object-fit: cover; object-position: center">
+              <img src="{{ Auth::user()->profile_image ? Auth::user()->profile_image : asset('assets/img/avatars/1.png') }}"
+                   alt="Profile Picture of {{ $post->user->name }}" class="rounded-circle profile-image" width="50px">
             </a>
           </div>
           <div class="col">
@@ -90,20 +91,20 @@
             <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
           </div>
           <div class="col-auto ml-auto delete-button">
-            <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+            <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="mdi mdi-dots-horizontal"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
-                  <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="dropdown-item text-danger">
-                          <i class="mdi mdi-trash-can-outline me-2"></i> Delete
-                      </button>
-                  </form>
+                <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="dropdown-item text-danger">
+                    <i class="mdi mdi-trash-can-outline me-2"></i> Delete
+                  </button>
+                </form>
               </li>
-          </ul>
+            </ul>
           </div>
         </div>
         <p class="card-text">{{ $post->message }}</p>
@@ -115,12 +116,11 @@
           $imageCount = count($images);
         @endphp
 
-          <!-- Center the images container -->
         <div class="d-flex justify-content-center">
           <div class="post-images {{ $imageCount == 2 ? 'grid-2' : ($imageCount > 2 ? 'grid-4' : '') }}">
             @foreach($images as $image)
-              @if($loop->index < 4) <!-- Only display up to 4 images -->
-              <img src="{{ asset('storage/' . $image) }}" class="mb-2" alt="Post Image">
+              @if($loop->index < 4)
+                <img src="{{ $image }}" class="mb-2" alt="Post Image {{ $loop->index + 1 }}" style="max-height: 200px; object-fit: cover;">
               @endif
             @endforeach
           </div>
@@ -157,6 +157,7 @@
       </div>
     </div>
   @endforeach
+
 
 
 @endsection

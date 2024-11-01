@@ -25,8 +25,9 @@
       @endif
     <div class="card-body">
       <div class="row mb-2 align-items-center">
-        <div class="col-1">
-          <img src="{{ $bookmark->user->profile_image ? asset($bookmark->user->profile_image) : asset('assets/img/avatars/1.png') }}"  alt="Profile Picture" class="rounded-circle" width="50px">
+        <div class="col-1" >
+          <a href="{{ route('profile.show', ['id' => $bookmark->user->id]) }}">
+          <img src="{{ $bookmark->user->profile_image ? $bookmark->user->profile_image : asset('assets/img/avatars/1.png') }}"  alt="Profile Picture" class="rounded-circle" width="50px">
         </div>
         <div class="col">
           <h5 class="card-title">{{ $bookmark->user->name }}</h5>

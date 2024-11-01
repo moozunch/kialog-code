@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Google\Cloud\Storage\StorageClient;
 
 class AuthController extends Controller
 {
@@ -37,7 +39,7 @@ class AuthController extends Controller
     Auth::login($user);
     $request->session()->regenerate();
 
-    return redirect()->intended('home'); // Change 'home' to your intended route
+    return redirect()->intended('home');
   }
 
   public function logout(Request $request)
@@ -46,10 +48,9 @@ class AuthController extends Controller
     $request->session()->invalidate();
     $request->session()->regenerateToken();
 
-    return redirect('/'); // Redirect to the landing page or login page
+    return redirect('/');
   }
 
-  //account settings
   public function updateAccountSettings(Request $request)
   {
     $request->validate([
@@ -64,18 +65,35 @@ class AuthController extends Controller
 
     $user = Auth::user();
 
-    // Handle profile image upload
+    // Handle profile image upload to Firebase Storage
     if ($request->hasFile('profile_image')) {
-      // Store the image and set the path in the database
-      $imagePath = $request->file('profile_image')->store('profile_images', 'public');
+      $image = $request->file('profile_image');
+      $imageName = 'photo_profile/' . $user->username . '.' . $image->getClientOriginalExtension();
 
-      // Optionally delete the old image if it exists
-      if ($user->profile_image && \Storage::exists('public/' . $user->profile_image)) {
-        \Storage::delete('public/' . $user->profile_image);
+      // Initialize Firebase Storage bucket
+      $storage = app(StorageClient::class);
+      $bucket = $storage->bucket(config('firebase.storage_bucket'));
+
+      // Upload to Firebase under 'photo_profile' folder
+      $bucket->upload(
+        file_get_contents($image->getRealPath()),
+        [
+          'name' => $imageName,
+          'predefinedAcl' => 'publicRead',
+        ]
+      );
+
+      // Firebase image URL
+      $imageUrl = "https://storage.googleapis.com/" . config('firebase.storage_bucket') . "/" . $imageName;
+
+      // Optionally delete the old image if stored in Firebase or another service
+      if ($user->profile_image) {
+        $oldImageName = basename($user->profile_image);
+        $bucket->object('photo_profile/' . $oldImageName)->delete();
       }
 
-      // Update profile image path
-      $user->profile_image = $imagePath;
+      // Update the user's profile image URL in the database
+      $user->profile_image = $imageUrl;
     }
 
     // Update other fields
@@ -91,6 +109,4 @@ class AuthController extends Controller
 
     return redirect()->back()->with('success', 'Account settings updated successfully.');
   }
-
-
 }

@@ -116,7 +116,7 @@ div.profile-info h1 {
   font-weight: bold;
 }
 div.profile-info h2 {
-  font-size: 19px;
+  font-size: 16px;
   color: #6f6b6b;
 }
 
@@ -173,12 +173,12 @@ div.profile-info h2 {
 .profile-stats div {
   min-width: 80px;
   text-align: center; /* Posisikan teks di tengah */
-  font-size: 100px; /* Perbesar ukuran font */
+  font-size: 16px; /* Perbesar ukuran font */
   padding: 0px 25px;
 }
 .stat-container h6,
 .stat-container p {
-  font-size: 23px;
+  font-size: 16px;
 }
 
 .profile-stats .stat-container {
@@ -203,7 +203,7 @@ div.profile-info h2 {
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 150px;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 #follow-button:hover {
@@ -235,7 +235,7 @@ div.profile-info h2 {
 }
 
 .modal-header button i{
-  font-size: 25px;
+  font-size: 16px;
 }
 
 .modal-header button:hover {
@@ -311,7 +311,7 @@ p.bio {
   white-space: normal; /* Memastikan teks melakukan wrapping */
   overflow-wrap: break-word; /* Mencegah kata-kata yang terlalu panjang melanggar batas */
   margin: 10px 0 0 0; /* Tambahan margin untuk spasi atas jika diperlukan */
-  font-size: 20px;
+  font-size: 16px;
 }
 
 /* Post Section */
@@ -368,7 +368,7 @@ p.bio {
 /* Icon aktif */
 .active {
   color: var(--primary-color);
-  background-color: none;
+  background-color: transparent; /* Replaced 'none' with 'transparent' */
 }
 
 /* Komentar */
@@ -378,7 +378,7 @@ p.bio {
   border-radius: 10px;
   display: none;
   width: 100%;
-  margin-top: 10px
+  margin-top: 10px;
   gap: 10px;
 }
 

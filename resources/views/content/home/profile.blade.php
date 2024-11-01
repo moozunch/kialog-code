@@ -20,7 +20,7 @@
       <div class="profile-header d-flex justify-content-between align-items-center">
         <!-- Foto Profil dan Info -->
         <div class="profile-identitas d-flex align-items-center flex-wrap">
-          <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Picture" class="rounded-circle" width="150px">
+          <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Picture" class="rounded-circle" width="80px" height="80px" style="margin-right: 16px">
           <div class="profile-info">
             <h1>{{ $user->name  }}</h1>
             <h2>{{ $user->username }}</h2>
@@ -49,7 +49,7 @@
         <button class="btn btn-follow" id="follow-button">Follow</button>
       </div>
       <!-- Bio -->
-      <p class="bio text-muted mt-2">Bio</p>
+      <p class="bio text-muted mt-2">{{ $user->bio }}</p>
     </header>
 
     <hr />
@@ -61,7 +61,7 @@
         <div class="row mb-2 align-items-center">
           <div class="col-1">
             <a href="{{ route('profile.show') }}">
-              <img src="{{ Auth::user()->profile_image ? asset('storage/' . Auth::user()->profile_image) : asset('default-profile.png') }}" alt="Profile Picture" class="rounded-circle" width="50px">
+              <img src="{{ Auth::user()->profile_image ? asset('storage/' . Auth::user()->profile_image) : asset('default-profile.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px">
             </a>
           </div>
           <div class="col">

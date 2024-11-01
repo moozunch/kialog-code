@@ -82,7 +82,7 @@
         <div class="row mb-2 align-items-center">
           <div class="col-1">
             <a href="{{ route('profile.show', ['id' => $post->user->id]) }}">
-              <img src="{{ $post->user->profile_image ? asset('storage/' . $post->user->profile_image) : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle profile-image" width="50px" style="object-fit: cover; object-position: center">
+              <img src="{{ $post->user->profile_image ? asset('storage/' . $post->user->profile_image) : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle profile-image" width="50px" height="50px" style="object-fit: cover; object-position: center">
             </a>
           </div>
           <div class="col">
@@ -103,7 +103,7 @@
                       </button>
                   </form>
               </li>
-          </ul>
+            </ul>
           </div>
         </div>
         <p class="card-text">{{ $post->message }}</p>
@@ -157,6 +157,4 @@
       </div>
     </div>
   @endforeach
-
-
 @endsection

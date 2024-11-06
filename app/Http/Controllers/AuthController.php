@@ -78,7 +78,6 @@ class AuthController extends Controller
         file_get_contents($image->getRealPath()),
         [
           'name' => $imageName,
-          'predefinedAcl' => 'publicRead',
         ]
       );
 

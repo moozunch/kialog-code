@@ -75,40 +75,41 @@
         </div>
       </div>
 
-      <!-- Display Posts -->
-      @foreach($posts as $post)
-        <div class="card mt-2">
-          <div class="card-body">
-            <div class="row mb-2 align-items-center">
-              <div class="col-1">
-                <a href="{{ route('profile.show', ['id' => $post->user->id]) }}">
-                  <img src="{{ Auth::user()->profile_image ? Auth::user()->profile_image : asset('assets/img/avatars/1.png') }}"
-                       alt="Profile Picture of {{ $post->user->name }}" class="rounded-circle profile-image" width="50px">
-                </a>
-              </div>
-              <div class="col">
-                <h5 class="card-title">{{ $post->user->name }}</h5>
-                <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
-              </div>
-              <div class="col-auto ml-auto delete-button">
-                <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="mdi mdi-dots-horizontal"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="dropdown-item text-danger">
-                        <i class="mdi mdi-trash-can-outline me-2"></i> Delete
-                      </button>
-                    </form>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <p class="card-text">{{ $post->message }}</p>
+  <!-- Display Posts -->
+
+  @foreach($posts as $post)
+    <div class="card mt-2">
+      <div class="card-body">
+        <div class="row mb-2 align-items-center">
+          <div class="col-1">
+            <a href="{{ route('profile.show', ['id' => $post->user->id]) }}">
+              <img src="{{ Auth::user()->profile_image ? Auth::user()->profile_image : asset('assets/img/avatars/1.png') }}"
+                   alt="Profile Picture of {{ $post->user->name }}" class="rounded-circle profile-image" width="50px">
+            </a>
           </div>
+          <div class="col">
+            <h5 class="card-title">{{ $post->user->name }}</h5>
+            <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
+          </div>
+          <div class="col-auto ml-auto delete-button">
+            <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="mdi mdi-dots-horizontal"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="dropdown-item text-danger">
+                    <i class="mdi mdi-trash-can-outline me-2"></i> Delete
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p class="card-text">{{ $post->message }}</p>
+      </div>
 
           @if($post->images)
             @php

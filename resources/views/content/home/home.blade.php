@@ -83,7 +83,7 @@
         <div class="row mb-2 align-items-center">
           <div class="col-1">
             <a href="{{ route('profile.show', ['id' => $post->user->id]) }}">
-              <img src="{{ Auth::user()->profile_image ? Auth::user()->profile_image : asset('assets/img/avatars/1.png') }}"
+              <img src="{{ $post->user->profile_image ? $post->user->profile_image : asset('assets/img/avatars/1.png') }}"
                    alt="Profile Picture of {{ $post->user->name }}" class="rounded-circle profile-image" width="50px">
             </a>
           </div>

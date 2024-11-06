@@ -24,11 +24,11 @@
         <div class="row mb-2 align-items-center">
           <div class="col-1">
             <a href="{{ route('profile.show', ['id' => $bookmark->user->id]) }}">
-              <img src="{{ $bookmark->user->profile_image ? $bookmark->user->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px">
+              <img src="{{ $bookmark->post->user->profile_image ? $bookmark->user->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px">
             </a>
           </div>
           <div class="col">
-            <h5 class="card-title">{{ $bookmark->user->name }}</h5>
+            <h5 class="card-title">{{ $bookmark->post->user->name ? $bookmark->post->user->name : "Default Name"  }}</h5>
           </div>
         </div>
         <div class="row">

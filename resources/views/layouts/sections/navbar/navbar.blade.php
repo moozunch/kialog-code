@@ -1,3 +1,7 @@
+@section('navbar-style')
+<link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
+@endsection
+
 @php
   $containerNav = $containerNav ?? 'container-fluid';
   $navbarDetached = ($navbarDetached ?? '');
@@ -12,21 +16,6 @@
         <div class="{{$containerNav}}">
           @endif
 
-          <!--  Brand demo (display only for navbar-full and hide on below xl) -->
-          {{-- @if(isset($navbarFull))
-            <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
-              <a href="{{url('/')}}" class="app-brand-link gap-2">
-              <span class="app-brand-logo demo">
-              @include('_partials.macros',["height"=>20])
-              </span>
-                <span class="app-brand-text demo menu-text fw-semibold ms-1">{{config('variables.templateName')}}</span>
-              </a>
-              <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-                <i class="mdi menu-toggle-icon d-xl-block align-middle mdi-20px"></i>
-              </a>
-            </div>
-          @endif --}}
-
           <!-- ! Not required for layout-without-menu -->
           @if(!isset($navbarHideToggle))
             <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0{{ isset($menuHorizontal) ? ' d-xl-none ' : '' }} {{ isset($contentNavbar) ?' d-xl-none ' : '' }}">
@@ -36,18 +25,18 @@
             </div>
           @endif
 
-          <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+          <div class="navbar-nav-right d-flex align-items-center w-200" id="navbar-collapse">
             <!-- Search -->
-            <div class="navbar-nav align-items-center">
+            <div class="navbar-nav align-items-center mx-auto">
               <div class="position-relative">
                 <form class="d-flex" role="search">
-                  <input class="form-control me-2 pe-5" type="search" placeholder="Search" aria-label="Search" style="border-radius: 12px">
+                  <input class="form-control me-2 pe-5 custom-search-input" type="search" placeholder="Search" aria-label="Search" style="border-radius: 12px;">
                   <i class="mdi mdi-magnify mdi-24px position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);"></i>
                 </form>
               </div>
             </div>
             <!-- /Search -->
-            <ul class="navbar-nav flex-row align-items-center ms-auto">
+            <ul class="navbar-nav flex-row align-items-center">
 
               <!-- User dan Dropdown-->
               <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -87,15 +76,6 @@
                       <span class="align-middle">Settings</span>
                     </a>
                   </li>
-                  {{-- <li>
-                    <a class="dropdown-item" href="javascript:void(0);">
-            <span class="d-flex align-items-center align-middle">
-              <i class="flex-shrink-0 mdi mdi-credit-card-outline me-1 mdi-20px"></i>
-              <span class="flex-grow-1 align-middle ms-1">Billing</span>
-              <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-            </span>
-                    </a>
-                  </li> --}}
                   <li>
                     <div class="dropdown-divider my-1"></div>
                   </li>

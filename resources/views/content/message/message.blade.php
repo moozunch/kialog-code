@@ -38,7 +38,7 @@
               <div class="chat_people">
                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                 <div class="chat_ib">
-                  <h5>Fathan <span class="chat_date">Dec 25</span></h5>
+                  <h5>Heiyou <span class="chat_date">Dec 25</span></h5>
                   <p>Test, which is a new approach to have all solutions
                     astrology under one roof.</p>
                 </div>

@@ -17,7 +17,9 @@
 
 @section('content')
 <div class="create-topic mb-4">
-  <button type="button" class="btn btn-primary btn-m" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">CREATE</button>
+  <div class="text-end">
+    <button type="button" class="btn btn-primary btn-m" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">CREATE</button>
+</div>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -42,14 +44,28 @@
             </div>
           </form>
         </div>
-      </div>h
+      </div>
     </div>
   </div>
 </div>
 <div class="community d-flex justify-content-around">
-@foreach($topics as $topic)
-  <div class="card" style="width: 18rem;">
+  @foreach($topics as $topic)
+  <div class="card" style="width: 18rem; position: relative;">
     <img src="{{ asset('assets/img/backgrounds/graphics.jpg') }}" class="card-img-top" alt="...">
+    <a class="btn position-absolute top-0 end-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 10px;">
+      <i class="mdi mdi-dots-horizontal"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li>
+        <form action="{{ route('topics.destroy', $topic->id) }}" method="POST" style="display: inline;">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="dropdown-item text-danger">
+            <i class="mdi mdi-trash-can-outline me-2"></i> Delete
+          </button>
+        </form>
+      </li>
+    </ul>
     <div class="card-body">
       <h5 class="card-title">{{ $topic->title }}</h5>
       <p class="card-text">{{ $topic->description }}</p>
@@ -58,4 +74,5 @@
   </div>
 @endforeach
 </div>
+
 @endsection

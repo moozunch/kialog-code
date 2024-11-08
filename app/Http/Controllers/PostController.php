@@ -8,12 +8,16 @@ use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\PostUserLike;
+use Kreait\Firebase\Factory;
 
 class PostController extends Controller
 {
+  protected $firebaseStorage;
+
   public function __construct()
   {
     $this->middleware('auth');
+    $this->firebaseStorage = (new Factory())->withServiceAccount(config('firebase.firebase_credentials'))->createStorage();
   }
 
   public function index()
@@ -32,13 +36,12 @@ class PostController extends Controller
     return view('content.home.home', compact('posts'));
   }
 
-
   public function store(Request $request)
   {
     $request->validate([
       'message' => 'nullable|string|max:255',
       'images' => 'nullable',
-      'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240', // Validate each image
+      'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
     ]);
 
     if (!$request->message && !$request->hasFile('images')) {
@@ -49,15 +52,27 @@ class PostController extends Controller
     $post->message = $request->message ?? ' ';
     $post->comments = 0;
     $post->user_id = auth()->id();
+    $username = auth()->user()->username;
 
     if ($request->hasFile('images')) {
-      $imagePaths = [];
+      $imageUrls = [];
       foreach ($request->file('images') as $index => $image) {
-        if ($index < 4) { // Limit to 4 images
-          $imagePaths[] = $image->store('uploads', 'public');
+        if ($index < 4) {
+          $fileName = $image->getClientOriginalName();
+          $firebasePath = 'post_images/' . $username . '/' . $fileName;
+
+          // Upload image to Firebase Storage
+          $uploadedFile = $this->firebaseStorage->getBucket()->upload(
+            fopen($image->getRealPath(), 'r'),
+            ['name' => $firebasePath]
+          );
+
+          // Generate a public URL manually
+          $bucketName = config('firebase.storage_bucket');
+          $imageUrls[] = "https://storage.googleapis.com/{$bucketName}/{$firebasePath}";
         }
       }
-      $post->images = json_encode($imagePaths); // Save paths as JSON
+      $post->images = json_encode($imageUrls); // Save Firebase URLs as JSON
     }
 
     $post->save();

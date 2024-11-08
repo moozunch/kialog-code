@@ -84,7 +84,7 @@
           <div class="col-1">
             <a href="{{ route('profile.show', ['id' => $post->user->id]) }}">
               <img src="{{ $post->user->profile_image ? $post->user->profile_image : asset('assets/img/avatars/1.png') }}"
-                   alt="Profile Picture of {{ $post->user->name }}" class="rounded-circle profile-image" width="50px">
+                   alt="Profile Picture of {{ $post->user->name }}" class="rounded-circle profile-image" width="50px" height="50px">
             </a>
           </div>
           <div class="col">

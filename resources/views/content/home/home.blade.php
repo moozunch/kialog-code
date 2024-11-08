@@ -162,28 +162,49 @@
     <!-- Sidebar Kanan -->
     <aside class="col-lg-4 col-md-4 d-none d-md-block">
       {{-- Card for Trending --}}
-      <div class="card sticky-top mb-3" style="top: 20px; z-index: 1050;">
-    <div class="card-body">
-        <h5 class="card-title">Trending</h5>
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                #Compscie '23
-                <button class="btn btn-primary btn-sm" onclick="joinCommunity('#Compscie23')">Join</button>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                #TI '23
-                <button class="btn btn-primary btn-sm" onclick="joinCommunity('#TI23')">Join</button>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                #KOM C '23
-                <button class="btn btn-primary btn-sm" onclick="joinCommunity('#KOMC23')">Join</button>
-            </li>
-        </ul>
-    </div>
+      <div class=" sticky-top mb-3" style="top: 20px; z-index: 1050;">
+        <div class="card mb-2">
+          <div class="card-body">
+            <h5 class="card-title">Trending</h5>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    #Compscie '23
+                    <button class="btn btn-primary btn-sm" onclick="joinCommunity('#Compscie23')">Join</button>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    #TI '23
+                    <button class="btn btn-primary btn-sm" onclick="joinCommunity('#TI23')">Join</button>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    #KOM C '23
+                    <button class="btn btn-primary btn-sm" onclick="joinCommunity('#KOMC23')">Join</button>
+                </li>
+            </ul>
+        </div>
+        </div>
+    <div class="create-post-container" style="position: sticky; top: 200px; z-index: 1049;">
+      <div class="card mb-3">
+          <div class="card-body">
+              <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                  @csrf
+                  <div class="mb-3">
+                      <label for="message" class="form-label">What's on your mind?</label>
+                      <textarea class="form-control" id="message" name="message" rows="3" placeholder="Write something..."></textarea>
+                  </div>
+                  <div class="mb-3">
+                      <label for="post-images" class="form-label">Upload Image (optional)</label>
+                      <input type="file" class="form-control" id="post-images" name="images[]" multiple accept="image/png, image/jpeg">
+                      <div id="image-preview" class="d-flex flex-wrap mt-2"></div> <!-- Preview container -->
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">Post</button>
+              </form>
+          </div>
+      </div>
+  </div>
 </div>
 
       {{-- Container for Create Post Card --}}
-      <div class="create-post-container" style="position: sticky; top: 200px; z-index: 1049;">
+      {{-- <div class="create-post-container" style="position: sticky; top: 200px; z-index: 1049;">
           <div class="card mb-3">
               <div class="card-body">
                   <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
@@ -201,7 +222,7 @@
                   </form>
               </div>
           </div>
-      </div>
+      </div> --}}
   </aside>
 
   <script>

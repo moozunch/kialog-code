@@ -158,5 +158,8 @@ Route::get('/settings', [AccountSettingsAccount::class, 'index'])->name('setting
 //delete-post
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 
+//delete-topic
+Route::resource('topics', TopicController::class);
+
 //profile
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show')->middleware('auth');

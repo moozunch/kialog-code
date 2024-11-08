@@ -29,4 +29,18 @@ class TopicController extends Controller
 
     return redirect()->back()->with('success', 'Topic created successfully!');
   }
+
+  public function show($id)
+    {
+        // Placeholder method
+        return redirect()->route('topics.index');
+    }
+
+  public function destroy($id)
+    {
+        $topic = Topic::findOrFail($id);
+        $topic->delete();
+
+        return redirect()->route('topics.index')->with('success', 'Topic deleted successfully.');
+    }
 }

@@ -84,10 +84,6 @@ nav ul li a {
 /* Profile Section */
 .profile-header {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
 }
 
 .profile-picture {
@@ -107,6 +103,7 @@ nav ul li a {
   justify-content: center; /* Mengatur agar Display Name sejajar di tengah */
   max-width: 200px;
   word-wrap: break-word;
+  padding-top: 25px;
 }
 div.profile-info h1,
 div.profile-info h2 {
@@ -159,14 +156,12 @@ div.profile-info h2 {
   transform: scale(3.1);
 }
 
-/* Statistik Profil */
-.d-flex.align-items-center {
-  align-items: center; /* Sejajarkan item di tengah vertikal */
-}
 /* Profile Stats */
 .profile-stats {
-  display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  padding-top: 20px;
   gap: 2rem;
 }
 
@@ -191,31 +186,6 @@ div.profile-info h2 {
 .profile-stats .stat-container:hover {
   background-color: #f1f1f1;
   border-radius: 10px;
-}
-
-/* Follow Button */
-#follow-button {
-  background-color: var(--primary-color);
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 150px;
-  font-size: 16px;
-}
-
-#follow-button:hover {
-  background-color: var(--primary-secondary-color);
-  box-shadow: none;
-}
-
-#follow-button.active {
-  background-color: #ffffff; /* Ubah latar belakang tombol menjadi putih */
-  color: rgb(0, 0, 0); /* Ubah warna font menjadi abu-abu */
-  border: 2.5px solid var(--primary-color);
-  box-shadow: none;
 }
 
 /* Modal Profil Stats Styling */

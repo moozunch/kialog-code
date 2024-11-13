@@ -168,4 +168,10 @@ Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile
 // Route for viewing another user's profile (optional, if you want to see other users' profiles)
 Route::get('/profile/{username}', [ProfileController::class, 'showProfile'])->name('profile.showOther');
 
+//delete-account
+Route::delete('/account/delete', [AuthController::class, 'deleteAccount'])->name('account.delete');
+
+//reset profile image
+Route::post('/account-settings/update-profile-image', [AuthController::class, 'updateProfileImage'])->name('account-settings.update-profile-image');
+
 

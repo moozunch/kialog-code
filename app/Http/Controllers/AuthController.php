@@ -107,4 +107,25 @@ class AuthController extends Controller
 
     return redirect()->back()->with('success', 'Account settings updated successfully.');
   }
+
+  public function deleteAccount(Request $request)
+  {
+    $user = Auth::user();
+    Auth::logout();
+    $user->delete();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/')->with('success', 'Your account has been deleted.');
+  }
+
+  public function updateProfileImage(Request $request)
+  {
+    $user = Auth::user();
+    $user->profile_image = $request->input('profile_image');
+    $user->save();
+
+    return response()->json(['success' => true]);
+  }
 }

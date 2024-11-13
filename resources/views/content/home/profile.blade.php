@@ -22,8 +22,8 @@
           <div class="profile-identitas d-flex align-items-center flex-wrap">
             <img src="{{ $user->profile_image ? $user->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="80px" height="80px" style="margin-right: 16px">
             <div class="profile-info">
-              <h1>{{ $user->username }}</h1>
-              <h2>{{ $user->name }}</h2>
+              <h1>{{ $user->name }}</h1>
+              <h2>{{ $user->username }}</h2>
             </div>
           </div>
 

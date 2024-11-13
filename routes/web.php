@@ -166,6 +166,6 @@ Route::resource('topics', TopicController::class);
 Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
 
 // Route for viewing another user's profile (optional, if you want to see other users' profiles)
-Route::get('/profile/{user_id}', [ProfileController::class, 'showProfile'])->name('profile.showOther');
+Route::get('/profile/{username}', [ProfileController::class, 'showProfile'])->name('profile.showOther');
 
 

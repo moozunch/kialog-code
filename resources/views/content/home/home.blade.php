@@ -81,8 +81,8 @@
     <div class="card mt-2">
       <div class="card-body">
         <div class="row mb-2 align-items-center">
-          <div class="col-1">
-            <a href="{{ route('profile.showOther', ['user_id' => $post->user->id]) }}">
+          <div class="col-auto">
+            <a href="{{ route('profile.showOther', ['username' => $post->user->username]) }}">
               <img src="{{ $post->user->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px" id="profileImage">
             </a>
           </div>

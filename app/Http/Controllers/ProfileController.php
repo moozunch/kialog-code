@@ -8,10 +8,10 @@ use App\Models\User;
 
 class ProfileController extends Controller
 {
-  public function showProfile($user_id = null)
+  public function showProfile($username = null)
   {
-    // If no user_id is provided, default to the logged-in user
-    $user = $user_id ? User::findOrFail($user_id) : auth()->user();
+    // Find the user by username
+    $user = $username ? User::where('username', $username)->firstOrFail() : auth()->user();
 
     // Get the posts for the user (logged-in user or other user)
     $posts = Post::where('user_id', $user->id)->latest()->get();

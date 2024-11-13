@@ -162,4 +162,10 @@ Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.de
 Route::resource('topics', TopicController::class);
 
 //profile
-Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show')->middleware('auth');
+// Route for the profile page (logged-in user's profile)
+Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
+
+// Route for viewing another user's profile (optional, if you want to see other users' profiles)
+Route::get('/profile/{user_id}', [ProfileController::class, 'showProfile'])->name('profile.showOther');
+
+

@@ -171,7 +171,4 @@ Route::get('/profile/{username}', [ProfileController::class, 'showProfile'])->na
 //delete-account
 Route::delete('/account/delete', [AuthController::class, 'deleteAccount'])->name('account.delete');
 
-//reset profile image
-Route::post('/account-settings/update-profile-image', [AuthController::class, 'updateProfileImage'])->name('account-settings.update-profile-image');
-
 

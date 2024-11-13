@@ -1,33 +1,13 @@
-// Profil Section
-// Profil Section - Follow Button
-document.getElementById("follow-button").addEventListener("click", function () {
-  const followButton = this;
-  const followersCount = document.querySelector(".followers-count");
-  let followers = parseInt(followersCount.textContent);
-
-  if (followButton.classList.toggle("active")) {
-      followButton.textContent = "Mengikuti";
-      followers++;
-  } else {
-      followButton.textContent = "Ikuti";
-      followers--;
-  }
-
-  followersCount.textContent = followers;
-});
-
-// Buka modal saat gambar profil diklik
-document.getElementById("profileImage").addEventListener("click", function () {
-  const profileModal = document.getElementById("profileImageModal");
-  profileModal.style.display = "flex"; // Tampilkan modal
-});
-
-// Tutup modal saat area buram di-klik
-document.getElementById("profileImageModal").addEventListener("click", function (e) {
-  if (e.target === this) {
-      this.style.display = "none"; // Sembunyikan modal
-  }
-});
+// Tampilkan modal saat gambar profil diklik
+var profileImage = document.getElementById("profileImage");
+if (profileImage) {
+  profileImage.addEventListener("click", function () {
+    console.log("Image clicked");
+    document.getElementById("profileImageModal").style.display = "flex";
+  });
+} else {
+  console.log("Element with ID 'profileImage' not found.");
+}
 
 // Profil Stats Modal
 // Follow Button

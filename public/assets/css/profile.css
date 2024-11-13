@@ -5,6 +5,12 @@
   /* flex-wrap: wrap;
   color: var(--black); */
 }
+
+html {
+  min-width: 360px;
+  overflow: scroll;
+}
+
 :root {
   --primary-color: #2c6822;
   --primary-secondary-color: #1b3e15;
@@ -12,84 +18,12 @@
   --white: #ffffff;
 }
 
-/* NavBar Section */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 70px;
-  background-color: transparent;
-  width: 100%;
-}
-
-nav img {
-  height: 30px;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 0.3rem;
-}
-
-nav ul li {
-  display: inline;
-}
-
-li.nav-item-profil {
-  display: none;
-}
-
-nav ul li a {
-  color: var(--black);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: background-color 0.3s;
-}
-
-.nav-item:hover {
-  color: var(--primary-color);
-  text-decoration: underline;
-  text-underline-offset: 0.625rem;
-}
-
-.custom-navbar .navbar-nav {
-  margin: 0 auto;
-}
-
-.custom-navbar .navbar-collapse {
-  justify-content: center;
-}
-
-/* Style untuk ikon foto profil */
-.profile-icon {
-  display: flex;
-  align-items: center;
-  margin-left: auto; /* Tetap di kanan */
-  padding-left: 15px;
-}
-
-.profile-pic {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  object-fit: cover; /* Untuk memastikan gambar menyesuaikan dengan baik */
-  transition: transform 0.3s;
-}
-
-.profile-pic:hover {
-  transform: scale(1.1); /* Sedikit efek hover */
-}
-
 /* Profile Section */
 .profile-header {
   width: 100%;
 }
 
-.profile-picture {
-  width: 130px;
-  height: 130px;
-  padding: 25px; /* White space di semua sisi */
+#profileImage {
   border-radius: 50%; /* Membuat gambar bulat */
   object-fit: cover; /* Memastikan gambar proporsional */
   display: block; /* Pastikan gambar ditampilkan */
@@ -103,13 +37,11 @@ nav ul li a {
   justify-content: center; /* Mengatur agar Display Name sejajar di tengah */
   max-width: 200px;
   word-wrap: break-word;
-  padding-top: 25px;
+  padding-top: 15px;
 }
-div.profile-info h1,
-div.profile-info h2 {
-  font-size: 25px;
-}
+
 div.profile-info h1 {
+  font-size: 25px;
   font-weight: bold;
 }
 div.profile-info h2 {
@@ -117,51 +49,12 @@ div.profile-info h2 {
   color: #6f6b6b;
 }
 
-/* Styling modal untuk foto profil */
-/* Overlay hitam buram */
-.custom-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9); /* Latar belakang buram */
-  display: none; /* Sembunyikan modal secara default */
-  justify-content: center;
-  align-items: center;
-  z-index: 1050; /* Pastikan di atas elemen lainnya */
-}
-
-/* Konten modal (gambar) */
-.custom-modal-content {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: -50px; /* Geser gambar ke atas */
-}
-
-/* Gambar dalam modal, diperbesar */
-.profile-large-image {
-  max-width: 60%; /* Gambar besar */
-  max-height: 60vh; /* Batasi tinggi */
-  border-radius: 5%; /* Tetap bulat */
-  object-fit: cover;
-  transition: transform 0.3s ease; /* Efek zoom */
-  transform: scale(3);
-}
-
-/* Zoom-in saat di-hover */
-.profile-large-image:hover {
-  transform: scale(3.1);
-}
-
 /* Profile Stats */
 .profile-stats {
   flex-direction: row;
   align-items: center;
   margin: auto;
-  padding-top: 20px;
+  padding: 20px 10px 0px 0px;
   gap: 2rem;
 }
 
@@ -189,16 +82,16 @@ div.profile-info h2 {
 }
 
 /* Modal Profil Stats Styling */
-.modal-content {
-  max-height: 500px;
-  overflow: auto;
-}
-
 .modal-title {
   font-weight: bolder;
 }
 
 /* Style Tombol Close */
+.modal-dialog {
+  min-width: 355px;
+  overflow: scroll;
+}
+
 .modal-header button {
   border: none;
   background-color: white;
@@ -222,13 +115,14 @@ div.profile-info h2 {
   align-items: center;
   border-bottom: 1px solid black;
   padding: 0px 15px 0px 0;
+  flex-wrap: wrap;
 }
 
 .data-user {
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 0px;
+  padding: 0px; 
 }
 
 div.data-user img {
@@ -245,9 +139,10 @@ div.data-user img {
   padding-top: 15px;
   padding-bottom: 0pc;
   margin-right: auto;
+  overflow: hidden;
 }
 
-/* Follow Button */
+/* Modal Follow Button */
 .modal-button-follow {
   width: 120px;
   background-color: var(--primary-color);
@@ -279,9 +174,9 @@ p.bio {
   width: 100%; /* Menyesuaikan lebar penuh container */
   word-wrap: break-word; /* Mengatur agar teks yang panjang tidak keluar dari container */
   white-space: normal; /* Memastikan teks melakukan wrapping */
-  overflow-wrap: break-word; /* Mencegah kata-kata yang terlalu panjang melanggar batas */
   margin: 10px 0 0 0; /* Tambahan margin untuk spasi atas jika diperlukan */
   font-size: 16px;
+  color: rgba(0, 0, 0, 0.8) !important; /* Warna hitam tidak terlalu pekat */
 }
 
 /* Post Section */
@@ -453,18 +348,6 @@ p.bio {
 
 /* Responsive */
 @media (max-width: 992px) {
-  nav.navbar {
-      justify-content: flex-end;
-  }
-
-  nav a.navbar-brand {
-      margin-right: auto;
-  }
-
-  li.nav-item-profil {
-      display: inline-block;
-  }
-
   .profile-icon {
       display: none;
   }
@@ -514,35 +397,16 @@ p.bio {
 @media (max-width: 768px) {
   .modal-dialog {
       max-width: 90%;
+      margin: 20px auto 0 auto ;
   }
 }
 
 /* Resvonsi Tampilan Mobile */
 @media (max-width: 470px) {
-  header {
-      display: flex;
-      flex-shrink: 1;
-  }
-
   .profile-identitas {
       display: flex;
       justify-content: center;
       font-size: 25px;
-  }
-
-  #profileImage {
-      width: 120px;
-      height: 120px;
-      padding: 0px 15px 5px 0px; /* White space di semua sisi */
-      border-radius: 50%; /* Membuat gambar bulat */
-      object-fit: cover; /* Memastikan gambar proporsional */
-      display: block; /* Pastikan gambar ditampilkan */
-      box-sizing: content-box;
-      cursor: pointer;
-  }
-
-  .profile-identitas img {
-      padding-bottom: 0px;
   }
 
   .profile-stats {
@@ -561,16 +425,9 @@ p.bio {
   .stat-container p {
       font-size: 15px;
   }
-
-  #follow-button {
-      font-size: 15px;
-  }
 }
 
 /* Ukuran Terkecil */
-@media (max-width: 343px) {
-  html {
-      min-width: 343px;
-      overflow: scroll;
-  }
+@media (max-width: 350px) {
+  
 }

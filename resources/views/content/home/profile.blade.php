@@ -20,10 +20,10 @@
       <div class="profile-header d-flex align-items-center flex-wrap">
         <!-- Foto Profil dan Info -->
         <div class="profile-identitas d-flex align-items-center flex-wrap">
-          <img src="{{ Auth::user()->profile_image ? Auth::user()->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="80px" height="80px" style="margin-right: 16px">
+          <img id="profileImage" src="{{ Auth::user()->profile_image ? Auth::user()->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="profile-picture rounded-circle" width="80" height="80" style="margin-right: 16px">
           <div class="profile-info">
             <h1>{{ $user->username }}</h1>
-            <h2>{{ $user->name  }}</h2>
+            <h2>{{ $user->name }}</h2>
           </div>
         </div>
 
@@ -42,6 +42,62 @@
               <p>Following</p>
             </div>
           </div>
+      </div>
+
+      <!-- Modal for Followers -->
+      <div class="modal fade" id="followersModal" tabindex="-1" aria-labelledby="followersModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header p-3 shadow">
+              <h5 class="modal-title" id="followersModalLabel">Followers</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- User 1 -->
+              <div class="data-user d-flex align-items-center mb-3">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
+                <div class="modal-profile-info">
+                  <h6>Display Name 1</h6>
+                  <p>@username1</p>
+                </div>
+                <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
+              </div>
+              <!-- User 2 -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modal for Following -->
+      <div class="modal fade" id="followingModal" tabindex="-1" aria-labelledby="followingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header p-3 shadow">
+              <h5 class="modal-title" id="followingModalLabel">Following</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- User 1 -->
+              <div class="data-user d-flex align-items-center mb-3">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Following 1" />
+                <div class="modal-profile-info">
+                  <h6>Display Name 1</h6>
+                  <p>@username1</p>
+                </div>
+                <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
+              </div>
+              <!-- User 2 -->
+              <div class="data-user d-flex align-items-center mb-3">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Following 2" />
+                <div class="modal-profile-info">
+                  <h6>Display Name 2</h6>
+                  <p>@username2</p>
+                </div>
+                <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Bio -->
@@ -131,62 +187,6 @@
       </div>
     </div>
   @endforeach
-  </div>
-</div>
-
-<!-- Modal for Followers -->
-<div class="modal fade" id="followersModal" tabindex="-1" aria-labelledby="followersModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header p-3 shadow">
-        <h5 class="modal-title" id="followersModalLabel">Followers</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- User 1 -->
-        <div class="data-user d-flex align-items-center mb-3">
-          <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
-          <div class="modal-profile-info">
-            <h6>Display Name 1</h6>
-            <p>@username1</p>
-          </div>
-          <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
-        </div>
-        <!-- User 2 -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal for Following -->
-<div class="modal fade" id="followingModal" tabindex="-1" aria-labelledby="followingModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header p-3 shadow">
-        <h5 class="modal-title" id="followingModalLabel">Mengikuti</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- User 1 -->
-        <div class="data-user d-flex align-items-center mb-3">
-          <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Following 1" />
-          <div class="modal-profile-info">
-            <h6>Display Name 1</h6>
-            <p>@username1</p>
-          </div>
-          <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Ikuti</button>
-        </div>
-        <!-- User 2 -->
-        <div class="data-user d-flex align-items-center mb-3">
-          <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Following 2" />
-          <div class="modal-profile-info">
-            <h6>Display Name 2</h6>
-            <p>@username2</p>
-          </div>
-          <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Ikuti</button>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 

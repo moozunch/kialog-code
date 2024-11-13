@@ -123,8 +123,8 @@ Route::get('/message', [MessageController::class, 'index'])->name('messages');
 Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
 Route::post('/topics', [TopicController::class, 'store'])->name('topics.store');
 Route::get('/topic/{id}', [TopicController::class, 'show'])->name('topic.show');
-Route::post('/topic/join/{id}', [TopicController::class, 'join'])->name('topic.join');
-
+Route::post('topics/{topic}/join', [TopicController::class, 'join'])->name('topics.join');
+Route::resource('topics', TopicController::class);
 
 //Bookmarks
 Route::get('/bookmarks', [BookmarksController::class, 'index'])->name('bookmarks.index');

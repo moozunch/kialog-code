@@ -7,6 +7,7 @@ use App\Models\Bookmarks;
 use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Topic;
 use App\Models\PostUserLike;
 use Kreait\Firebase\Factory;
 
@@ -22,7 +23,9 @@ class PostController extends Controller
 
   public function index()
   {
-    $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
+    $posts = Post::whereNull('topic_id')->with('user')->orderBy('created_at', 'desc')->get();
+
+    $trendingTopics = Topic::orderBy('created_at', 'desc')->take(5)->get();
 
     foreach ($posts as $post) {
       if (!$post->user->profile_image) {
@@ -33,7 +36,7 @@ class PostController extends Controller
       }
     }
 
-    return view('content.home.home', compact('posts'));
+    return view('content.home.home', compact('posts', 'trendingTopics'));
   }
 
   public function store(Request $request)

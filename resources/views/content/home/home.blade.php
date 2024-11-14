@@ -166,18 +166,15 @@
           <div class="card-body">
             <h5 class="card-title">Trending</h5>
             <ul class="list-group">
+                @foreach($trendingTopics as $topic)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    #Compscie '23
-                    <button class="btn btn-primary btn-sm" onclick="joinCommunity('#Compscie23')">Join</button>
+                  {{  $topic->title }}
+                  <form action="{{ route('topics.join', $topic->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-primary btn-sm">JOIN</button>
+                  </form>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    #TI '23
-                    <button class="btn btn-primary btn-sm" onclick="joinCommunity('#TI23')">Join</button>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    #KOM C '23
-                    <button class="btn btn-primary btn-sm" onclick="joinCommunity('#KOMC23')">Join</button>
-                </li>
+                @endforeach
             </ul>
         </div>
         </div>

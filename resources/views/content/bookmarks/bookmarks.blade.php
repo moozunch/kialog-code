@@ -24,7 +24,7 @@
         <div class="row mb-2 align-items-center">
           <div class="col-1">
             <a href="{{ route('profile.show', ['id' => $bookmark->user->id]) }}">
-              <img src="{{ $bookmark->post->user->profile_image ? $bookmark->user->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px">
+              <img src="{{ $bookmark->post->user->profile_image ? $bookmark->post->user->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px">
             </a>
           </div>
           <div class="col">

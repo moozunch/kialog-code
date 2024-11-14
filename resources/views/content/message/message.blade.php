@@ -40,7 +40,7 @@
                         <div class="chat_people">
                             <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
                             <div class="chat_ib">
-                                <h5>Alfathan <span class="chat_date">Dec 25</span></h5>
+                                <h5>Alfathan <span class="chat_date">Today</span></h5>
                                 <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                         <div class="chat_people">
                             <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
                             <div class="chat_ib">
-                                <h5>Annisa <span class="chat_date">Dec 25</span></h5>
+                                <h5>Annisa <span class="chat_date">Oct 20</span></h5>
                                 <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                         <div class="chat_people">
                             <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
                             <div class="chat_ib">
-                                <h5>Sabrina <span class="chat_date">Dec 25</span></h5>
+                                <h5>Sabrina <span class="chat_date">Oct 15</span></h5>
                                 <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                         <div class="chat_people">
                             <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
                             <div class="chat_ib">
-                                <h5>Natasya <span class="chat_date">Dec 25</span></h5>
+                                <h5>Natasya <span class="chat_date">Oct 10</span></h5>
                                 <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
                             </div>
                         </div>
@@ -81,14 +81,14 @@
                         <div class="received_msg">
                             <div class="received_withd_msg">
                                 <p>Test which is a new approach to have all solutions</p>
-                                <span class="time_date">11:01 AM | June 9</span>
+                                <span class="time_date">11:11 AM | Sept 25</span>
                             </div>
                         </div>
                     </div>
                     <div class="outgoing_msg">
                         <div class="sent_msg">
                             <p>Test which is a new approach to have all solutions</p>
-                            <span class="time_date">11:01 AM | June 9</span>
+                            <span class="time_date">11:15 AM | Sept 25</span>
                         </div>
                     </div>
                     <div class="incoming_msg">
@@ -96,14 +96,14 @@
                         <div class="received_msg">
                             <div class="received_withd_msg">
                                 <p>Test, which is a new approach to have</p>
-                                <span class="time_date">11:01 AM | Yesterday</span>
+                                <span class="time_date">20:00 PM | Yesterday</span>
                             </div>
                         </div>
                     </div>
                     <div class="outgoing_msg">
                         <div class="sent_msg">
                             <p>Apollo University, Delhi, India Test</p>
-                            <span class="time_date">11:01 AM | Today</span>
+                            <span class="time_date">20:30 PM | Yesterday</span>
                         </div>
                     </div>
                     <div class="incoming_msg">
@@ -111,7 +111,7 @@
                         <div class="received_msg">
                             <div class="received_withd_msg">
                                 <p>We work directly with our designers and suppliers, and sell direct to you, which means quality, exclusive products, at a price anyone can afford.</p>
-                                <span class="time_date">11:01 AM | Today</span>
+                                <span class="time_date">08:00 AM | Today</span>
                             </div>
                         </div>
                     </div>

@@ -23,16 +23,14 @@
       <div class="card-body">
         <div class="row mb-2 align-items-center">
           <div class="col-1">
-            <a href="{{ route('profile.show', ['id' => $bookmark->user->id]) }}">
-              <img src="{{ $bookmark->post->user->profile_image ? $bookmark->post->user->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px">
+            <a href="{{ route('profile.showOther', ['username' => $bookmark->post->user->username]) }}">
+              <img src="{{ $bookmark->post->user->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px" id="profileImage">
             </a>
           </div>
           <div class="col">
-            <h5 class="card-title">{{ $bookmark->post->user->name ? $bookmark->post->user->name : "Default Name"  }}</h5>
+            <h5 class="card-title">{{ $bookmark->post->user->name }}</h5>
+            <h6 class="card-title text-muted">{{ $bookmark->post->user->username }}</h6>
           </div>
-        </div>
-        <div class="row">
-          <h6 class="card-title text-muted">{{ $bookmark->post->user->username }}</h6>
         </div>
         <p class="card-text">{{ $bookmark->post->message }}</p>
       </div>

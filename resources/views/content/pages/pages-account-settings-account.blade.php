@@ -133,13 +133,30 @@
               <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
             </div>
           </div>
-          <form id="formAccountDeactivation" onsubmit="return false">
-            <div class="form-check mb-3 ms-3">
-              <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />
-              <label class="form-check-label" for="accountActivation">I confirm my account deactivation</label>
-            </div>
-            <button type="submit" class="btn btn-danger">Deactivate Account</button>
+          <form id="formAccountDeactivation" method="POST" action="{{ route('account.delete') }}">
+            @csrf
+            @method('DELETE')
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Deactivate Account</button>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Account Deletion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete your account? This action cannot be undone.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" onclick="document.getElementById('formAccountDeactivation').submit();">Delete Account</button>
         </div>
       </div>
     </div>

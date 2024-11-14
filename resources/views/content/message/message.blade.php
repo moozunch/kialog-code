@@ -49,7 +49,7 @@
                         <div class="chat_people">
                             <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
                             <div class="chat_ib">
-                                <h5>Annisa <span class="chat_date">Oct 20</span></h5>
+                                <h5>Annisa <span class="chat_date">Nov 2</span></h5>
                                 <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                         <div class="chat_people">
                             <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
                             <div class="chat_ib">
-                                <h5>Sabrina <span class="chat_date">Oct 15</span></h5>
+                                <h5>Sabrina <span class="chat_date">Oct 25</span></h5>
                                 <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                         <div class="chat_people">
                             <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
                             <div class="chat_ib">
-                                <h5>Natasya <span class="chat_date">Oct 10</span></h5>
+                                <h5>Natasya <span class="chat_date">Oct 17</span></h5>
                                 <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                         <div class="received_msg">
                             <div class="received_withd_msg">
                                 <p>Test which is a new approach to have all solutions</p>
-                                <span class="time_date">11:11 AM | Sept 25</span>
+                                <span class="time_date">11:10 AM | Sept 25</span>
                             </div>
                         </div>
                     </div>

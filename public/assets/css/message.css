@@ -2,7 +2,7 @@
   max-width: 1170px;
   margin: auto;
   border-radius: 12px;
-  overflow: hidden; /* Menjaga konten tetap di dalam elemen dengan sudut membulat */
+  overflow: hidden;
 }
 
 img {

@@ -142,7 +142,13 @@ img {
   color: #747474;
   display: block;
   font-size: 12px;
+  float: right;
   margin: 8px 0 0;
+}
+
+.incoming_msg .time_date{
+  float: left;
+  margin-left: 10px;
 }
 
 .received_withd_msg {
@@ -205,6 +211,11 @@ img {
   margin: 8px 0 0;
 }
 
+.incoming_msg .time_date{
+  margin-left: 10px;
+  float: left;
+}
+
 .input_msg_write input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border: medium none;
@@ -265,4 +276,30 @@ img {
   max-width: 300%;
   box-sizing: border-box;
   resize: none;
+}
+
+.type_msg.no-messages {
+  border-top: none;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.no-messages-text {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 600;
+  color: #2E2E2E;
+  font-size: 1.5em;
+
+}
+
+.no-messages-illustration {
+  display: block;
+  margin: 20px auto;
+  width: 400px;
+  max-width: 100%;
+  height: auto;
 }

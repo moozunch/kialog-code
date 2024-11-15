@@ -34,9 +34,7 @@
             <!-- Iterate over each conversation -->
             @foreach($conversations as $conversation)
               @php
-                // Determine the other user in the conversation
                 $otherUser = $conversation->user_one == Auth::id() ? $conversation->userTwo : $conversation->userOne;
-                // Get the latest message in the conversation
                 $latestMessage = $conversation->messages->last();
               @endphp
               @if($otherUser)
@@ -46,9 +44,11 @@
                       <div class="chat_img"><img src="{{ $otherUser->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="user" class="rounded-circle"></div>
                       <div class="chat_ib">
                         <h5>{{ $otherUser->username }}
-                          <span class="chat_date">{{ $latestMessage->created_at->format('M d') }}</span>
+                          @if($latestMessage)
+                            <span class="chat_date">{{ $latestMessage->created_at->setTimezone('Asia/Jakarta')->format('h:i A | M d') }}</span>
+                          @endif
                         </h5>
-                        <p>{{ $latestMessage->content }}</p>
+                        <p>{{ $latestMessage ? $latestMessage->content : 'No messages yet' }}</p>
                       </div>
                     </div>
                   </div>
@@ -61,41 +61,49 @@
         <!-- Right Side: Messages for Selected Conversation -->
         <div class="mesgs">
           <div class="msg_history">
-            <!-- Display messages dynamically here -->
-            @foreach($conversation->messages as $message)
-              @if($message->sender_id == Auth::id())
-                <!-- Outgoing message -->
-                <div class="outgoing_msg">
-                  <div class="sent_msg">
-                    <p>{{ $message->content }}</p>
-                    <span class="time_date">{{ $message->created_at->format('h:i A | M d') }}</span>
-                  </div>
-                </div>
-              @else
-                <!-- Incoming message -->
-                <div class="incoming_msg">
-                  <div class="incoming_msg_img"><img src="{{ $otherUser->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="user" class="rounded-circle"></div>
-                  <div class="received_msg">
-                    <div class="received_withd_msg">
+            @if(isset($conversation) && $conversation->messages->isNotEmpty())
+              <!-- Display messages dynamically here -->
+              @foreach($conversation->messages as $message)
+                @if($message->sender_id == Auth::id())
+                  <!-- Outgoing message -->
+                  <div class="outgoing_msg">
+                    <div class="sent_msg">
                       <p>{{ $message->content }}</p>
                       <span class="time_date">{{ $message->created_at->format('h:i A | M d') }}</span>
                     </div>
                   </div>
-                </div>
-              @endif
-            @endforeach
+                @else
+                  <!-- Incoming message -->
+                  <div class="incoming_msg">
+                    <div class="incoming_msg_img"><img src="{{ $otherUser->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="user" class="rounded-circle"></div>
+                    <div class="received_msg">
+                      <div class="received_withd_msg">
+                        <p>{{ $message->content }}</p>
+                        <span class="time_date">{{ $message->created_at->format('h:i A | M d') }}</span>
+                      </div>
+                    </div>
+                  </div>
+                @endif
+              @endforeach
+            @else
+              <p class="no-messages-text">No messages to display.</p>
+              <img src="{{ asset('assets/svg/chatillust.svg') }}" alt="Chat Illustration" class="chat-illustration no-messages-illustration">
+            @endif
           </div>
 
           <!-- Message Input Area -->
-          <div class="type_msg">
+          <div class="type_msg {{ isset($conversation) && $conversation->messages->isNotEmpty() ? '' : 'no-messages' }}">
             <div class="input_msg_write">
-              <form action="{{ route('messages.send') }}" method="POST" id="sendMessageForm">
-                @csrf
-                <input type="hidden" name="conversation_id" value="{{ $conversation->id }}">
-                {{--TODO: kenapa masih null terus woii--}}
-                <input type="text" class="write_msg" name="content" placeholder="Type a message" required>
-                <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-              </form>
+              @if(isset($conversation))
+                <form action="{{ route('messages.send') }}" method="POST" id="sendMessageForm">
+                  @csrf
+                  <input type="hidden" name="conversation_id" value="{{ $conversation->id }}">
+                  <input type="text" class="write_msg" name="content" placeholder="Type a message" required>
+                  <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                </form>
+              @else
+                <p>Select a profile and start messaging.</p>
+              @endif
             </div>
           </div>
         </div>
@@ -105,7 +113,8 @@
 
   <!-- Pusher and JavaScript for Real-time Messages -->
   <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-  <script>const msgHistory = document.querySelector('.msg_history');
+  <script>
+    const msgHistory = document.querySelector('.msg_history');
 
     function scrollToBottom() {
       msgHistory.scrollTop = msgHistory.scrollHeight;
@@ -120,6 +129,7 @@
       encrypted: true
     });
 
+    @if(isset($conversation))
     const channel = pusher.subscribe('chat.{{ $conversation->id }}');
 
     channel.bind('App\\Events\\MessageSent', function(data) {
@@ -131,20 +141,20 @@
 
       const messageHtml = message.sender_id === currentUser ?
         `<div class="outgoing_msg">
-      <div class="sent_msg">
-        <p>${messageContent}</p>
-        <span class="time_date">${formattedDate}</span>
-      </div>
-    </div>` :
+            <div class="sent_msg">
+              <p>${messageContent}</p>
+              <span class="time_date">${formattedDate}</span>
+            </div>
+          </div>` :
         `<div class="incoming_msg">
-      <div class="incoming_msg_img"><img src="/path/to/user-image.jpg" alt="user"></div>
-      <div class="received_msg">
-        <div class="received_withd_msg">
-          <p>${messageContent}</p>
-          <span class="time_date">${formattedDate}</span>
-        </div>
-      </div>
-    </div>`;
+            <div class="incoming_msg_img"><img src="/path/to/user-image.jpg" alt="user"></div>
+            <div class="received_msg">
+              <div class="received_withd_msg">
+                <p>${messageContent}</p>
+                <span class="time_date">${formattedDate}</span>
+              </div>
+            </div>
+          </div>`;
 
       document.querySelector('.msg_history').innerHTML += messageHtml;
 
@@ -178,7 +188,6 @@
           alert("There was an error sending your message. Please try again.");
         });
     });
+    @endif
   </script>
-
-
 @endsection

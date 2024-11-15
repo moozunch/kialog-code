@@ -14,6 +14,8 @@ return new class extends Migration
     // Conversations table to represent each chat session or group chat
     Schema::create('conversations', function (Blueprint $table) {
       $table->id(); // Primary key
+      $table->foreignId('user_one')->constrained('users')->onDelete('cascade');
+      $table->foreignId('user_two')->constrained('users')->onDelete('cascade');
       $table->timestamps(); // Created at and updated at
     });
 
@@ -27,7 +29,6 @@ return new class extends Migration
       $table->unique(['user_id', 'conversation_id']); // Prevent duplicate entries
     });
 
-
     Schema::create('messages', function (Blueprint $table) {
       $table->id(); // Primary key
       $table->foreignId('conversation_id')->constrained('conversations')->onDelete('cascade');
@@ -35,7 +36,6 @@ return new class extends Migration
       $table->text('content');
       $table->timestamps();
     });
-
 
     Schema::create('read_receipts', function (Blueprint $table) {
       $table->id(); // Primary key

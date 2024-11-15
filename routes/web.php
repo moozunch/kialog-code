@@ -50,6 +50,7 @@ use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Broadcast;
 
 // Main Page Route
 Route::get('/home', [Analytics::class, 'index']);
@@ -171,4 +172,10 @@ Route::get('/profile/{username}', [ProfileController::class, 'showProfile'])->na
 //delete-account
 Route::delete('/account/delete', [AuthController::class, 'deleteAccount'])->name('account.delete');
 
+// Message
+Route::get('/chat/{user_id}', [MessageController::class, 'chat'])->name('chat');
+Broadcast::channel('chat.{conversationId}', function ($user, $conversationId) {
+  return $user->conversations->contains($conversationId);
+});
+Route::post('/messages/send', [MessageController::class, 'sendMessage'])->name('messages.send');
 

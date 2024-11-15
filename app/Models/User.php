@@ -39,4 +39,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Topic::class, 'topic_user');
     }
+
+  public function conversations()
+  {
+    return $this->belongsToMany(Conversation::class, 'user_conversations');
+  }
+
 }

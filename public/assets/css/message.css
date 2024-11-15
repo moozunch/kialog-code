@@ -1,6 +1,8 @@
 .container {
   max-width: 1170px;
   margin: auto;
+  border-radius: 12px;
+  overflow: hidden; /* Menjaga konten tetap di dalam elemen dengan sudut membulat */
 }
 
 img {
@@ -13,12 +15,14 @@ img {
   overflow: hidden;
   width: 40%;
   border-right: 1px solid #c4c4c4;
+  border-radius: 12px;
 }
 
 .inbox_msg {
   border: 1px solid #c4c4c4;
   clear: both;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 .top_spac {
@@ -40,6 +44,7 @@ img {
   padding: 10px 29px 10px 20px;
   overflow: hidden;
   border-bottom: 1px solid #c4c4c4;
+  border-radius: 12px;
 }
 
 .recent_heading h4 {
@@ -54,6 +59,7 @@ img {
   width: 80%;
   padding: 2px 0 4px 6px;
   background: none;
+  border-radius: 12px;
 }
 
 .srch_bar .input-group-addon button {
@@ -105,11 +111,13 @@ img {
   border-bottom: 1px solid #c4c4c4;
   margin: 0;
   padding: 18px 16px 10px;
+  border-radius: 12px;
 }
 
 .inbox_chat {
   height: 550px;
   overflow-y: scroll;
+  border-radius: 12px;
 }
 
 .active_chat {
@@ -130,7 +138,7 @@ img {
 
 .received_withd_msg p {
   background: #ebebeb none repeat scroll 0 0;
-  border-radius: 3px;
+  border-radius: 12px;
   color: #646464;
   font-size: 14px;
   margin: 0;
@@ -175,14 +183,8 @@ img {
   overflow: hidden;
   margin: 26px 0 26px;
   height: auto;
+  border-radius: 12px;
 }
-
-/*.sent_msg {*/
-/*  display: inline-block;*/
-/*  float: right;*/
-/*  width: 46%;*/
-/*  height: auto;*/
-/*}*/
 
 .sent_msg {
   display: inline-block;
@@ -193,7 +195,7 @@ img {
 }
 
 .sent_msg p {
-  background: #2C6822; /* or your desired background color */
+  background: #2C6822;
   border-radius: 12px;
   font-size: 14px;
   margin: 0;
@@ -223,9 +225,14 @@ img {
   font-size: 15px;
   min-height: 44px;
   width: 100%;
+  border-radius: 12px;
 }
 
-.type_msg {border-top: 1px solid #c4c4c4;position: relative;}
+.type_msg {
+  border-top: 1px solid #c4c4c4;
+  position: relative;
+  border-radius: 12px;
+}
 
 .msg_send_btn {
   background: #2C6822 none repeat scroll 0 0;
@@ -243,6 +250,7 @@ img {
 
 .messaging {
   padding: 0 0 50px 0;
+  border-radius: 12px;
 }
 
 .msg_history {
@@ -251,6 +259,7 @@ img {
   max-width: 100%;
   box-sizing: border-box;
   padding: 10px;
+  border-radius: 12px;
 }
 
 .icon-plane {
@@ -276,6 +285,7 @@ img {
   max-width: 300%;
   box-sizing: border-box;
   resize: none;
+  border-radius: 12px;
 }
 
 .type_msg.no-messages {
@@ -293,7 +303,6 @@ img {
   font-weight: 600;
   color: #2E2E2E;
   font-size: 1.5em;
-
 }
 
 .no-messages-illustration {

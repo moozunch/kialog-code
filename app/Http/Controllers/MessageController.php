@@ -65,19 +65,54 @@ class MessageController extends Controller
       'conversation_id' => 'required|exists:conversations,id'
     ]);
 
-    $content = $request->input('content'); // Explicitly retrieve content
-    $conversationId = $request->input('conversation_id'); // Explicitly retrieve conversation ID
+    $content = $request->input('content');
+    $conversationId = $request->input('conversation_id');
 
+    // Create the message
     $message = Message::create([
       'conversation_id' => $conversationId,
       'sender_id' => Auth::id(),
       'content' => $content,
     ]);
 
-
+    // Broadcast message to other users in the conversation
     broadcast(new MessageSent($message))->toOthers();
 
+    // Get the recipient user ID
+    $recipientId = $message->conversation->user_one === Auth::id() ? $message->conversation->user_two : $message->conversation->user_one;
+
+    // Send push notification via Beams to the recipient
+    $this->sendPushNotification($recipientId, "New message", "You have a new message from " . Auth::user()->name);
+
     return response()->json(['message' => $message], 200);
+  }
+
+  private function sendPushNotification($userId, $title, $body)
+  {
+    try {
+      $beamsClient = new \Pusher\PushNotifications\PushNotifications([
+        "instanceId" => config('services.pusher_beams.instance_id'),
+        "secretKey" => config('services.pusher_beams.secret_key'),
+      ]);
+
+      $publishResponse = $beamsClient->publishToUsers(
+        [(string)$userId], // User ID to send the notification to
+        [
+          "web" => [
+            "notification" => [
+              "title" => $title,
+              "body" => $body,
+              "deep_link" => url('/messages/' . $userId), // Optional deep link
+            ],
+          ],
+        ]
+      );
+
+      return $publishResponse;
+    } catch (\Exception $e) {
+      \Log::error('Error sending push notification: ' . $e->getMessage());
+      throw $e; // Re-throw the exception to be caught in the sendMessage method
+    }
   }
 
 }

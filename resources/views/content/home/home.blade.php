@@ -10,14 +10,18 @@
 
 @section('vendor-script')
   <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pusher-js@7.0.3/dist/web/pusher.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@pusher/push-notifications-web@1.0.4"></script>
+
 @endsection
 
 @section('page-script')
   <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
 @endsection
-
-
 @section('content')
+  <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+@yield('layouts.notification.notification')
+
 <div class="container-fluid">
   <div class="row">
     <!-- Main Content Area -->

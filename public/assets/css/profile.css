@@ -171,8 +171,8 @@ p.bio {
   word-wrap: break-word; /* Mengatur agar teks yang panjang tidak keluar dari container */
   white-space: normal; /* Memastikan teks melakukan wrapping */
   overflow-wrap: break-word; /* Mencegah kata-kata yang terlalu panjang melanggar batas */
-  margin: 10px 0 0 0; /* Tambahan margin untuk spasi atas jika diperlukan */
   font-size: 16px;
+  margin: 0px !important;
 }
 
 /* Post Section */
@@ -376,9 +376,6 @@ p.bio {
       text-align: center;
   }
 
-  p.bio {
-      padding-top: 10px;
-  }
 }
 
 /* Responsive layout untuk modal */
@@ -402,6 +399,10 @@ p.bio {
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
+  }
+
+  div.profile-info h1 {
+    text-align: center;
   }
 
   #profileImage {
@@ -437,9 +438,9 @@ p.bio {
   }
 
 /* Ukuran Terkecil */
-@media (max-width: 343px) {
+@media (max-width: 380px) {
   html {
-      min-width: 343px;
+      min-width: 370px;
       overflow: scroll;
   }
 }

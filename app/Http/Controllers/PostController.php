@@ -148,4 +148,10 @@ class PostController extends Controller
 
     return response()->json($posts);
   }
+
+  public function getAllPosts()
+  {
+    $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
+    return response()->json($posts);
+  }
 }

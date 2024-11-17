@@ -242,4 +242,43 @@
 </script>
   </div>
 </div>
+
+{{--search--}}
+  <script>
+    document.getElementById('search-bar').addEventListener('input', function(event) {
+      const query = event.target.value;
+
+      if (query.length > 2) {
+        fetch(`/search-posts?query=${query}`)
+          .then(response => response.json())
+          .then(posts => {
+            const postsContainer = document.querySelector('.col-lg-8');
+            postsContainer.innerHTML = '';
+
+            posts.forEach(post => {
+              const postHtml = `
+            <div class="card mt-2">
+              <div class="card-body">
+                <div class="row mb-2 align-items-center">
+                  <div class="col-auto">
+                    <a href="/profile/${post.user.username}">
+                      <img src="${post.user.profile_image || '/assets/img/avatars/1.png'}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px">
+                    </a>
+                  </div>
+                  <div class="col">
+                    <h5 class="card-title">${post.user.name}</h5>
+                    <h6 class="card-title text-muted">${post.user.username}</h6>
+                  </div>
+                </div>
+                <p class="card-text">${post.message}</p>
+              </div>
+            </div>
+          `;
+              postsContainer.innerHTML += postHtml;
+            });
+          })
+          .catch(error => console.error('Error fetching search results:', error));
+      }
+    });
+  </script>
 @endsection

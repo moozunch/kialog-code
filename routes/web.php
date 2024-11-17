@@ -152,6 +152,8 @@ Route::post('/signup', [AuthController::class, 'signup']);
 //Posts - Home
 Route::resource('posts', PostController::class);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/search-posts', [PostController::class, 'searchPosts'])->name('search.posts');
+
 
 //Setting - Profile
 Route::get('/settings', [AccountSettingsAccount::class, 'index'])->name('settings');

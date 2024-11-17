@@ -30,7 +30,7 @@
             <div class="navbar-nav align-items-center mx-auto">
               <div class="position-relative">
                 <form class="d-flex" role="search">
-                  <input class="form-control me-2 pe-5 custom-search-input" type="search" placeholder="Search" aria-label="Search" style="border-radius: 12px;">
+                  <input class="form-control me-2 pe-5 custom-search-input" type="search" placeholder="Search" aria-label="Search" id="search-bar" style="border-radius: 12px;">
                   <i class="mdi mdi-magnify mdi-24px position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);"></i>
                 </form>
               </div>

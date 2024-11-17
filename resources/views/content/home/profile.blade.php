@@ -46,7 +46,16 @@
 
         <!-- Bio -->
         <p class="bio text-muted mt-2">{{ $user->bio }}</p>
+
+        <!-- Chat Button -->
+        @if(Route::currentRouteName() == 'profile.showOther')
+          <div class="d-flex justify-content-end">
+            <a href="{{ route('chat', ['user_id' => $user->id]) }}" class="btn btn-primary">Chat</a>
+          </div>
+        @endif
       </header>
+
+
 
       <hr />
 

@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  protected $fillable = [
+    'conversation_id',
+    'sender_id',
+    'content',
+  ];
 }

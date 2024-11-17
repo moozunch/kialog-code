@@ -65,7 +65,7 @@
                     <div class="dropdown-divider my-1"></div>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="{{ route('profile.show', ['user' => Auth::user()->id]) }}">
+                    <a class="dropdown-item" href="{{ route('profile.show', ['user' => Auth::user()->username]) }}">
                       <i class="mdi mdi-account-outline me-1 mdi-20px"></i>
                       <span class="align-middle">My Profile</span>
                     </a>
@@ -99,3 +99,4 @@
         @endif
       </nav>
       <!-- / Navbar -->
+  </nav>

@@ -12,75 +12,6 @@
   --white: #ffffff;
 }
 
-/* NavBar Section */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 70px;
-  background-color: transparent;
-  width: 100%;
-}
-
-nav img {
-  height: 30px;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 0.3rem;
-}
-
-nav ul li {
-  display: inline;
-}
-
-li.nav-item-profil {
-  display: none;
-}
-
-nav ul li a {
-  color: var(--black);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: background-color 0.3s;
-}
-
-.nav-item:hover {
-  color: var(--primary-color);
-  text-decoration: underline;
-  text-underline-offset: 0.625rem;
-}
-
-.custom-navbar .navbar-nav {
-  margin: 0 auto;
-}
-
-.custom-navbar .navbar-collapse {
-  justify-content: center;
-}
-
-/* Style untuk ikon foto profil */
-.profile-icon {
-  display: flex;
-  align-items: center;
-  margin-left: auto; /* Tetap di kanan */
-  padding-left: 15px;
-}
-
-.profile-pic {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  object-fit: cover; /* Untuk memastikan gambar menyesuaikan dengan baik */
-  transition: transform 0.3s;
-}
-
-.profile-pic:hover {
-  transform: scale(1.1); /* Sedikit efek hover */
-}
-
 /* Profile Section */
 .profile-header {
   width: 100%;
@@ -103,57 +34,17 @@ nav ul li a {
   justify-content: center; /* Mengatur agar Display Name sejajar di tengah */
   max-width: 200px;
   word-wrap: break-word;
-  padding-top: 25px;
 }
-div.profile-info h1,
-div.profile-info h2 {
-  font-size: 25px;
-}
+
 div.profile-info h1 {
   font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 5px;
 }
 div.profile-info h2 {
   font-size: 16px;
   color: #6f6b6b;
-}
-
-/* Styling modal untuk foto profil */
-/* Overlay hitam buram */
-.custom-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9); /* Latar belakang buram */
-  display: none; /* Sembunyikan modal secara default */
-  justify-content: center;
-  align-items: center;
-  z-index: 1050; /* Pastikan di atas elemen lainnya */
-}
-
-/* Konten modal (gambar) */
-.custom-modal-content {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: -50px; /* Geser gambar ke atas */
-}
-
-/* Gambar dalam modal, diperbesar */
-.profile-large-image {
-  max-width: 60%; /* Gambar besar */
-  max-height: 60vh; /* Batasi tinggi */
-  border-radius: 5%; /* Tetap bulat */
-  object-fit: cover;
-  transition: transform 0.3s ease; /* Efek zoom */
-  transform: scale(3);
-}
-
-/* Zoom-in saat di-hover */
-.profile-large-image:hover {
-  transform: scale(3.1);
+  margin-bottom: 0px;
 }
 
 /* Profile Stats */
@@ -453,26 +344,6 @@ p.bio {
 
 /* Responsive */
 @media (max-width: 992px) {
-  nav.navbar {
-      justify-content: flex-end;
-  }
-
-  nav a.navbar-brand {
-      margin-right: auto;
-  }
-
-  li.nav-item-profil {
-      display: inline-block;
-  }
-
-  .profile-icon {
-      display: none;
-  }
-
-  .navbar-collapse {
-      justify-self: flex-end;
-  }
-
   .profile-icon {
       margin-left: 0; /* Ikon tetap di kanan */
   }
@@ -488,7 +359,6 @@ p.bio {
 
   .profile-info {
       order: 2; /* Memindahkan div profile-info ke bawah */
-      margin-top: 10px; /* Tambahkan jarak atas */
       max-width: 100%;
   }
 
@@ -496,6 +366,7 @@ p.bio {
       margin-bottom: 10px; /* Jarak antara foto profil dan info */
   }
   .profile-stats {
+      padding-top: 10px;
       justify-content: center;
       width: 100%;
   }
@@ -518,16 +389,19 @@ p.bio {
 }
 
 /* Resvonsi Tampilan Mobile */
-@media (max-width: 470px) {
-  header {
-      display: flex;
-      flex-shrink: 1;
-  }
-
+@media (max-width: 480px) {
   .profile-identitas {
       display: flex;
       justify-content: center;
-      font-size: 25px;
+      margin-bottom: 10px;
+  }
+ 
+  div.profile-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
   }
 
   #profileImage {
@@ -561,11 +435,6 @@ p.bio {
   .stat-container p {
       font-size: 15px;
   }
-
-  #follow-button {
-      font-size: 15px;
-  }
-}
 
 /* Ukuran Terkecil */
 @media (max-width: 343px) {

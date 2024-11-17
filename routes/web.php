@@ -178,4 +178,5 @@ Broadcast::channel('chat.{conversationId}', function ($user, $conversationId) {
   return $user->conversations->contains($conversationId);
 });
 Route::post('/messages/send', [MessageController::class, 'sendMessage'])->name('messages.send');
+Route::get('/search-users', [MessageController::class, 'searchUsers'])->name('search.users');
 

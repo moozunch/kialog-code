@@ -11,7 +11,6 @@
 @section('vendor-script')
   <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/npm/pusher-js@7.0.3/dist/web/pusher.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@pusher/push-notifications-web@1.0.4"></script>
 
 @endsection
 

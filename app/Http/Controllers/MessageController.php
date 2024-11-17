@@ -80,4 +80,13 @@ class MessageController extends Controller
     return response()->json(['message' => $message], 200);
   }
 
+  public function searchUsers(Request $request)
+  {
+    $query = $request->input('query');
+    $users = User::where('username', 'LIKE', "%{$query}%")->get();
+
+    return response()->json($users);
+  }
+
+
 }

@@ -179,7 +179,6 @@
 
           document.querySelector('.write_msg').value = '';
 
-          // Scroll to the bottom after sending the message
           scrollToBottom();
         })
         .catch(error => {

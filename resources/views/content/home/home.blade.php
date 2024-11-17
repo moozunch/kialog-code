@@ -20,7 +20,6 @@
 @endsection
 @section('content')
   <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
-@yield('layouts.notification.notification')
 
 <div class="container-fluid">
   <div class="row">

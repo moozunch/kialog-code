@@ -153,15 +153,23 @@
         </div>
         <div class="modal-body">
           <!-- User 1 -->
-          <div class="data-user d-flex align-items-center mb-3">
+          <div class="data-user d-flex align-items-center mt-3">
             <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
             <div class="modal-profile-info">
-              <h6>Display Name 1</h6>
-              <p>@username1</p>
+              <h3>Display Name 1</h3>
+              <h4>@username1</h4>
             </div>
             <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
           </div>
           <!-- User 2 -->
+          <div class="data-user d-flex align-items-center mt-3">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
+            <div class="modal-profile-info">
+              <h3>Display Name 1</h3>
+              <h4>@username1</h4>
+            </div>
+            <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
+          </div>
         </div>
       </div>
     </div>
@@ -172,25 +180,25 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header p-3 shadow">
-          <h5 class="modal-title" id="followingModalLabel">Mengikuti</h5>
+          <h5 class="modal-title" id="followingModalLabel">Following</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <!-- User 1 -->
-          <div class="data-user d-flex align-items-center mb-3">
+          <div class="data-user d-flex align-items-center mt-3">
             <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Following 1" />
             <div class="modal-profile-info">
-              <h6>Display Name 1</h6>
-              <p>@username1</p>
+              <h3>Display Name 1</h3>
+              <h4>@username1</h>
             </div>
             <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Ikuti</button>
           </div>
           <!-- User 2 -->
-          <div class="data-user d-flex align-items-center mb-3">
-            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Following 2" />
+          <div class="data-user d-flex align-items-center mt-3">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Following 1" />
             <div class="modal-profile-info">
-              <h6>Display Name 2</h6>
-              <p>@username2</p>
+              <h3>Display Name 1</h3>
+              <h4>@username1</h>
             </div>
             <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Ikuti</button>
           </div>

@@ -2,9 +2,15 @@
   margin: 0;
   padding: 0rem;
   font: 1rem "Plus Jakarta Sans Medium", sans-serif;
-  /* flex-wrap: wrap;
-  color: var(--black); */
+  flex-wrap: wrap;
+  color: var(--black);
 }
+
+html {
+  min-width: 370px;
+  overflow: auto;
+}
+
 :root {
   --primary-color: #2c6822;
   --primary-secondary-color: #1b3e15;
@@ -82,7 +88,9 @@ div.profile-info h2 {
 /* Modal Profil Stats Styling */
 .modal-content {
   max-height: 500px;
+  min-width: 317px;
   overflow: auto;
+  padding-bottom: 10px;
 }
 
 .modal-title {
@@ -95,47 +103,44 @@ div.profile-info h2 {
   background-color: white;
 }
 
-.modal-header button i{
-  font-size: 16px;
-}
-
 .modal-header button:hover {
   outline: none;
-}
-
-.modal-header button i:hover {
-  color: var(--primary-color);
+  background-color: rgb(174, 167, 167);
+  transition: color 0.3s ease;
 }
 
 .modal-body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid black;
-  padding: 0px 15px 0px 0;
+  padding: 0px 15px 0px 0px;
+  min-width: 317px;
+  overflow-x: auto;
 }
 
 .data-user {
   width: 100%;
-  display: flex;
-  align-items: center;
   padding: 0px;
+  justify-content: center;
 }
 
 div.data-user img {
   width: 50px;
   height: 50px;
-  padding: 15px; /* White space di semua sisi */
-  border-radius: 50%; /* Membuat gambar bulat */
+  padding: 0px 15px 0px 15px; /* White space di semua sisi */
   object-fit: cover; /* Memastikan gambar proporsional */
   display: block; /* Pastikan gambar ditampilkan */
   box-sizing: content-box;
+  margin: 0px !important;
 }
 
 .modal-profile-info {
-  padding-top: 15px;
-  padding-bottom: 0pc;
   margin-right: auto;
+}
+
+.modal-profile-info h3, .modal-profile-info h4 {
+  margin: 0;
+  font-size: 19px;
 }
 
 /* Follow Button */
@@ -382,6 +387,7 @@ p.bio {
 @media (max-width: 768px) {
   .modal-dialog {
       max-width: 90%;
+      margin: 10px auto;
   }
 }
 
@@ -401,7 +407,7 @@ p.bio {
     margin-top: 10px;
   }
 
-  div.profile-info h1 {
+  div.profile-info h1, div.profile-info h2 {
     text-align: center;
   }
 
@@ -438,9 +444,3 @@ p.bio {
   }
 
 /* Ukuran Terkecil */
-@media (max-width: 380px) {
-  html {
-      min-width: 370px;
-      overflow: scroll;
-  }
-}

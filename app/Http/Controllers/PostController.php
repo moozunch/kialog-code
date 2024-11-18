@@ -134,4 +134,24 @@ class PostController extends Controller
 
         return redirect()->back()->with('success', 'Post deleted successfully!');
     }
+
+  public function searchPosts(Request $request)
+  {
+    $query = $request->input('query');
+    $posts = Post::where('message', 'LIKE', "%{$query}%")
+      ->orWhereHas('user', function($q) use ($query) {
+        $q->where('username', 'LIKE', "%{$query}%")
+          ->orWhere('name', 'LIKE', "%{$query}%");
+      })
+      ->with('user')
+      ->get();
+
+    return response()->json($posts);
+  }
+
+  public function getAllPosts()
+  {
+    $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
+    return response()->json($posts);
+  }
 }

@@ -9,10 +9,11 @@
   <link rel="stylesheet" href="{{ asset('assets/css/animation.css') }}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
-
+  <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
   <title>Kialog</title>
 </head>
 <body>
+
 <header>
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
@@ -392,5 +393,8 @@
     });
   });
 </script>
+
+
+
 </body>
 </html>

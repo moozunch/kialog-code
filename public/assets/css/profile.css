@@ -401,7 +401,7 @@ p.bio {
     margin-top: 10px;
   }
 
-  div.profile-info h1 {
+  div.profile-info h1, div.profile-info h2 {
     text-align: center;
   }
 

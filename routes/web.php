@@ -152,6 +152,8 @@ Route::post('/signup', [AuthController::class, 'signup']);
 //Posts - Home
 Route::resource('posts', PostController::class);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/search-posts', [PostController::class, 'searchPosts'])->name('search.posts');
+Route::get('/all-posts', [PostController::class, 'getAllPosts'])->name('posts.all');
 
 //Setting - Profile
 Route::get('/settings', [AccountSettingsAccount::class, 'index'])->name('settings');
@@ -178,4 +180,5 @@ Broadcast::channel('chat.{conversationId}', function ($user, $conversationId) {
   return $user->conversations->contains($conversationId);
 });
 Route::post('/messages/send', [MessageController::class, 'sendMessage'])->name('messages.send');
-
+Route::get('/search-users', [MessageController::class, 'searchUsers'])->name('search.users');
+Route::get('/conversations', [MessageController::class, 'getAllConversations'])->name('conversations.all');

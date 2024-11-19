@@ -1,3 +1,1 @@
-/*
-  Add custom scripts here
-*/
+// add

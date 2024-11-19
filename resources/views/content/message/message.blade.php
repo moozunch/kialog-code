@@ -22,7 +22,7 @@
             </div>
             <div class="srch_bar">
               <div class="stylish-input-group">
-                <input type="text" class="search-bar" placeholder="Search">
+                <input type="text" class="search-bar" placeholder="Search" id="message-search-bar">
                 <span class="input-group-addon">
                   <button type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </span>
@@ -32,14 +32,14 @@
 
           <div class="inbox_chat">
             <!-- Iterate over each conversation -->
-            @foreach($conversations as $conversation)
+            @foreach($conversations as $conv)
               @php
-                $otherUser = $conversation->user_one == Auth::id() ? $conversation->userTwo : $conversation->userOne;
-                $latestMessage = $conversation->messages->last();
+                $otherUser = $conv->user_one == Auth::id() ? $conv->userTwo : $conv->userOne;
+                $latestMessage = $conv->messages->last();
               @endphp
               @if($otherUser)
                 <a href="{{ route('chat', $otherUser->id) }}">
-                  <div class="chat_list {{ $conversation->id == $conversation->id ? 'active_chat' : '' }}">
+                  <div class="chat_list {{ isset($conversation) && $conv->id == $conversation->id ? 'active_chat' : '' }}">
                     <div class="chat_people">
                       <div class="chat_img"><img src="{{ $otherUser->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="user" class="rounded-circle"></div>
                       <div class="chat_ib">
@@ -174,20 +174,136 @@
           'X-CSRF-TOKEN': '{{ csrf_token() }}'
         }
       })
-        .then(response => response.json())
         .then(data => {
           console.log("Message sent successfully:", data);
 
           document.querySelector('.write_msg').value = '';
 
-          // Scroll to the bottom after sending the message
           scrollToBottom();
         })
         .catch(error => {
           console.error("Error sending message:", error);
-          alert("There was an error sending your message. Please try again.");
+          alert(error.message);
         });
     });
     @endif
   </script>
+{{--Search Users in navbar--}}
+  <script>
+    document.getElementById('search-bar').addEventListener('input', function(event) {
+      const query = event.target.value;
+
+      if (query.length > 2) {
+        fetch(`/search-users?query=${query}`)
+          .then(response => response.json())
+          .then(users => {
+            const searchResultsContainer = document.querySelector('.inbox_chat');
+            searchResultsContainer.innerHTML = '';
+
+            users.forEach(user => {
+              const userHtml = `
+            <a href="/chat/${user.id}">
+              <div class="chat_list">
+                <div class="chat_people">
+                  <div class="chat_img"><img src="${user.profile_image || '/assets/img/avatars/1.png'}" alt="user" class="rounded-circle"></div>
+                  <div class="chat_ib">
+                    <h5>${user.username}</h5>
+                  </div>
+                </div>
+              </div>
+            </a>
+          `;
+              searchResultsContainer.innerHTML += userHtml;
+            });
+          })
+          .catch(error => console.error('Error fetching search results:', error));
+      } else {
+        fetch('/conversations')
+          .then(response => response.json())
+          .then(conversations => {
+            const searchResultsContainer = document.querySelector('.inbox_chat');
+            searchResultsContainer.innerHTML = '';
+
+            conversations.forEach(conversation => {
+              const conversationHtml = `
+            <a href="/chat/${conversation.user.id}">
+              <div class="chat_list">
+                <div class="chat_people">
+                  <div class="chat_img"><img src="${conversation.user.profile_image || '/assets/img/avatars/1.png'}" alt="user" class="rounded-circle"></div>
+                  <div class="chat_ib">
+                    <h5>${conversation.user.username}
+                      ${conversation.latest_message_time ? `<span class="chat_date">${conversation.latest_message_time}</span>` : ''}
+                    </h5>
+                    <p>${conversation.latest_message}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          `;
+              searchResultsContainer.innerHTML += conversationHtml;
+            });
+          })
+          .catch(error => console.error('Error fetching conversations:', error));
+      }
+    });
+  </script>
+  <script>
+    document.getElementById('message-search-bar').addEventListener('input', function(event) {
+      const query = event.target.value;
+
+      if (query.length > 2) {
+        fetch(`/search-users?query=${query}`)
+          .then(response => response.json())
+          .then(users => {
+            const searchResultsContainer = document.querySelector('.inbox_chat');
+            searchResultsContainer.innerHTML = '';
+
+            users.forEach(user => {
+              const userHtml = `
+            <a href="/chat/${user.id}">
+              <div class="chat_list">
+                <div class="chat_people">
+                  <div class="chat_img"><img src="${user.profile_image || '/assets/img/avatars/1.png'}" alt="user" class="rounded-circle"></div>
+                  <div class="chat_ib">
+                    <h5>${user.username}</h5>
+                  </div>
+                </div>
+              </div>
+            </a>
+          `;
+              searchResultsContainer.innerHTML += userHtml;
+            });
+          })
+          .catch(error => console.error('Error fetching search results:', error));
+      } else {
+        fetch('/conversations')
+          .then(response => response.json())
+          .then(conversations => {
+            const searchResultsContainer = document.querySelector('.inbox_chat');
+            searchResultsContainer.innerHTML = '';
+
+            conversations.forEach(conversation => {
+              const conversationHtml = `
+            <a href="/chat/${conversation.user.id}">
+              <div class="chat_list">
+                <div class="chat_people">
+                  <div class="chat_img"><img src="${conversation.user.profile_image || '/assets/img/avatars/1.png'}" alt="user" class="rounded-circle"></div>
+                  <div class="chat_ib">
+                    <h5>${conversation.user.username}
+                      ${conversation.latest_message_time ? `<span class="chat_date">${conversation.latest_message_time}</span>` : ''}
+                    </h5>
+                    <p>${conversation.latest_message}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          `;
+              searchResultsContainer.innerHTML += conversationHtml;
+            });
+          })
+          .catch(error => console.error('Error fetching conversations:', error));
+      }
+    });
+  </script>
+
 @endsection

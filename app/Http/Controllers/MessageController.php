@@ -80,4 +80,36 @@ class MessageController extends Controller
     return response()->json(['message' => $message], 200);
   }
 
+  public function searchUsers(Request $request)
+  {
+    $query = $request->input('query');
+    $users = User::where('username', 'LIKE', "%{$query}%")->get();
+
+    return response()->json($users);
+  }
+  public function getAllConversations()
+  {
+    $conversations = Conversation::with(['userOne', 'userTwo', 'messages'])
+      ->where('user_one', Auth::id())
+      ->orWhere('user_two', Auth::id())
+      ->get();
+
+    $formattedConversations = $conversations->map(function ($conv) {
+      $otherUser = $conv->user_one == Auth::id() ? $conv->userTwo : $conv->userOne;
+      $latestMessage = $conv->messages->last();
+
+      return [
+        'id' => $conv->id,
+        'user' => [
+          'id' => $otherUser->id,
+          'username' => $otherUser->username,
+          'profile_image' => $otherUser->profile_image,
+        ],
+        'latest_message' => $latestMessage ? $latestMessage->content : 'No messages yet',
+        'latest_message_time' => $latestMessage ? $latestMessage->created_at->setTimezone('Asia/Jakarta')->format('h:i A | M d') : null,
+      ];
+    });
+
+    return response()->json($formattedConversations);
+  }
 }

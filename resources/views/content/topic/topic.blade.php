@@ -62,12 +62,64 @@
     <div class="card-body">
       <h5 class="card-title">{{ $topic->title }}</h5>
       <p class="card-text">{{ $topic->description }}</p>
-      <form action="{{ route('topics.join', $topic->id) }}" method="POST">
-        @csrf
-        <button type="submit" class="btn btn-primary">Join</button>
+        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#joinConfirmationModal" data-topic-id="{{ $topic->id }}"  data-topic-title="{{ $topic->title }}">Join</button>
       </form>
     </div>
   </div>
   @endforeach
 </div>
+
+@foreach($topics as $topic)
+<div class="modal fade" id="joinConfirmationModal" tabindex="-1" aria-labelledby="joinConfirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-bottom text-center p-3">
+        <h5 class="modal-title fw-medium" id="joinConfirmationModalLabel">Join Community</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body border-bottom p-3">
+        Are you sure you want to join <span id="communityTitle"></span> community?
+      </div>
+      <div class="modal-footer text-center p-3">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form action="{{ route('topics.join', $topic->id) }}" method="POST">
+          @csrf
+          <button type="button" class="btn btn-primary" id="confirmJoinButton">Yes, Join</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var joinConfirmationModal = document.getElementById('joinConfirmationModal');
+    var confirmJoinButton = document.getElementById('confirmJoinButton');
+    var communityTitle = document.getElementById('communityTitle');
+    var topicId;
+
+    joinConfirmationModal.addEventListener('show.bs.modal', function (event) {
+      var button = event.relatedTarget; // Button that triggered the modal
+      topicId = button.getAttribute('data-topic-id'); // Extract info from data-* attributes
+      var topicTitle = button.getAttribute('data-topic-title'); // Get the topic title
+      communityTitle.textContent = topicTitle; // Set the community title
+      joinForm.action = '/topics/' + topicId + '/join'; // Update the form action
+    });
+
+    confirmJoinButton.addEventListener('click', function () {
+      var form = document.createElement('form');
+      form.method = 'POST';
+      form.action = '/topics/' + topicId + '/join';
+      var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      var csrfInput = document.createElement('input');
+      csrfInput.type = 'hidden';
+      csrfInput.name = '_token';
+      csrfInput.value = csrfToken;
+      form.appendChild(csrfInput);
+      document.body.appendChild(form);
+      form.submit();
+    });
+    });
+</script>
 @endsection

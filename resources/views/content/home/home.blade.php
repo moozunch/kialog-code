@@ -168,11 +168,8 @@
             <ul class="list-group">
                 @foreach($trendingTopics as $topic)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                  {{  $topic->title }}
-                  <form action="{{ route('topics.join', $topic->id) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-primary btn-sm">JOIN</button>
-                  </form>
+                  {{ $topic->title }}
+                  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#joinConfirmationModal" data-topic-id="{{ $topic->id }}">JOIN</button>
                 </li>
                 @endforeach
             </ul>
@@ -198,28 +195,29 @@
       </div>
   </div>
 </div>
-
-      {{-- Container for Create Post Card --}}
-      {{-- <div class="create-post-container" style="position: sticky; top: 200px; z-index: 1049;">
-          <div class="card mb-3">
-              <div class="card-body">
-                  <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
-                      @csrf
-                      <div class="mb-3">
-                          <label for="message" class="form-label">What's on your mind?</label>
-                          <textarea class="form-control" id="message" name="message" rows="3" placeholder="Write something..."></textarea>
-                      </div>
-                      <div class="mb-3">
-                          <label for="post-images" class="form-label">Upload Image (optional)</label>
-                          <input type="file" class="form-control" id="post-images" name="images[]" multiple accept="image/png, image/jpeg">
-                          <div id="image-preview" class="d-flex flex-wrap mt-2"></div> <!-- Preview container -->
-                      </div>
-                      <button type="submit" class="btn btn-primary w-100">Post</button>
-                  </form>
-              </div>
-          </div>
-      </div> --}}
   </aside>
+
+  {{-- join confirmation modal --}}
+  <div class="modal fade" id="joinConfirmationModal" tabindex="-1" aria-labelledby="joinConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-bottom text-center p-3">
+          <h5 class="modal-title fw-medium" id="joinConfirmationModalLabel">Join Community</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body border-bottom p-3">
+          Are you sure you want to join this community?
+        </div>
+        <div class="modal-footer text-center p-3">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <form action="{{ route('topics.join', $topic->id) }}" method="POST">
+            @csrf
+            <button type="button" class="btn btn-primary" id="confirmJoinButton">Yes, Join</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
     document.getElementById('post-images').addEventListener('change', function(event) {
@@ -233,6 +231,30 @@
             img.style.maxHeight = '150px';
             previewContainer.appendChild(img);
         }
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+    var joinConfirmationModal = document.getElementById('joinConfirmationModal');
+    var confirmJoinButton = document.getElementById('confirmJoinButton');
+    var topicId;
+
+    joinConfirmationModal.addEventListener('show.bs.modal', function (event) {
+      var button = event.relatedTarget; // Button that triggered the modal
+      topicId = button.getAttribute('data-topic-id'); // Extract info from data-* attributes
+    });
+
+    confirmJoinButton.addEventListener('click', function () {
+      var form = document.createElement('form');
+      form.method = 'POST';
+      form.action = '/topics/' + topicId + '/join';
+      var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      var csrfInput = document.createElement('input');
+      csrfInput.type = 'hidden';
+      csrfInput.name = '_token';
+      csrfInput.value = csrfToken;
+      form.appendChild(csrfInput);
+      document.body.appendChild(form);
+      form.submit();
+    });
     });
 </script>
   </div>

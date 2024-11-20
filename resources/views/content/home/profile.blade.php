@@ -61,19 +61,19 @@
 
       <!-- Post Section -->
       @foreach($posts as $post)
-        <div class="card mt-2">
-          <div class="card-body">
-            <div class="row mb-2 align-items-center">
-              <div class="col-1">
+        <div class="card-post shadow-lg ">
+          <div class="body-post card-body">
+            <div class="row-post d-flex align-items-center">
+              <div class="post-profile-picture">
                 <a href="{{ route('profile.show', ['user_id' => $post->user->id]) }}">
                   <img src="{{ $post->user->profile_image ? $post->user->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px">
                 </a>
               </div>
-              <div class="col">
+              <div class="post-profile-info">
                 <h5 class="card-title">{{ $post->user->name }}</h5>
                 <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
               </div>
-              <div class="col-auto ml-auto delete-button">
+              <div class="tombol-delete delete-button">
                 <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                   <i class="mdi mdi-dots-horizontal"></i>
                 </a>
@@ -110,9 +110,9 @@
             </div>
           @endif
 
-          <div class="card-footer d-flex justify-content-between align-items-center flex-nowrap">
+          <div class="card-footer d-flex justify-content-between align-items-center flex-wrap">
             <small class="text-muted">Posted on {{ $post->created_at->format('F j, Y') }}</small>
-            <div class="d-flex justify-content-end flex-nowrap">
+            <div class="interactive-button d-flex justify-content-end flex-nowrap">
               <form action="{{ route('posts.like', $post->id) }}" method="POST" style="display: inline;">
                 @csrf
                 <button type="submit" class="btn btn-like btn-no-bg btn-light btn-sm mx-1">

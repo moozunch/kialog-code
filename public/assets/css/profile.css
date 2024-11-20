@@ -6,11 +6,6 @@
   color: var(--black);
 }
 
-html {
-  min-width: 370px;
-  overflow: auto;
-}
-
 :root {
   --primary-color: #2c6822;
   --primary-secondary-color: #1b3e15;
@@ -38,7 +33,6 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center; /* Mengatur agar Display Name sejajar di tengah */
-  max-width: 200px;
   word-wrap: break-word;
 }
 
@@ -64,8 +58,8 @@ div.profile-info h2 {
 
 .profile-stats div {
   min-width: 80px;
-  text-align: center; /* Posisikan teks di tengah */
-  font-size: 16px; /* Perbesar ukuran font */
+  text-align: center;
+  font-size: 16px;
   padding: 0px 25px;
 }
 .stat-container h6,
@@ -89,7 +83,6 @@ div.profile-info h2 {
 .modal-content {
   max-height: 500px;
   min-width: 317px;
-  overflow: auto;
   padding-bottom: 10px;
 }
 
@@ -181,210 +174,87 @@ p.bio {
 }
 
 /* Post Section */
-.content-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  text-align: right;
+.card-post {
+  margin: 0px;
+  border: #e3d5d5 solid 0.1px;
 }
 
-.content-image {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  margin-bottom: 10px;
-  border-radius: 12px;
-  align-self: center;
-}
-
-.content-text {
-  margin-top: 5px;
-  font-size: 16px;
-  color: #333;
-  text-align: left;
-}
-
-/* Styling tombol interaktif */
-.interactive-button button {
-  border: none;
-  border-radius: 50%;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s;
-}
-
-.interactive-button button:hover {
-  background-color: var(--primary-color);
-}
-
-.interactive-button i {
-  font-size: 23px;
-  transition: color 0.3s ease;
-}
-
-.interactive-button i:hover {
-  color: var(--white);
-}
-
-/* Animasi saat tombol di-klik */
-.interactive-button button:active {
-  transform: scale(0.9);
-  background-color: var(--white);
-}
-
-/* Icon aktif */
-.active {
-  color: var(--primary-color);
-  background-color: transparent; /* Replaced 'none' with 'transparent' */
-}
-
-/* Komentar */
-.comment-container {
-  background-color: #f8f9fa;
-  padding: 10px;
-  border-radius: 10px;
-  display: none;
-  width: 100%;
-  margin-top: 10px;
-  gap: 10px;
-}
-
-.comment-container .profile-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 15px;
-  gap: 13px;
-}
-
-.comment-container .profile-info h1{
-  padding-top: 10px;
-  font-size: 20px;
-}
-
-.comment-input {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.comment-input textarea {
-  resize: none;
-  margin-top: 10px;
-}
-
-/* Button Style */
-.comment-input button {
-  background-color: var(--primary-color);
-  color: white;
-  border: 2px solid var(--primary-color);
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.comment-input button:hover {
-  background-color: white;
-  color: black;
-  border-color: var(--primary-color);
-}
-
-.comment-input button:focus {
-  background-color: var(--primary-color);
-  color: white;
-  border-color: var(--primary-color);
-}
-
-/* List Komentar */
-.comments-list {
-  max-height: 300px; /* Batasi tinggi maksimal */
-  overflow-y: auto; /* Scroll jika komentar banyak */
-  padding-right: 5px; /* Spasi agar scrollbar tidak menutupi teks */
-}
-
-/* Struktur Komentar */
-.comment {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-}
-
-/* Profile Info */
-.comment .profile-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.comment .profile-info img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-.comment .profile-info h1 {
-  font-size: 20px;
-  padding-top: 10px;
-}
-
-/* Konten Komentar */
-.comment .content {
-  padding: 20px 15px;
-  text-align: justify;
-}
-
-/* Tombol Hapus */
-.comment button {
-  justify-self: flex-end;
-  align-self: flex-end;
-  margin-right: 15px;
+.row-post {
   margin-bottom: 15px;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.row-post .post-profile-picture {
+  margin-right: 10px;
+}
+
+.row-post .post-profile-info h5 {
+  margin-bottom: 2px;
+}
+
+div.row-post .post-profile-info h6,{
+  margin-bottom: 0px !important;
+}
+
+.row-post .tombol-delete {
+  margin-left: auto;
 }
 
 /* Responsive */
 @media (max-width: 992px) {
-  .profile-icon {
-      margin-left: 0; /* Ikon tetap di kanan */
+  header {
+    max-width: 100%;
   }
 
-  .navbar-collapse {
-      justify-content: flex-start; /* Konten lainnya tetap sejajar di kiri */
+  div.card-post {
+    max-width: 100%;
   }
 
   .profile-header {
-      flex-direction: column; /* Menyusun ulang elemen secara vertikal */
-      align-items: flex-start; /* Mengatur elemen di sisi kiri */
+    display: flex;
+    flex-direction: column; 
+    align-items: center; /* Pastikan elemen center di layar kecil */
+    width: 100%; /* Pastikan lebar penuh */
   }
 
   .profile-info {
-      order: 2; /* Memindahkan div profile-info ke bawah */
-      max-width: 100%;
+    max-width: 100%; /* Batasi lebar maksimum untuk menghindari elemen terlalu lebar */
+    margin: 0 auto; /* Tengah untuk elemen */
+    padding: 10px; /* Sesuaikan padding untuk mencegah keluar container */
   }
 
   .profile-picture {
-      margin-bottom: 10px; /* Jarak antara foto profil dan info */
+    margin-bottom: 10px; 
+    width: 120px; /* Atur ukuran untuk tampilan lebih kecil */
+    height: 120px;
   }
+
   .profile-stats {
-      padding-top: 10px;
-      justify-content: center;
-      width: 100%;
+    padding-top: 10px;
+    justify-content: center;
+    width: 100%; /* Pastikan lebar penuh */
+    gap: 10px; /* Sesuaikan jarak antar elemen */
   }
 
   #follow-button {
-      width: 100%;
-      text-align: center;
+    width: 100%;
+    text-align: center;
   }
-
 }
+
 
 /* Responsive layout untuk modal */
 @media (max-width: 768px) {
+  .card-footer .interactive-button {
+    order: 1;
+    margin-bottom: 5px;
+  }
+
+  .card-footer .text-muted {
+    order: 2;
+  }
+  
   .modal-dialog {
       max-width: 90%;
       margin: 10px auto;
@@ -392,14 +262,14 @@ p.bio {
 }
 
 /* Resvonsi Tampilan Mobile */
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   .profile-identitas {
       display: flex;
       justify-content: center;
       margin-bottom: 10px;
   }
  
-  div.profile-info {
+  .profile-info {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -443,4 +313,25 @@ p.bio {
       font-size: 15px;
   }
 
+  .interactive-button {
+    justify-content: space-around; /* Memberikan ruang yang sama pada tombol */
+  }
+
+  .interactive-button button {
+    padding: 0.15rem 0.3rem;
+    font-size: 11px; /* Ukuran font lebih kecil di layar sangat kecil */
+  }
+
+  .interactive-button i {
+    font-size: 0.8rem;
+  }
+
+}
+
 /* Ukuran Terkecil */
+@media (max-width: 344px) {
+  body {
+    min-width: 344px;
+    overflow: auto;
+  }
+}

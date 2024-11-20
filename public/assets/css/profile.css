@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0rem;
   font: 1rem "Plus Jakarta Sans Medium", sans-serif;
-  flex-wrap: wrap;
   color: var(--black);
 }
 
@@ -193,7 +192,7 @@ p.bio {
   margin-bottom: 2px;
 }
 
-div.row-post .post-profile-info h6,{
+div.row-post .post-profile-info h6{
   margin-bottom: 0px !important;
 }
 
@@ -213,7 +212,7 @@ div.row-post .post-profile-info h6,{
 
   .profile-header {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center; /* Pastikan elemen center di layar kecil */
     width: 100%; /* Pastikan lebar penuh */
   }
@@ -225,7 +224,7 @@ div.row-post .post-profile-info h6,{
   }
 
   .profile-picture {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     width: 120px; /* Atur ukuran untuk tampilan lebih kecil */
     height: 120px;
   }
@@ -254,7 +253,7 @@ div.row-post .post-profile-info h6,{
   .card-footer .text-muted {
     order: 2;
   }
-  
+
   .modal-dialog {
       max-width: 90%;
       margin: 10px auto;
@@ -268,7 +267,7 @@ div.row-post .post-profile-info h6,{
       justify-content: center;
       margin-bottom: 10px;
   }
- 
+
   .profile-info {
     display: flex;
     justify-content: center;

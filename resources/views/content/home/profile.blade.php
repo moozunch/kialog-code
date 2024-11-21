@@ -64,16 +64,16 @@
         <div class="card-post shadow-lg ">
           <div class="body-post card-body">
             <div class="row-post d-flex align-items-center">
-              <div class="post-profile-picture">
+              <div class="post-profile-picture item-row">
                 <a href="{{ route('profile.show', ['user_id' => $post->user->id]) }}">
                   <img src="{{ $post->user->profile_image ? $post->user->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px">
                 </a>
               </div>
-              <div class="post-profile-info">
+              <div class="post-profile-info item-row">
                 <h5 class="card-title">{{ $post->user->name }}</h5>
                 <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
               </div>
-              <div class="tombol-delete delete-button">
+              <div class="tombol-delete item-row delete-button">
                 <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                   <i class="mdi mdi-dots-horizontal"></i>
                 </a>
@@ -146,12 +146,12 @@
   <!-- Modal for Followers -->
   <div class="modal fade" id="followersModal" tabindex="-1" aria-labelledby="followersModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header p-3 shadow">
+      <div class="modal-content d-flex">
+        <div class="modal-header d-flex p-3 shadow">
           <h5 class="modal-title" id="followersModalLabel">Followers</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body d-flex">
           <!-- User 1 -->
           <div class="data-user d-flex align-items-center mt-3">
             <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
@@ -170,6 +170,52 @@
             </div>
             <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
           </div>
+
+          <div class="data-user d-flex align-items-center mt-3">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
+            <div class="modal-profile-info">
+              <h3>Display Name 1</h3>
+              <h4>@username1</h4>
+            </div>
+            <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
+          </div>
+
+          <div class="data-user d-flex align-items-center mt-3">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
+            <div class="modal-profile-info">
+              <h3>Display Name 1</h3>
+              <h4>@username1</h4>
+            </div>
+            <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
+          </div>
+
+          <div class="data-user d-flex align-items-center mt-3">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
+            <div class="modal-profile-info">
+              <h3>Display Name 1</h3>
+              <h4>@username1</h4>
+            </div>
+            <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
+          </div>
+
+          <div class="data-user d-flex align-items-center mt-3">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
+            <div class="modal-profile-info">
+              <h3>Display Name 1</h3>
+              <h4>@username1</h4>
+            </div>
+            <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
+          </div>
+
+          <div class="data-user d-flex align-items-center mt-3">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
+            <div class="modal-profile-info">
+              <h3>Display Name 1</h3>
+              <h4>@username1</h4>
+            </div>
+            <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
+          </div>
+
         </div>
       </div>
     </div>

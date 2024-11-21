@@ -32,7 +32,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center; /* Mengatur agar Display Name sejajar di tengah */
-  word-wrap: break-word;
 }
 
 div.profile-info h1 {
@@ -40,6 +39,7 @@ div.profile-info h1 {
   font-size: 25px;
   margin-bottom: 5px;
 }
+
 div.profile-info h2 {
   font-size: 16px;
   color: #6f6b6b;
@@ -79,14 +79,27 @@ div.profile-info h2 {
 }
 
 /* Modal Profil Stats Styling */
+/* Modal Content */
 .modal-content {
+  min-width: 280px;
   max-height: 500px;
-  min-width: 317px;
   padding-bottom: 10px;
+  overflow: hidden; /* Hanya scroll bagian modal-body */
+  display: flex;
+  flex-direction: column;
 }
 
-.modal-title {
-  font-weight: bolder;
+/* Modal Header */
+.modal-header {
+  width: 100%;
+  position: sticky; /* Buat header tetap terlihat */
+  top: 0;
+  background-color: white; /* Pastikan header terlihat jelas */
+  z-index: 10;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #ddd; /* Tambahkan garis bawah */
 }
 
 /* Style Tombol Close */
@@ -101,39 +114,60 @@ div.profile-info h2 {
   transition: color 0.3s ease;
 }
 
+/* Modal Body */
 .modal-body {
-  display: flex;
+  flex: 1; /* Isi seluruh tinggi yang tersisa */
+  width: 100%;
+  max-height: 440px; /* Pastikan modal-body dapat digulir */
+  overflow: auto;
+  padding: 0px 20px 10px 20px;
   flex-direction: column;
-  align-items: center;
-  padding: 0px 15px 0px 0px;
-  min-width: 317px;
-  overflow-x: auto;
+  min-width: 400px;
 }
 
+/* Data User */
 .data-user {
+  display: flex;
+  align-items: center;
   width: 100%;
-  padding: 0px;
-  justify-content: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee; /* Garis pemisah antar data */
 }
 
 div.data-user img {
   width: 50px;
   height: 50px;
-  padding: 0px 15px 0px 15px; /* White space di semua sisi */
-  object-fit: cover; /* Memastikan gambar proporsional */
-  display: block; /* Pastikan gambar ditampilkan */
-  box-sizing: content-box;
-  margin: 0px !important;
+  border-radius: 50%; /* Membuat gambar menjadi lingkaran */
+  object-fit: cover;
+  margin-right: 15px;
 }
 
 .modal-profile-info {
+  flex: 1; /* Memastikan teks responsif */
   margin-right: auto;
 }
 
-.modal-profile-info h3, .modal-profile-info h4 {
+.modal-profile-info h3,
+.modal-profile-info h4 {
   margin: 0;
-  font-size: 19px;
+  font-size: 1rem;
+  line-height: 1.2;
 }
+
+/* Tombol Follow */
+.modal-button-follow {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.modal-button-follow:hover {
+  background-color: #0056b3;
+}
+
 
 /* Follow Button */
 .modal-button-follow {
@@ -174,7 +208,7 @@ p.bio {
 
 /* Post Section */
 .card-post {
-  margin: 0px;
+  margin: 0px 0px 15px 0px;
   border: #e3d5d5 solid 0.1px;
 }
 
@@ -182,6 +216,7 @@ p.bio {
   margin-bottom: 15px;
   flex-direction: row;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .row-post .post-profile-picture {
@@ -190,14 +225,25 @@ p.bio {
 
 .row-post .post-profile-info h5 {
   margin-bottom: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 div.row-post .post-profile-info h6{
   margin-bottom: 0px !important;
 }
 
+.card-footer .interactive-button {
+  flex-wrap: nowrap;
+}
+
 .row-post .tombol-delete {
   margin-left: auto;
+}
+
+.row-post a.btn {
+  padding: 7px;
 }
 
 /* Responsive */
@@ -252,11 +298,12 @@ div.row-post .post-profile-info h6{
 
   .card-footer .text-muted {
     order: 2;
+    padding-left: 8px;
   }
 
   .modal-dialog {
       max-width: 90%;
-      margin: 10px auto;
+      margin: 20px auto;
   }
 }
 
@@ -312,8 +359,49 @@ div.row-post .post-profile-info h6{
       font-size: 15px;
   }
 
+  .body-post {
+    padding-bottom: 10px;
+  }
+
+  .post-profile-info {
+    min-width: 203px;
+    overflow: hidden;
+  }
+
+  .post-profile-info {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .row-post {
+    
+  }
+
+  .row-post .post-profile-info {
+
+  }
+
+  .row-post .dropdown-menu {
+    flex-wrap: nowrap;
+  }
+  
+  .post-profile-info h5, .post-profile-info h6 {
+    
+  }
+  
+  @keyframes scroll-text {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
   .interactive-button {
-    justify-content: space-around; /* Memberikan ruang yang sama pada tombol */
+    justify-content: flex-start;
+    margin-bottom: 5px;
   }
 
   .interactive-button button {
@@ -325,6 +413,39 @@ div.row-post .post-profile-info h6{
     font-size: 0.8rem;
   }
 
+
+}
+
+@media (max-width: 480px) {
+  .row-post .post-profile-picture {
+    order: 1;
+  }
+
+  .row-post .post-profile-info {
+    order: 3;
+
+  }
+
+  /* .row-post .post-profile-info h5, 
+  .row-post .post-profile-info h6 {
+    max-width: 203px;
+    overflow: hidden;
+    white-space: nowrap;
+    /* animation: scroll-text 10s linear infinite;
+  } */
+
+  .row-post .tombol-delete {
+    order: 4;
+  }
+
+/* Ketika terjadi overflow, urutan elemen akan berubah */
+.row-post .item-row.order-changed {
+  order: 2;
+}
+
+  .row-post a.btn {
+    padding: 7px 7px;
+  }
 }
 
 /* Ukuran Terkecil */

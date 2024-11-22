@@ -235,17 +235,17 @@ img {
 }
 
 .msg_send_btn {
-  background: #2C6822 none repeat scroll 0 0;
-  border: medium none;
+  background: #2C6822;
+  border: none;
+  color: white;
   border-radius: 50%;
-  color: #FFFFFF;
-  cursor: pointer;
   font-size: 17px;
-  height: 33px;
-  position: absolute;
-  right: 0;
-  top: 11px;
-  width: 33px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .messaging {
@@ -276,15 +276,20 @@ img {
 .input_msg_write {
   display: flex;
   align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #f8f8f8;
+  box-sizing: border-box;
 }
 
 .write_msg {
   flex: 1;
   padding: 10px;
-  border: 1px solid #ccc;
-  max-width: 300%;
-  box-sizing: border-box;
-  resize: none;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  background-color: transparent;
   border-radius: 12px;
 }
 
@@ -311,4 +316,12 @@ img {
   width: 400px;
   max-width: 100%;
   height: auto;
+}
+
+.input_msg_write:focus-within {
+  border-color: #2C6822;
+}
+
+.write_msg:focus {
+  outline: none;
 }

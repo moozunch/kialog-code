@@ -108,10 +108,34 @@ img {
 }
 
 .chat_list {
+  position: relative;
   border-bottom: 1px solid #c4c4c4;
   margin: 0;
   padding: 18px 16px 10px;
   border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.chat_list:hover {
+  background-color: #f2f2f2;
+}
+
+.chat_list.active_chat {
+  background-color: #ebebeb;
+}
+
+.chat_list.active_chat::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: #2C6822;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(44, 104, 34, 0.5);
 }
 
 .inbox_chat {

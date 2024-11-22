@@ -24,5 +24,3 @@ class MessageSent implements ShouldBroadcast
     return new Channel('chat.' . $this->message->conversation_id);
   }
 }
-
-

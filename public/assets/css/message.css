@@ -229,9 +229,11 @@ img {
 }
 
 .type_msg {
-  border-top: 1px solid #c4c4c4;
-  position: relative;
-  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ccc;
 }
 
 .msg_send_btn {
@@ -246,6 +248,11 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 10px; 
+}
+
+.msg_send_btn i {
+  font-size: 16px;
 }
 
 .messaging {
@@ -276,21 +283,22 @@ img {
 .input_msg_write {
   display: flex;
   align-items: center;
-  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 12px;
+  border-radius: 20px;
   background-color: #f8f8f8;
+  padding: 5px 10px;
   box-sizing: border-box;
+  width: 100%;
+  height: 50px;
 }
 
 .write_msg {
   flex: 1;
-  padding: 10px;
+  padding: 5px 10px;
   border: none;
   outline: none;
-  font-size: 15px;
+  font-size: 14px;
   background-color: transparent;
-  border-radius: 12px;
 }
 
 .type_msg.no-messages {

@@ -3,19 +3,19 @@
 @section('title', 'Home')
 
 @section('vendor-style')
-  <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
+  <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/displayposts.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/button.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}"> --}}
 @endsection
 
 @section('vendor-script')
-  <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+  <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/pusher-js@7.0.3/dist/web/pusher.min.js"></script>
 @endsection
 
 @section('page-script')
-  <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
+  <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 @endsection
 
 @section('content')
@@ -51,12 +51,12 @@
                 <h5 class="card-title">{{ $post->user->name }}</h5>
                 <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
               </div>
-              @if (auth()->id() === $post->user_id)
               <div class="col-auto ml-auto delete-button">
                 <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="mdi mdi-dots-horizontal"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
+                  @if(auth()->id() === $post->user_id)
                   <li>
                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
                       @csrf
@@ -66,9 +66,20 @@
                       </button>
                     </form>
                   </li>
+                  @else
+                  <li>
+                    <a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#reportModal" data-post-id="{{ $post->id }}">
+                      <i class="mdi mdi-account-alert-outline me-2"></i> Report
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item text-danger" href="#">
+                      <i class="mdi mdi-block-helper me-2"></i> Block
+                    </a>
+                  </li>
+                @endif
                 </ul>
               </div>
-              @endif
             </div>
             <p class="card-text">{{ $post->message }}</p>
           </div>
@@ -227,6 +238,32 @@
   </div>
 </div>
 
+{{-- Modal for report post --}}
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reportModalLabel">Report Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{{ route('posts.report') }}">
+          @csrf
+          <input type="hidden" name="post_id" id="report-post-id">
+          <div class="mb-3">
+            <label for="report-reason" class="col-form-label">Reason:</label>
+            <textarea class="form-control" id="report-reason" name="reason" placeholder="Describe the reason for reporting this post"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit Report</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   document.getElementById('post-images').addEventListener('change', function(event) {
     const previewContainer = document.getElementById('image-preview');
@@ -263,6 +300,14 @@
       form.appendChild(csrfInput);
       document.body.appendChild(form);
       form.submit();
+    });
+
+    var reportModal = document.getElementById('reportModal');
+    reportModal.addEventListener('show.bs.modal', function (event) {
+      var button = event.relatedTarget;
+      var postId = button.getAttribute('data-post-id');
+      var modal = this;
+      modal.querySelector('#report-post-id').value = postId;
     });
   });
 </script>
@@ -302,7 +347,7 @@
           });
         })
         .catch(error => console.error('Error fetching search results:', error));
-    } else if (query.length === 0) {
+    } else if (query length === 0) {
       fetch('/all-posts')
         .then(response => response.json())
         .then(posts => {

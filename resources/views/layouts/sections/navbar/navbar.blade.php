@@ -30,15 +30,14 @@
             <div class="navbar-nav align-items-center mx-auto">
               <div class="position-relative">
                 <form class="d-flex" role="search">
-                  <input class="form-control me-2 pe-5 custom-search-input" type="search" placeholder="Search" aria-label="Search" id="search-bar" style="border-radius: 12px;">
+                  <input class="form-control me-2 pe-5 custom-search-input" type="search" placeholder="Search" aria-label="Search" id="search-bar" style="border-radius: 12px; width: 400px;">
                   <i class="mdi mdi-magnify mdi-24px position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);"></i>
                 </form>
               </div>
             </div>
             <!-- /Search -->
             <ul class="navbar-nav flex-row align-items-center">
-
-              <!-- User dan Dropdown-->
+              <!-- User and Dropdown -->
               <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow p-0" href="javascript:void(0);" data-bs-toggle="dropdown">
                   <div class="avatar avatar-online">

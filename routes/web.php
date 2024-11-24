@@ -50,6 +50,7 @@ use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Broadcast;
 
 // Main Page Route
@@ -182,3 +183,7 @@ Broadcast::channel('chat.{conversationId}', function ($user, $conversationId) {
 Route::post('/messages/send', [MessageController::class, 'sendMessage'])->name('messages.send');
 Route::get('/search-users', [MessageController::class, 'searchUsers'])->name('search.users');
 Route::get('/conversations', [MessageController::class, 'getAllConversations'])->name('conversations.all');
+
+//report
+Route::post('/reports', [ReportController::class, 'store'])->name('reports.store');
+Route::post('/posts/report', [ReportController::class, 'store'])->name('posts.report');

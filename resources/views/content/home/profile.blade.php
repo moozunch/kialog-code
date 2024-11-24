@@ -73,6 +73,7 @@
                 <h5 class="card-title">{{ $post->user->name }}</h5>
                 <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
               </div>
+              @if (auth()->id() === $post->user_id)
               <div class="tombol-delete item-row delete-button">
                 <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                   <i class="mdi mdi-dots-horizontal"></i>
@@ -89,6 +90,7 @@
                   </li>
                 </ul>
               </div>
+              @endif
             </div>
             <p class="card-text">{{ $post->message }}</p>
           </div>

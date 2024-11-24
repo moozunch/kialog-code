@@ -159,3 +159,15 @@
     font-weight: lighter;
   }
 }
+
+@media (min-width: 768px) {
+  .modal {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .create-post-container {
+    display: none !important;
+  }
+}

@@ -50,6 +50,7 @@
                 <h5 class="card-title">{{ $post->user->name }}</h5>
                 <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
               </div>
+              @if (auth()->id() === $post->user_id)
               <div class="col-auto ml-auto delete-button">
                 <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="mdi mdi-dots-horizontal"></i>
@@ -66,6 +67,7 @@
                   </li>
                 </ul>
               </div>
+              @endif
             </div>
             <p class="card-text">{{ $post->message }}</p>
           </div>
@@ -92,7 +94,7 @@
               <form action="{{ route('posts.like', $post->id) }}" method="POST" style="display: inline;">
                 @csrf
                 <button type="submit" class="btn btn-like btn-no-bg btn-light btn-sm mx-1">
-                  @if($post->userLikes && !$post->userLikes->isEmpty())
+                  @if($post->userLikes->contains('user_id', auth()->id()))
                     <i class="mdi mdi-cards-heart text-danger"></i>
                   @else
                     <i class="mdi mdi-cards-heart-outline"></i>
@@ -104,7 +106,7 @@
               <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
                 @csrf
                 <button type="submit" class="btn btn-bookmark btn-no-bg btn-light btn-sm mx-1">
-                  @if($post->bookmarks && !$post->bookmarks->isEmpty())
+                  @if($post->bookmarks->contains('user_id', auth()->id()))
                     <i class="mdi mdi-bookmark text-primary"></i>
                   @else
                     <i class="mdi mdi-bookmark-outline"></i>

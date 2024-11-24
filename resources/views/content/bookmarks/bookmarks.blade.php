@@ -58,7 +58,7 @@
           <form action="{{ route('posts.like', $bookmark->post->id) }}" method="POST" style="display: inline;">
             @csrf
             <button type="submit" class="btn btn-like btn-no-bg btn-light btn-sm">
-              @if($bookmark->post->userLikes && !$bookmark->post->userLikes->isEmpty())
+              @if($bookmark->post->userLikes->contains('user_id', auth()->id()))
                 <i class="mdi mdi-cards-heart text-danger"></i>
               @else
                 <i class="mdi mdi-cards-heart-outline"></i>
@@ -70,7 +70,7 @@
           <form action="{{ route('bookmarks.store', $bookmark->post->id) }}" method="POST" style="display: inline;">
             @csrf
             <button type="submit" class="btn btn-bookmark btn-no-bg btn-light btn-sm">
-              @if($bookmark->post->bookmarks && !$bookmark->post->bookmarks->isEmpty())
+              @if($bookmark->post->bookmarks->contains('user_id', auth()->id()))
                 <i class="mdi mdi-bookmark text-primary"></i>
               @else
                 <i class="mdi mdi-bookmark-outline"></i>

@@ -347,7 +347,7 @@
           });
         })
         .catch(error => console.error('Error fetching search results:', error));
-    } else if (query length === 0) {
+    } else if (query.length === 0) {
       fetch('/all-posts')
         .then(response => response.json())
         .then(posts => {

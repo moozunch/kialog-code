@@ -73,9 +73,13 @@
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item text-danger" href="#">
-                      <i class="mdi mdi-block-helper me-2"></i> Block
-                    </a>
+                    <form action="{{ route('blocks.store') }}" method="POST" style="display: inline;">
+                      @csrf
+                      <input type="hidden" name="blocked_user_id" value="{{ $post->user->id }}">
+                      <button type="submit" class="dropdown-item text-danger">
+                        <i class="mdi mdi-block-helper me-2"></i> Block
+                      </button>
+                    </form>
                   </li>
                 @endif
                 </ul>

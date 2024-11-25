@@ -51,6 +51,7 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\BlockController;
 use Illuminate\Support\Facades\Broadcast;
 
 // Main Page Route
@@ -187,3 +188,6 @@ Route::get('/conversations', [MessageController::class, 'getAllConversations'])-
 //report
 Route::post('/reports', [ReportController::class, 'store'])->name('reports.store');
 Route::post('/posts/report', [ReportController::class, 'store'])->name('posts.report');
+
+//Block
+Route::post('/blocks', [BlockController::class, 'store'])->name('blocks.store');

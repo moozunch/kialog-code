@@ -70,4 +70,9 @@ $container = ($container ?? 'container-xxl');
     <div class="drag-target"></div>
   </div>
   <!-- / Layout wrapper -->
+   
   @endsection
+
+  @push('scripts')
+    <script src="{{ asset('assets/js/profile.js') }}"></script> 
+  @endpush

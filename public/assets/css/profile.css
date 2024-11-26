@@ -17,9 +17,15 @@
   width: 100%;
 }
 
+#profileImage {
+  margin: 0px auto;
+  height: 100px;
+  width: 100px;
+}
+
 .profile-picture {
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   padding: 25px; /* White space di semua sisi */
   border-radius: 50%; /* Membuat gambar bulat */
   object-fit: cover; /* Memastikan gambar proporsional */
@@ -44,6 +50,45 @@ div.profile-info h2 {
   font-size: 16px;
   color: #6f6b6b;
   margin-bottom: 0px;
+}
+
+/* Styling modal untuk foto profil */
+/* Overlay hitam buram */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9); /* Latar belakang buram */
+  display: none; /* Sembunyikan modal secara default */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000000; /* Pastikan di atas elemen lainnya */
+}
+
+/* Konten modal (gambar) */
+.custom-modal-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: -50px; /* Geser gambar ke atas */
+}
+
+/* Gambar dalam modal, diperbesar */
+.profile-large-image {
+  max-width: 60%; /* Gambar besar */
+  max-height: 60vh; /* Batasi tinggi */
+  border-radius: 5%; /* Tetap bulat */
+  object-fit: cover;
+  transition: transform 0.3s ease; /* Efek zoom */
+  transform: scale(3);
+}
+
+/* Zoom-in saat di-hover */
+.profile-large-image:hover {
+  transform: scale(3.1);
 }
 
 /* Profile Stats */
@@ -122,7 +167,6 @@ div.profile-info h2 {
   overflow: auto;
   padding: 0px 20px 10px 20px;
   flex-direction: column;
-  min-width: 400px;
 }
 
 /* Data User */
@@ -145,6 +189,7 @@ div.data-user img {
 .modal-profile-info {
   flex: 1; /* Memastikan teks responsif */
   margin-right: auto;
+  min-width: 180px;
 }
 
 .modal-profile-info h3,
@@ -154,23 +199,8 @@ div.data-user img {
   line-height: 1.2;
 }
 
-/* Tombol Follow */
-.modal-button-follow {
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-}
-
-.modal-button-follow:hover {
-  background-color: #0056b3;
-}
-
-
-/* Follow Button */
-.modal-button-follow {
+/* Delete Button */
+.modal-button-delete {
   width: 120px;
   background-color: var(--primary-color);
   color: #fff;
@@ -182,7 +212,7 @@ div.data-user img {
   width: 120px;
 }
 
-.modal-button-follow:hover {
+.modal-button-delete:hover {
   background-color: var(--primary-secondary-color);
   border: none;
   outline: none;
@@ -190,7 +220,28 @@ div.data-user img {
   color: var(--white);
 }
 
-.modal-button-follow.mengikuti {
+/* followed button */
+.modal-button-followed {
+  width: 120px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 120px;
+}
+
+.modal-button-followed:hover {
+  background-color: var(--primary-secondary-color);
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: var(--white);
+}
+
+.modal-button-followed.follow {
   background-color: #ffffff;
   color: black;
   border: 2.5px solid var(--primary-color);
@@ -216,14 +267,21 @@ p.bio {
   margin-bottom: 15px;
   flex-direction: row;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .row-post .post-profile-picture {
   margin-right: 10px;
+  min-width: 50px;
+  flex-shrink: 0;
 }
 
-.row-post .post-profile-info h5 {
+.row-post .post-profile-info {
+  overflow: hidden;
+  min-width: 100px;
+}
+
+div.row-post .post-profile-info h5 {
   margin-bottom: 2px;
   overflow: hidden;
   white-space: nowrap;
@@ -232,15 +290,17 @@ p.bio {
 
 div.row-post .post-profile-info h6{
   margin-bottom: 0px !important;
+  min-width: 25px;
+}
+
+.row-post .tombol-delete {
+  margin-left: auto;
 }
 
 .card-footer .interactive-button {
   flex-wrap: nowrap;
 }
 
-.row-post .tombol-delete {
-  margin-left: auto;
-}
 
 .row-post a.btn {
   padding: 7px;
@@ -328,18 +388,24 @@ div.row-post .post-profile-info h6{
   }
 
   #profileImage {
-      width: 120px;
-      height: 120px;
-      padding: 0px 15px 5px 0px; /* White space di semua sisi */
+      padding: 0px 15px 5px 15px; /* White space di semua sisi */
       border-radius: 50%; /* Membuat gambar bulat */
       object-fit: cover; /* Memastikan gambar proporsional */
-      display: block; /* Pastikan gambar ditampilkan */
-      box-sizing: content-box;
       cursor: pointer;
   }
 
   .profile-identitas img {
       padding-bottom: 0px;
+  }
+
+
+  #Modal-Profile-Image {
+    padding: 50px;
+    width: 80vw;
+    min-width: 180px;      
+    min-height: 180px;
+    transition: width: 0.3s;
+    border-radius: 5%;
   }
 
   .profile-stats {
@@ -372,14 +438,6 @@ div.row-post .post-profile-info h6{
     overflow: hidden;
     white-space: nowrap;
     position: relative;
-  }
-
-  .row-post {
-    
-  }
-
-  .row-post .post-profile-info {
-
   }
 
   .row-post .dropdown-menu {
@@ -425,14 +483,6 @@ div.row-post .post-profile-info h6{
     order: 3;
 
   }
-
-  /* .row-post .post-profile-info h5, 
-  .row-post .post-profile-info h6 {
-    max-width: 203px;
-    overflow: hidden;
-    white-space: nowrap;
-    /* animation: scroll-text 10s linear infinite;
-  } */
 
   .row-post .tombol-delete {
     order: 4;

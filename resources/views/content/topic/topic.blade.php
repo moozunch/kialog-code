@@ -41,29 +41,32 @@
   </div>
 </div>
 
-<div class="community d-flex justify-content-around">
+<div class="community row g-4">
   @foreach($topics as $topic)
-  <div class="card" style="width: 18rem; position: relative;">
-    <img src="{{ asset('assets/img/backgrounds/graphics.jpg') }}" class="card-img-top" alt="...">
-    <a class="btn position-absolute top-0 end-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 10px;">
-      <i class="mdi mdi-dots-horizontal"></i>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end">
-      <li>
-        <form action="{{ route('topics.destroy', $topic->id) }}" method="POST" style="display: inline;">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="dropdown-item text-danger">
-            <i class="mdi mdi-trash-can-outline me-2"></i> Delete
-          </button>
-        </form>
-      </li>
-    </ul>
-    <div class="card-body">
-      <h5 class="card-title">{{ $topic->title }}</h5>
-      <p class="card-text">{{ $topic->description }}</p>
-        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#joinConfirmationModal" data-topic-id="{{ $topic->id }}"  data-topic-title="{{ $topic->title }}">Join</button>
-      </form>
+  <div class="col-sm-6 col-md-4 col-lg-3">
+    <div class="card h-100" style="position: relative;">
+      <img src="{{ asset('assets/img/backgrounds/graphics.jpg') }}" class="card-img-top" alt="...">
+      @if(auth()->id() === $topic->user_id)
+      <a class="btn position-absolute top-0 end-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 10px;">
+        <i class="mdi mdi-dots-horizontal"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <form action="{{ route('topics.destroy', $topic->id) }}" method="POST" style="display: inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="dropdown-item text-danger">
+              <i class="mdi mdi-trash-can-outline me-2"></i> Delete
+            </button>
+          </form>
+        </li>
+      </ul>
+      @endif
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{ $topic->title }}</h5>
+        <p class="card-text">{{ $topic->description }}</p>
+        <button type="submit" class="btn btn-primary mt-auto w-50" data-bs-toggle="modal" data-bs-target="#joinConfirmationModal" data-topic-id="{{ $topic->id }}" data-topic-title="{{ $topic->title }}">Join</button>
+      </div>
     </div>
   </div>
   @endforeach

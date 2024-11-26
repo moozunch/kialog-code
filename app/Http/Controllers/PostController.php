@@ -45,6 +45,7 @@ class PostController extends Controller
       'message' => 'nullable|string|max:255',
       'images' => 'nullable',
       'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+      'topic_id' => 'nullable|exists:topics,id',
     ]);
 
     if (!$request->message && !$request->hasFile('images')) {
@@ -78,7 +79,15 @@ class PostController extends Controller
       $post->images = json_encode($imageUrls); // Save Firebase URLs as JSON
     }
 
+    if ($request->filled('topic_id')) {
+      $post->topic_id = $request->topic_id; // Associate post with topic if topic_id is provided
+  }
+
     $post->save();
+
+    if ($request->filled('topic_id')) {
+      return redirect()->route('topics.show', ['topic' => $request->topic_id])->with('success', 'Post created successfully!');
+  }
 
     return redirect()->back()->with('success', 'Post created successfully!');
   }

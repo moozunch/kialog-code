@@ -36,6 +36,7 @@
 
   <!-- Include Scripts -->
   @include('layouts/sections/scripts')
+  @stack('scripts')
 
 </body>
 

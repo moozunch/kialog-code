@@ -26,3 +26,30 @@ followButtons.forEach((button) => {
         }
     });
 });
+
+// Post Section
+// Comment Sextion
+// Add Comment
+// Add Comment
+function addComment(button) {
+    const commentContainer = button.closest(".comment-container");
+    const textarea = commentContainer.querySelector("textarea");
+    const commentList = commentContainer.querySelector(".comments-list");
+
+    if (textarea.value.trim() !== "") {
+        const commentHTML = `
+            <div class="comment shadow-sm">
+                <div class="profile-info">
+                    <img src="https://via.placeholder.com/40" alt="User Profile">
+                    <h1>Username</h1>
+                </div>
+                <div class="content">
+                    <p>${textarea.value}</p>
+                </div>
+                <button class="btn btn-sm btn-danger" onclick="deleteComment(this.closest('.comment'))">Hapus</button>
+            </div>
+        `;
+        commentList.insertAdjacentHTML("beforeend", commentHTML);
+        textarea.value = "";
+    }
+}

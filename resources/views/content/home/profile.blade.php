@@ -149,6 +149,20 @@
       @endforeach
     </div>
   </div>
+  
+  <!-- Comment Section -->
+  <div class="comment-container" style="display: none; width: 100%; margin-top: 10px">
+    <div class="profile-info">
+        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User Profile" />
+        <h1>Username</h1>
+    </div>
+    <div class="comment-input d-flex align-items-start">
+        <textarea class="form-control" rows="2" placeholder="Tambahkan komentar..."></textarea>
+        <button class="btn btn-primary ms-2" onclick="addComment(this)">Kirim</button>
+    </div>
+    <div class="comments-list mt-3"></div>
+    </div>
+  </div>
 
   <!-- Modal for Followers -->
   <div class="modal fade" id="followersModal" tabindex="-1" aria-labelledby="followersModalLabel" aria-hidden="true">

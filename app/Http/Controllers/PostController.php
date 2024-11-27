@@ -194,4 +194,13 @@ class PostController extends Controller
         $blockedUsers = Block::where('user_id', Auth::id())->with('blockedUser')->get();
         return view('content.home.blocked_users', compact('blockedUsers'));
     }
+
+    public function show($id)
+    {
+        // Mengambil post dengan jumlah komentar
+        $post = Post::withCount('comments')->findOrFail($id);
+    
+        return view('post.show', compact('post'));
+    }    
+
 }

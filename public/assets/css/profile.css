@@ -433,7 +433,7 @@ textarea {
     width: 80vw;
     min-width: 180px;      
     min-height: 180px;
-    transition: width: 0.3s;
+    transition:0.3s;
     border-radius: 5%;
   }
 
@@ -471,10 +471,6 @@ textarea {
 
   .row-post .dropdown-menu {
     flex-wrap: nowrap;
-  }
-  
-  .post-profile-info h5, .post-profile-info h6 {
-    
   }
   
   @keyframes scroll-text {

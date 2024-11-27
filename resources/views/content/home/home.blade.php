@@ -42,8 +42,9 @@
           <div class="card-body">
             <div class="row mb-2 align-items-center">
               <div class="col-auto">
-              <img src="{{ $post->user->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" id="profileImage">
-                </a>
+              <a href="{{ route('profile.showOther', ['username' => $post->user->username]) }}">
+                <img src="{{ $post->user->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" id="profileImage">
+              </a>
               </div>
               <div class="col">
                 <h5 class="card-title">{{ $post->user->name }}</h5>

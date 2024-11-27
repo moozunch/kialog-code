@@ -139,6 +139,7 @@
               <button class="btn btn-comment btn-no-bg btn-light btn-sm mx-1" data-bs-toggle="collapse" data-bs-target="#comments-{{ $post->id }}">
                   <i class="mdi mdi-chat-outline"></i> {{ $post->comments->count() }}
               </button>
+0
 
               <!-- Form untuk menambah komentar -->
               <div id="comments-{{ $post->id }}" class="collapse">
@@ -175,20 +176,6 @@
           </div>
         </div>
       @endforeach
-    </div>
-  </div>
-  
-  <!-- Comment Section -->
-  <div class="comment-container" style="display: none; width: 100%; margin-top: 10px">
-    <div class="profile-info">
-        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User Profile" />
-        <h1>Username</h1>
-    </div>
-    <div class="comment-input d-flex align-items-start">
-        <textarea class="form-control" rows="2" placeholder="Tambahkan komentar..."></textarea>
-        <button class="btn btn-primary ms-2" onclick="addComment(this)">Kirim</button>
-    </div>
-    <div class="comments-list mt-3"></div>
     </div>
   </div>
 

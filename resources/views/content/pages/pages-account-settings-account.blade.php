@@ -19,7 +19,7 @@
       <ul class="nav nav-pills flex-column flex-md-row mb-4 gap-2 gap-lg-0">
         <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class="mdi mdi-account-outline mdi-20px me-1"></i>Account</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ url('pages/account-settings-notifications') }}"><i class="mdi mdi-bell-outline mdi-20px me-1"></i>Notifications</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url('pages/account-settings-connections') }}"><i class="mdi mdi-link mdi-20px me-1"></i>Connections</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url('pages/account-settings-blocked-accounts') }}"><i class="mdi mdi-link mdi-20px me-1"></i>Blocked Accounts</a></li>
       </ul>
 
       <div class="card mb-4">

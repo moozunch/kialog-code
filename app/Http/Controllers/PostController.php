@@ -8,8 +8,10 @@ use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Topic;
+use App\Models\Block;
 use App\Models\PostUserLike;
 use Kreait\Firebase\Factory;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -24,6 +26,13 @@ class PostController extends Controller
   public function index()
   {
     $posts = Post::whereNull('topic_id')->with('user')->orderBy('created_at', 'desc')->get();
+
+    $blockedUserIds = Block::where('user_id', Auth::id())->pluck('blocked_user_id');
+    $posts = Post::whereNull('topic_id')
+            ->whereNotIn('user_id', $blockedUserIds)
+            ->with('user')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
     $trendingTopics = Topic::orderBy('created_at', 'desc')->take(5)->get();
 
@@ -166,4 +175,23 @@ class PostController extends Controller
     $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
     return response()->json($posts);
   }
+
+  public function unblock(Request $request)
+    {
+        $request->validate([
+            'blocked_user_id' => 'required|exists:users,id',
+        ]);
+
+        Block::where('user_id', Auth::id())
+            ->where('blocked_user_id', $request->blocked_user_id)
+            ->delete();
+
+        return redirect()->back()->with('success', 'User unblocked successfully.');
+    }
+
+    public function blockedUsers()
+    {
+        $blockedUsers = Block::where('user_id', Auth::id())->with('blockedUser')->get();
+        return view('content.home.blocked_users', compact('blockedUsers'));
+    }
 }

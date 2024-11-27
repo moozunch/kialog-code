@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bookmarks;
+use App\Models\Block;
 use Illuminate\Http\Request;
 
 class BookmarksController extends Controller
@@ -11,7 +12,15 @@ class BookmarksController extends Controller
   public function index()
   {
     $userId = auth()->id();
-    $data = Bookmarks::where("user_id", $userId)->get();
+    $blockedUserIds = Block::where('user_id', $userId)->pluck('blocked_user_id');
+
+    $data = Bookmarks::where('user_id', $userId)
+        ->whereNotIn('post_id', function ($query) use ($blockedUserIds) {
+            $query->select('id')
+                ->from('posts')
+                ->whereIn('user_id', $blockedUserIds);
+        })
+        ->get();
     return view("content.bookmarks.bookmarks", ['bookmarks' => $data]);
   }
   public function toggleBookmark($postId)

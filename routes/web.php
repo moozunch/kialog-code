@@ -68,7 +68,7 @@ Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
 Route::post('/account-settings/update', [AuthController::class, 'updateAccountSettings'])->name('account-settings.update');
 Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
-Route::get('/pages/account-settings-connections', [AccountSettingsConnections::class, 'index'])->name('pages-account-settings-connections');
+Route::get('/pages/account-settings-blocked-accounts', [AccountSettingsConnections::class, 'index'])->name('pages-account-settings-blocked-accounts');
 Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
 Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name('pages-misc-under-maintenance');
 
@@ -191,3 +191,7 @@ Route::post('/posts/report', [ReportController::class, 'store'])->name('posts.re
 
 //Block
 Route::post('/blocks', [BlockController::class, 'store'])->name('blocks.store');
+
+
+//Unblock
+Route::post('/blocks/unblock', [PostController::class, 'unblock'])->name('blocks.unblock');

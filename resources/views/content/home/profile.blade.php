@@ -122,6 +122,7 @@
           <div class="card-footer d-flex justify-content-between align-items-center flex-wrap">
             <small class="text-muted">Posted on {{ $post->created_at->format('F j, Y') }}</small>
             <div class="interactive-button d-flex justify-content-end flex-nowrap">
+              <!-- Like -->
               <form action="{{ route('posts.like', $post->id) }}" method="POST" style="display: inline;">
                 @csrf
                 <button type="submit" class="btn btn-like btn-no-bg btn-light btn-sm mx-1">
@@ -134,48 +135,64 @@
                 </button>
               </form>
 
-              <!-- Comment Section -->
-              <!-- Tombol komentar -->
+              <!-- Tombol Komentar -->
               <button class="btn btn-comment btn-no-bg btn-light btn-sm mx-1" data-bs-toggle="collapse" data-bs-target="#comments-{{ $post->id }}">
-                  <i class="mdi mdi-chat-outline"></i> {{ $post->comments->count() }}
+                  <i class="mdi mdi-chat-outline"></i> {{ $post->comments }} 
               </button>
-0
 
-              <!-- Form untuk menambah komentar -->
+              <!-- Bagian Komentar Collapse -->
               <div id="comments-{{ $post->id }}" class="collapse">
+                  <!-- Form untuk Menambah Komentar -->
                   <form action="{{ route('comments.store', $post->id) }}" method="POST">
                       @csrf
-                      <textarea name="content" class="form-control mt-2" rows="2" placeholder="Write a comment..."></textarea>
+                      <textarea name="content" class="form-control mt-2" rows="2" placeholder="Write a comment...">{{ old('content') }}</textarea>
                       <button type="submit" class="btn btn-primary btn-sm mt-1">Comment</button>
                   </form>
 
-                  <!-- Daftar Komentar -->
-                  @foreach($post->comments as $comment)
-                      <div class="comment mt-3">
-                          <div class="d-flex align-items-center">
-                              <img src="{{ $comment->user->profile_image ? asset($comment->user->profile_image) : asset('assets/img/default-avatar.png') }}" alt="Profile Picture" class="rounded-circle me-2" width="40px" height="40px">
-                              <div>
-                                  <strong>{{ $comment->user->name }}</strong> ({{ $comment->user->username }})
-                                  <small class="text-muted">{{ $comment->created_at->format('F j, Y, g:i a') }}</small>
+                  <!-- Tampilkan Komentar -->
+                  @if($post->comments_count > 0)
+                      <p>{{ $post->comments_count }} Komentar</p>
+
+                      <!-- Loop untuk menampilkan komentar jika ingin menampilkan komentar terkait -->
+                      @foreach($post->comments as $comment)
+                          <div class="comment mt-3">
+                              <div class="d-flex align-items-center">
+                                  <img src="{{ $comment->user->profile_image ? asset($comment->user->profile_image) : asset('assets/img/default-avatar.png') }}" 
+                                       alt="Profile Picture" 
+                                       class="rounded-circle me-2" 
+                                       width="40px" height="40px">
+                                  <div>
+                                      <strong>{{ $comment->user->name }}</strong> ({{ $comment->user->username }})
+                                      <small class="text-muted">{{ $comment->created_at->format('F j, Y, g:i a') }}</small>
+                                  </div>
                               </div>
-                              @if(Auth::id() === $comment->user_id)
-                                  <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" class="ms-auto">
-                                      @csrf
-                                      @method('DELETE')
-                                      <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                  </form>
-                              @endif
+                              <p class="mb-0 ms-5">{{ $comment->content }}</p>
                           </div>
-                          <p class="mb-0 ms-5">{{ $comment->content }}</p>
-                      </div>
-                  @endforeach
+                      @endforeach
+                  @else
+                      <p class="mt-3 text-muted">Belum ada komentar.</p>
+                  @endif
               </div>
 
+              <!-- Bookmark -->
+              <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
+                @csrf
+                <button type="submit" class="btn btn-bookmark btn-no-bg btn-light btn-sm mx-1">
+                  @if($post->bookmarks && !$post->bookmarks->isEmpty())
+                    <i class="mdi mdi-bookmark text-primary"></i>
+                  @else
+                    <i class="mdi mdi-bookmark-outline"></i>
+                  @endif
+                </button>
+              </form>
+
+              <!-- Share -->
               <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1"><i class="mdi mdi-share-outline"></i></button>
             </div>
           </div>
         </div>
       @endforeach
+
     </div>
   </div>
 

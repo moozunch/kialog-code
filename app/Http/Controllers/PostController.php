@@ -195,10 +195,12 @@ class PostController extends Controller
         return view('content.home.blocked_users', compact('blockedUsers'));
     }
 
-    public function show($id) {
-    $post = Post::with('comments.user')->findOrFail($id); // Memuat comments dan user yang terkait
-
-    return view('post.show', compact('post'));
-    }
+    public function show($id)
+    {
+        // Mengambil post dengan jumlah komentar
+        $post = Post::withCount('comments')->findOrFail($id);
+    
+        return view('post.show', compact('post'));
+    }    
 
 }

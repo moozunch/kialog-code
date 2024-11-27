@@ -195,3 +195,7 @@ Route::post('/blocks', [BlockController::class, 'store'])->name('blocks.store');
 
 //Unblock
 Route::post('/blocks/unblock', [PostController::class, 'unblock'])->name('blocks.unblock');
+
+// Comment
+Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');

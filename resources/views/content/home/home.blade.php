@@ -19,7 +19,6 @@
 @endsection
 
 @section('content')
-  <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
 
 <div class="container-fluid">
   <div class="row">
@@ -43,8 +42,7 @@
           <div class="card-body">
             <div class="row mb-2 align-items-center">
               <div class="col-auto">
-                <a href="{{ route('profile.showOther', ['username' => $post->user->username]) }}">
-                  <img src="{{ $post->user->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px" id="profileImage">
+              <img src="{{ $post->user->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" id="profileImage">
                 </a>
               </div>
               <div class="col">

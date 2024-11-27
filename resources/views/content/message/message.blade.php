@@ -74,15 +74,22 @@
                   </div>
                 @else
                   <!-- Incoming message -->
-                  <div class="incoming_msg">
-                    <div class="incoming_msg_img"><img src="{{ $otherUser->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="user" class="rounded-circle"></div>
-                    <div class="received_msg">
-                      <div class="received_withd_msg">
-                        <p>{{ $message->content }}</p>
-                        <span class="time_date">{{ $message->created_at->format('h:i A | M d') }}</span>
+                  @if($message->sender_id != Auth::id())
+                    @php
+                      $sender = $conversation->user_one == $message->sender_id ? $conversation->userOne : $conversation->userTwo;
+                    @endphp
+                    <div class="incoming_msg">
+                      <div class="incoming_msg_img">
+                        <img src="{{ $sender->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="user" class="rounded-circle">
+                      </div>
+                      <div class="received_msg">
+                        <div class="received_withd_msg">
+                          <p>{{ $message->content }}</p>
+                          <span class="time_date">{{ $message->created_at->format('h:i A | M d') }}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  @endif
                 @endif
               @endforeach
             @else
@@ -98,7 +105,9 @@
                 <form action="{{ route('messages.send') }}" method="POST" id="sendMessageForm">
                   @csrf
                   <input type="hidden" name="conversation_id" value="{{ $conversation->id }}">
-                  <input type="text" class="write_msg" name="content" placeholder="Type a message" required>
+                  <div class="input-container">
+                    <input type="text" class="write_msg" name="content" placeholder="Type a message" required>
+                  </div>
                   <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                 </form>
               @else

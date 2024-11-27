@@ -15,13 +15,14 @@ class MessageController extends Controller
 {
   public function index()
   {
-    $conversations = Conversation::with(['userOne', 'userTwo'])
+    $conversations = Conversation::with(['userOne', 'userTwo', 'messages'])
       ->where('user_one', Auth::id())
       ->orWhere('user_two', Auth::id())
       ->get();
 
     return view('content.message.message', compact('conversations'));
   }
+
 
 
   public function chat($user_id)

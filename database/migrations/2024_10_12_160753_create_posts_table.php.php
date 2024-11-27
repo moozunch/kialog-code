@@ -12,8 +12,7 @@ return new class extends Migration
           $table->id();
           $table->string('message');
           $table->json('images')->nullable();
-//          $table->integer('likes')->default(0);
-          $table->integer('comments')->default(0);
+          $table->integer('likes')->default(0);
           $table->foreignId('topic_id')->constrained()->onDelete('cascade');
           $table->foreignId('user_id')->constrained()->onDelete('cascade');
           $table->timestamps();

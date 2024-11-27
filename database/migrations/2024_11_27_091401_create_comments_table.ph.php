@@ -6,26 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('post_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->text('content');
-            $table->timestamps();
+            $table->id(); // Primary key
+            $table->foreignId('post_id')->constrained()->onDelete('cascade'); // Foreign key ke posts
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Foreign key ke users
+            $table->text('content'); // Kolom untuk konten komentar
+            $table->timestamps(); // Created_at dan updated_at
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('comments'); // Menghapus tabel comments jika migrasi di-revert
     }
 };
-

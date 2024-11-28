@@ -391,6 +391,18 @@ img {
   height: auto;
 }
 
+.no-messages p {
+  margin: 0;
+  padding: 0;
+  text-align: left; /* Teks sejajar ke kiri */
+  line-height: 50px; /* Sesuaikan agar teks berada di tengah secara vertikal */
+  font-size: 14px; /* Ukuran font opsional */
+  color: #555; /* Warna teks opsional */
+  height: 100%; /* Mengisi tinggi kontainer */
+  display: flex; /* Gunakan flexbox */
+  align-items: center; /* Tengah secara vertikal */
+}
+
 .input_msg_write:focus-within {
   border-color: #2C6822;
 }

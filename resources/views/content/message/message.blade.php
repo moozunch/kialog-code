@@ -108,7 +108,9 @@
                   <div class="input-container">
                     <input type="text" class="write_msg" name="content" placeholder="Type a message" required>
                   </div>
-                  <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                  <button class="msg_send_btn" type="submit">
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                  </button>
                 </form>
               @else
                 <p>Select a profile and start messaging.</p>

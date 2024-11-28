@@ -56,9 +56,6 @@ use App\Http\Controllers\BlockController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Broadcast;
 
-// Main Page Route
-Route::get('/home', [Analytics::class, 'index']);
-
 // layout
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
 Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
@@ -117,30 +114,8 @@ Route::get('/forms/input-groups', [InputGroups::class, 'index'])->name('forms-in
 Route::get('/form/layouts-vertical', [VerticalForm::class, 'index'])->name('form-layouts-vertical');
 Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('form-layouts-horizontal');
 
-//home
-Route::get('/home', [PostController::class, 'index'])->name('home');
-
-//Messages
-Route::get('/message', [MessageController::class, 'index'])->name('messages');
-
-//Topic
-Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
-Route::post('/topics', [TopicController::class, 'store'])->name('topics.store');
-Route::get('/topic/{id}', [TopicController::class, 'show'])->name('topic.show');
-Route::post('topics/{topic}/join', [TopicController::class, 'join'])->name('topics.join');
-Route::resource('topics', TopicController::class);
-Route::get('/topics/{topic}', [TopicController::class, 'show'])->name('topics.show');
-
-//Bookmarks
-Route::get('/bookmarks', [BookmarksController::class, 'index'])->name('bookmarks.index');
-Route::post('/bookmarks/{postId}', [BookmarksController::class, 'toggleBookmark'])->name('bookmarks.store');
-
-//Post - Like
-Route::post('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like');
-
 //LandingPage
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage');
-Route::get('/', [LandingPageController::class, 'index']);
 
 //signup signin landing
 Route::post('/signin', [AuthController::class, 'signin']);
@@ -153,51 +128,88 @@ Route::post('/signin', [AuthController::class, 'signin']);
 Route::get('/signup', [AuthController::class, 'showSignUpForm'])->name('signup');
 Route::post('/signup', [AuthController::class, 'signup']);
 
-//Posts - Home
-Route::resource('posts', PostController::class);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/search-posts', [PostController::class, 'searchPosts'])->name('search.posts');
-Route::get('/all-posts', [PostController::class, 'getAllPosts'])->name('posts.all');
+Route::middleware(['auth'])->group(function () {
 
-//Setting - Profile
-Route::get('/settings', [AccountSettingsAccount::class, 'index'])->name('settings');
+  // Main Page Route
+  Route::get('/home', [Analytics::class, 'index']);
 
-//delete-post
-Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+  // pages
+  Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
+  Route::post('/account-settings/update', [AuthController::class, 'updateAccountSettings'])->name('account-settings.update');
+  Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
+  Route::get('/pages/account-settings-blocked-accounts', [AccountSettingsConnections::class, 'index'])->name('pages-account-settings-blocked-accounts');
 
-//delete-topic
+
+
+  //home
+  Route::get('/home', [PostController::class, 'index'])->name('home');
+
+  //Messages
+  Route::get('/message', [MessageController::class, 'index'])->name('messages');
+
+//Topic
+Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
+Route::post('/topics', [TopicController::class, 'store'])->name('topics.store');
+Route::get('/topic/{id}', [TopicController::class, 'show'])->name('topic.show');
+Route::post('topics/{topic}/join', [TopicController::class, 'join'])->name('topics.join');
 Route::resource('topics', TopicController::class);
+Route::get('/topics/{topic}', [TopicController::class, 'show'])->name('topics.show');
 
-//profile
-// Route for the profile page (logged-in user's profile)
-Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
+  //Bookmarks
+  Route::get('/bookmarks', [BookmarksController::class, 'index'])->name('bookmarks.index');
+  Route::post('/bookmarks/{postId}', [BookmarksController::class, 'toggleBookmark'])->name('bookmarks.store');
 
-// Route for viewing another user's profile (optional, if you want to see other users' profiles)
-Route::get('/profile/{username}', [ProfileController::class, 'showProfile'])->name('profile.showOther');
+  //Post - Like
+  Route::post('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like');
 
-//delete-account
-Route::delete('/account/delete', [AuthController::class, 'deleteAccount'])->name('account.delete');
+  //Posts - Home
+  Route::resource('posts', PostController::class);
+  Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+  Route::get('/search-posts', [PostController::class, 'searchPosts'])->name('search.posts');
+  Route::get('/all-posts', [PostController::class, 'getAllPosts'])->name('posts.all');
 
-// Message
-Route::get('/chat/{user_id}', [MessageController::class, 'chat'])->name('chat');
-Broadcast::channel('chat.{conversationId}', function ($user, $conversationId) {
-  return $user->conversations->contains($conversationId);
+  //Setting - Profile
+  Route::get('/settings', [AccountSettingsAccount::class, 'index'])->name('settings');
+
+  //delete-post
+  Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+  //delete-topic
+  Route::resource('topics', TopicController::class);
+
+  //profile
+  // Route for the profile page (logged-in user's profile)
+  Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
+
+  // Route for viewing another user's profile (optional, if you want to see other users' profiles)
+  Route::get('/profile/{username}', [ProfileController::class, 'showProfile'])->name('profile.showOther');
+
+  //delete-account
+  Route::delete('/account/delete', [AuthController::class, 'deleteAccount'])->name('account.delete');
+
+  // Message
+  Route::get('/chat/{user_id}', [MessageController::class, 'chat'])->name('chat');
+  Broadcast::channel('chat.{conversationId}', function ($user, $conversationId) {
+    return $user->conversations->contains($conversationId);
+  });
+  Route::post('/messages/send', [MessageController::class, 'sendMessage'])->name('messages.send');
+  Route::get('/search-users', [MessageController::class, 'searchUsers'])->name('search.users');
+  Route::get('/conversations', [MessageController::class, 'getAllConversations'])->name('conversations.all');
+
+  //report
+  Route::post('/reports', [ReportController::class, 'store'])->name('reports.store');
+  Route::post('/posts/report', [ReportController::class, 'store'])->name('posts.report');
+
+  //Block
+  Route::post('/blocks', [BlockController::class, 'store'])->name('blocks.store');
+
+
+  //Unblock
+  Route::post('/blocks/unblock', [PostController::class, 'unblock'])->name('blocks.unblock');
+
+  // Comment
+  Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+  Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+  Route::get('/posts/{post}/comments', [PostController::class, 'getComments']);
+
 });
-Route::post('/messages/send', [MessageController::class, 'sendMessage'])->name('messages.send');
-Route::get('/search-users', [MessageController::class, 'searchUsers'])->name('search.users');
-Route::get('/conversations', [MessageController::class, 'getAllConversations'])->name('conversations.all');
-
-//report
-Route::post('/reports', [ReportController::class, 'store'])->name('reports.store');
-Route::post('/posts/report', [ReportController::class, 'store'])->name('posts.report');
-
-//Block
-Route::post('/blocks', [BlockController::class, 'store'])->name('blocks.store');
-
-
-//Unblock
-Route::post('/blocks/unblock', [PostController::class, 'unblock'])->name('blocks.unblock');
-
-// Comment
-Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');

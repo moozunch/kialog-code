@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
+    // Allow mass assignment for these attributes
+    protected $fillable = [
+        'post_id',
+        'user_id',
+        'content',
+    ];
     
     // Relasi Comment milik satu Post
     public function post()
@@ -20,5 +27,4 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 }

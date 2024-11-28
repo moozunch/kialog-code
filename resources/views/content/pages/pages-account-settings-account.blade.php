@@ -48,20 +48,37 @@
             </div>
 
             <div class="row mt-2 gy-4">
+              <!-- Username -->
               <div class="col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <input class="form-control" type="text" id="username" name="username" autofocus value="{{ Auth::user()->username }}" />
-                  <label for="username">Username</label>
-                </div>
+                  <div class="form-floating form-floating-outline">
+                      <input class="form-control" type="text" id="username" name="username" 
+                             maxlength="30" 
+                             value="{{ old('username', Auth::user()->username) }}" 
+                             oninput="validateMaxLength(this, 30, 'usernameError')" />
+                      <label for="username">Username</label>
+                      @error('username')
+                          <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                      <small id="usernameError" class="text-danger" style="display:none;">Username tidak boleh lebih dari 30 karakter.</small>
+                  </div>
+              </div>
+              
+              <!-- Display Name -->
+              <div class="col-md-6">
+                  <div class="form-floating form-floating-outline">
+                      <input class="form-control" type="text" id="name" name="name" 
+                             maxlength="30" 
+                             value="{{ old('name', Auth::user()->name) }}" 
+                             oninput="validateMaxLength(this, 30, 'nameError')" />
+                      <label for="name">Display Name</label>
+                      @error('name')
+                          <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                      <small id="nameError" class="text-danger" style="display:none;">Display name tidak boleh lebih dari 30 karakter.</small>
+                  </div>
               </div>
 
-              <div class="col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <input class="form-control" type="text" name="name" id="name" value="{{ Auth::user()->name }}" placeholder="set display name"/>
-                  <label for="name">Display Name</label>
-                </div>
-              </div>
-
+              <!-- Email -->
               <div class="col-md-6">
                 <div class="form-floating form-floating-outline">
                   <input class="form-control" type="text" id="email" name="email" value="{{ Auth::user()->email }}" placeholder="email@domain.com" />
@@ -69,6 +86,7 @@
                 </div>
               </div>
 
+              <!-- Institution -->
               <div class="col-md-6">
                 <div class="form-floating form-floating-outline">
                   <input type="text" class="form-control" id="institution" name="institution" placeholder="Institution" value="{{ Auth::user()->institution }}" />
@@ -76,6 +94,7 @@
                 </div>
               </div>
 
+              <!-- Description -->
               <div class="col-md-6">
                 <div class="form-floating form-floating-outline">
                   <input class="form-control" type="text" id="bio" name="bio" placeholder="add a little information" value="{{ Auth::user()->bio }}" />
@@ -83,6 +102,7 @@
                 </div>
               </div>
 
+              <!-- Country -->
               <div class="col-md-6">
                 <div class="form-floating form-floating-outline">
                   <select id="country" class="select2 form-select" name="country">

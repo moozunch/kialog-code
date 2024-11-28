@@ -1,3 +1,7 @@
 .custom-search-input {
   width: 400px; /* Adjust the width as needed */
 }
+
+#search-bar {
+  width: 100%;
+}

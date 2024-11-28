@@ -17,7 +17,7 @@
   <div class="container mt-4">
     <div class="card p-4 shadow">
       <header>
-        <div class="profile-header d-flex align-items-center flex-wrap">
+        <div class="profile-header d-flex flex-wrap">
           <!-- Foto Profil dan Info -->
           <div class="profile-identitas d-flex align-items-center flex-wrap">
             <img id="profileImage" src="{{ $user->profile_image ? $user->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="profile-picture">

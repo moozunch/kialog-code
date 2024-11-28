@@ -15,14 +15,12 @@
 /* Profile Section */
 .profile-header {
   width: 100%;
-}
-
-.profile-identitas {
-  width: 100%;
+  flex-direction: row !important;
+  justify-content: flex-start;
+  margin-bottom: 15px;
 }
 
 #profileImage {
-  margin: 0px auto;
   height: 100px;
   width: 100px;
 }
@@ -382,16 +380,26 @@ textarea {
     width: 100%; /* Pastikan lebar penuh */
   }
 
-  .profile-info {
-    max-width: 100%; /* Batasi lebar maksimum untuk menghindari elemen terlalu lebar */
-    margin: 0 auto; /* Tengah untuk elemen */
-    padding: 10px; /* Sesuaikan padding untuk mencegah keluar container */
+  .profile-identitas {
+    width: 100%;
   }
 
   .profile-picture {
     margin-bottom: 10px;
     width: 120px; /* Atur ukuran untuk tampilan lebih kecil */
     height: 120px;
+  }
+
+  .profile-info {
+    width: 100%; /* Batasi lebar maksimum untuk menghindari elemen terlalu lebar */
+    margin: 0 auto; /* Tengah untuk elemen */
+    padding: 10px; /* Sesuaikan padding untuk mencegah keluar container */
+  }
+
+  .profile-info h1,
+  .profile-info h2 {
+    width: 100%;
+    overflow-wrap: break-word;
   }
 
   .profile-stats {

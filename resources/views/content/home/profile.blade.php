@@ -73,7 +73,11 @@
             <div class="row-post d-flex align-items-center">
               <div class="post-profile-picture item-row">
                 <a href="{{ route('profile.show', ['user_id' => $post->user->id]) }}">
-                  <img src="{{ $post->user->profile_image ? $post->user->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px">
+                <img src="{{ $post->user->profile_image ? $post->user->profile_image : asset('assets/img/avatars/1.png') }}" 
+                  alt="Profile Picture" 
+                  class="rounded-circle" 
+                  width="50px" height="50px" 
+                  style="object-fit:cover;" >
                 </a>
               </div>
               <div class="post-profile-info item-row">
@@ -137,7 +141,7 @@
 
               <!-- Tombol Komentar -->
               <button class="btn btn-comment btn-no-bg btn-light btn-sm mx-1" data-bs-toggle="collapse" data-bs-target="#comments-{{ $post->id }}">
-                  <i class="mdi mdi-chat-outline"></i> {{ $post->comments }} 
+                  <i class="mdi mdi-chat-outline"></i> {{ $post->comments()->count() }}  
               </button>
 
               <!-- Bagian Komentar Collapse -->
@@ -157,10 +161,11 @@
                       @foreach($post->comments as $comment)
                           <div class="comment mt-3">
                               <div class="d-flex align-items-center">
-                                  <img src="{{ $comment->user->profile_image ? asset($comment->user->profile_image) : asset('assets/img/default-avatar.png') }}" 
-                                       alt="Profile Picture" 
-                                       class="rounded-circle me-2" 
-                                       width="40px" height="40px">
+                              <img src="{{ $comment->user->profile_image ? asset($comment->user->profile_image) : asset('assets/img/default-avatar.png') }}" 
+                              alt="Profile Picture" 
+                              class="rounded-circle me-2" 
+                              width="40px" height="40px" 
+                              style="object-fit:cover;" >
                                   <div>
                                       <strong>{{ $comment->user->name }}</strong> ({{ $comment->user->username }})
                                       <small class="text-muted">{{ $comment->created_at->format('F j, Y, g:i a') }}</small>

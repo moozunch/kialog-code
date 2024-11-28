@@ -316,32 +316,28 @@ div.row-post .post-profile-info h6{
 }
 
 /* Comment Section */
-.comment {
+.comment-container {
   background-color: #f8f9fa;
-  border-radius: 5px;
   padding: 10px;
-  margin-bottom: 10px;
-}
-
-.comment img {
-  border-radius: 50%;
-}
-
-textarea {
-  resize: none;
-}
-
-.collapse {
+  border-radius: 10px;
+  display: none; /* Default: none */
+  flex-direction: column; /* Ubah menjadi flex saat ditampilkan */
+  gap: 10px;
   margin-top: 10px;
 }
 
-.btn-comment {
-  color: #6c757d;
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Menambahkan jarak antar elemen dalam .profile-info */
 }
 
-.btn-comment:hover {
-  color: #495057;
+.comment-input {
+  display: flex;
+  gap: 10px; /* Memberikan jarak antar textarea dan tombol */
 }
+
 
 
 /* Responsive */

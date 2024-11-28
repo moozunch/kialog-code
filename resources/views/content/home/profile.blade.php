@@ -68,135 +68,102 @@
 
       <!-- Post Section -->
       @foreach($posts as $post)
-        <div class="card-post shadow-lg ">
-          <div class="body-post card-body">
-            <div class="row-post d-flex align-items-center">
-              <div class="post-profile-picture item-row">
-                <a href="{{ route('profile.show', ['user_id' => $post->user->id]) }}">
-                <img src="{{ $post->user->profile_image ? $post->user->profile_image : asset('assets/img/avatars/1.png') }}" 
-                  alt="Profile Picture" 
-                  class="rounded-circle" 
-                  width="50px" height="50px" 
-                  style="object-fit:cover;" >
-                </a>
-              </div>
-              <div class="post-profile-info item-row">
-                <h5 class="card-title">{{ $post->user->name }}</h5>
-                <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
-              </div>
-              @if (auth()->id() === $post->user_id)
-              <div class="tombol-delete d-flex item-row delete-button justify-content-center align-items-center">
-                <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                  <i class="mdi mdi-dots-horizontal"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="dropdown-item text-danger">
-                        <i class="mdi mdi-trash-can-outline me-2"></i> Delete
-                      </button>
-                    </form>
-                  </li>
-                </ul>
-              </div>
-              @endif
-            </div>
-            <p class="card-text">{{ $post->message }}</p>
-          </div>
-
-          @if($post->images)
-            @php
-              $images = json_decode($post->images);
-              $imageCount = count($images);
-            @endphp
-
-            <div class="d-flex justify-content-center">
-              <div class="post-images {{ $imageCount == 2 ? 'grid-2' : ($imageCount > 2 ? 'grid-4' : '') }}">
-                @foreach($images as $image)
-                  @if($loop->index < 4)
-                    <img src="{{ $image }}" class="mb-2" alt="Post Image {{ $loop->index + 1 }}" style="max-height: 200px; object-fit: cover;">
-                  @endif
-                @endforeach
-              </div>
-            </div>
-          @endif
-
-          <div class="card-footer d-flex justify-content-between align-items-center flex-wrap">
-            <small class="text-muted">Posted on {{ $post->created_at->format('F j, Y') }}</small>
-            <div class="interactive-button d-flex justify-content-end flex-nowrap">
-              <!-- Like -->
-              <form action="{{ route('posts.like', $post->id) }}" method="POST" style="display: inline;">
-                @csrf
-                <button type="submit" class="btn btn-like btn-no-bg btn-light btn-sm mx-1">
-                  @if($post->userLikes && !$post->userLikes->isEmpty())
-                    <i class="mdi mdi-cards-heart text-danger"></i>
-                  @else
-                    <i class="mdi mdi-cards-heart-outline"></i>
-                  @endif
-                  {{ $post->userLikes->count() }}
-                </button>
-              </form>
-
-              <!-- Tombol Komentar -->
-              <button class="btn btn-comment btn-no-bg btn-light btn-sm mx-1" data-bs-toggle="collapse" data-bs-target="#comments-{{ $post->id }}">
-                  <i class="mdi mdi-chat-outline"></i> {{ $post->comments()->count() }}  
-              </button>
-
-              <!-- Bagian Komentar Collapse -->
-              <div id="comments-{{ $post->id }}" class="collapse">
-                  <!-- Form untuk Menambah Komentar -->
-                  <form action="{{ route('comments.store', $post->id) }}" method="POST">
-                      @csrf
-                      <textarea name="content" class="form-control mt-2" rows="2" placeholder="Write a comment...">{{ old('content') }}</textarea>
-                      <button type="submit" class="btn btn-primary btn-sm mt-1">Comment</button>
-                  </form>
-
-                  <!-- Tampilkan Komentar -->
-                  @if($post->comments_count > 0)
-                      <p>{{ $post->comments_count }} Komentar</p>
-
-                      <!-- Loop untuk menampilkan komentar jika ingin menampilkan komentar terkait -->
-                      @foreach($post->comments as $comment)
-                          <div class="comment mt-3">
-                              <div class="d-flex align-items-center">
-                              <img src="{{ $comment->user->profile_image ? asset($comment->user->profile_image) : asset('assets/img/default-avatar.png') }}" 
-                              alt="Profile Picture" 
-                              class="rounded-circle me-2" 
-                              width="40px" height="40px" 
-                              style="object-fit:cover;" >
-                                  <div>
-                                      <strong>{{ $comment->user->name }}</strong> ({{ $comment->user->username }})
-                                      <small class="text-muted">{{ $comment->created_at->format('F j, Y, g:i a') }}</small>
-                                  </div>
-                              </div>
-                              <p class="mb-0 ms-5">{{ $comment->content }}</p>
+          <div class="card-post shadow-lg">
+              <div class="body-post card-body">
+                  <!-- Header Post -->
+                  <div class="row-post d-flex align-items-center">
+                      <div class="post-profile-picture item-row">
+                          <a href="{{ route('profile.show', ['user_id' => $post->user->id]) }}">
+                              <img src="{{ $post->user->profile_image ? $post->user->profile_image : asset('assets/img/avatars/1.png') }}" 
+                                   alt="Profile Picture" 
+                                   class="rounded-circle" 
+                                   width="50px" height="50px" 
+                                   style="object-fit:cover;">
+                          </a>
+                      </div>
+                      <div class="post-profile-info item-row">
+                          <h5 class="card-title">{{ $post->user->name }}</h5>
+                          <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
+                      </div>
+                      @if (auth()->id() === $post->user_id)
+                          <div class="tombol-delete d-flex item-row delete-button justify-content-center align-items-center">
+                              <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <i class="mdi mdi-dots-horizontal"></i>
+                              </a>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                  <li>
+                                      <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
+                                          @csrf
+                                          @method('DELETE')
+                                          <button type="submit" class="dropdown-item text-danger">
+                                              <i class="mdi mdi-trash-can-outline me-2"></i> Delete
+                                          </button>
+                                      </form>
+                                  </li>
+                              </ul>
                           </div>
-                      @endforeach
-                  @else
-                      <p class="mt-3 text-muted">Belum ada komentar.</p>
-                  @endif
+                      @endif
+                  </div>
+      
+                  <p class="card-text">{{ $post->message }}</p>
               </div>
-
-              <!-- Bookmark -->
-              <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
-                @csrf
-                <button type="submit" class="btn btn-bookmark btn-no-bg btn-light btn-sm mx-1">
-                  @if($post->bookmarks && !$post->bookmarks->isEmpty())
-                    <i class="mdi mdi-bookmark text-primary"></i>
-                  @else
-                    <i class="mdi mdi-bookmark-outline"></i>
-                  @endif
-                </button>
-              </form>
-
-              <!-- Share -->
-              <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1"><i class="mdi mdi-share-outline"></i></button>
-            </div>
+      
+              <!-- Footer Post -->
+              <div class="card-footer d-flex justify-content-between align-items-center flex-wrap">
+                  <small class="text-muted">Posted on {{ $post->created_at->format('F j, Y') }}</small>
+                  <div class="interactive-button d-flex justify-content-end flex-nowrap">
+                      <!-- Like -->
+                      <form action="{{ route('posts.like', $post->id) }}" method="POST" style="display: inline;">
+                          @csrf
+                          <button type="submit" class="btn btn-like btn-no-bg btn-light btn-sm mx-1">
+                              @if($post->userLikes && !$post->userLikes->isEmpty())
+                                  <i class="mdi mdi-cards-heart text-danger"></i>
+                              @else
+                                  <i class="mdi mdi-cards-heart-outline"></i>
+                              @endif
+                              {{ $post->userLikes->count() }}
+                          </button>
+                      </form>
+      
+                      <!-- Comment Section -->
+                      <button class="btn btn-comment btn-no-bg btn-light btn-sm mx-1" onclick="toggleCommentContainer(this)">
+                          <i class="mdi mdi-chat-outline"></i> {{ $post->comments()->count() }}
+                      </button>
+      
+                      <!-- Bookmark -->
+                      <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
+                          @csrf
+                          <button type="submit" class="btn btn-bookmark btn-no-bg btn-light btn-sm mx-1">
+                              @if($post->bookmarks && !$post->bookmarks->isEmpty())
+                                  <i class="mdi mdi-bookmark text-primary"></i>
+                              @else
+                                  <i class="mdi mdi-bookmark-outline"></i>
+                              @endif
+                          </button>
+                      </form>
+      
+                      <!-- Share -->
+                      <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1">
+                          <i class="mdi mdi-share-outline"></i>
+                      </button>
+                  </div>
+              </div>
+      
+              <!-- Comment Container -->
+              <div class="comment-container" style="display: none; flex-direction: column; gap: 10px; margin-top: 10px;">
+                  <div class="profile-info d-flex align-items-center mb-3">
+                      <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User Profile" />
+                      <h5>Username</h5>
+                  </div>
+                  <div class="comment-input d-flex align-items-start">
+                      <textarea class="form-control" rows="2" placeholder="Tambahkan komentar..."></textarea>
+                      <button class="btn btn-primary ms-2" onclick="addComment(this)">Kirim</button>
+                  </div>
+                  <div class="comments-list mt-3"></div>
+              </div>
           </div>
-        </div>
       @endforeach
+
 
     </div>
   </div>

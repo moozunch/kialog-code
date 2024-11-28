@@ -99,14 +99,15 @@
                   <button class="btn btn-comment btn-no-bg btn-light btn-sm mx-1"><i class="mdi mdi-chat-outline"></i> {{ $post->comments }}</button>
                   <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
                     @csrf
+                    <input type="hidden" name="topic_id" value="{{ $topic->id }}">
                     <button type="submit" class="btn btn-bookmark btn-no-bg btn-light btn-sm mx-1">
-                      @if($post->bookmarks->contains('user_id', auth()->id()))
-                        <i class="mdi mdi-bookmark text-primary"></i>
-                      @else
-                        <i class="mdi mdi-bookmark-outline"></i>
-                      @endif
+                        @if($post->bookmarks->contains('user_id', auth()->id()))
+                            <i class="mdi mdi-bookmark text-primary"></i>
+                        @else
+                            <i class="mdi mdi-bookmark-outline"></i>
+                        @endif
                     </button>
-                  </form>
+                </form>
                   <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1"><i class="mdi mdi-share-outline"></i></button>
                 </div>
               </div>

@@ -21,9 +21,9 @@ class Topic extends Model
   }
 
   public function users()
-    {
-        return $this->belongsToMany(User::class, 'topic_user');
-    }
+  {
+      return $this->belongsToMany(User::class, 'topic_user', 'topic_id', 'user_id');
+  }
 
     public function posts()
     {

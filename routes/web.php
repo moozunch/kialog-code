@@ -10,6 +10,7 @@ use App\Http\Controllers\layouts\Blank;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\pages\AccountSettingsConnections;
+use App\Http\Controllers\pages\AccountSettingsCommunity;
 use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\pages\MiscUnderMaintenance;
 use App\Http\Controllers\authentications\LoginBasic;
@@ -52,6 +53,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\BlockController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Broadcast;
 
 // Main Page Route
@@ -69,8 +71,7 @@ Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'i
 Route::post('/account-settings/update', [AuthController::class, 'updateAccountSettings'])->name('account-settings.update');
 Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
 Route::get('/pages/account-settings-blocked-accounts', [AccountSettingsConnections::class, 'index'])->name('pages-account-settings-blocked-accounts');
-Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
-Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name('pages-misc-under-maintenance');
+Route::get('/pages/settings-community', [AccountSettingsCommunity::class, 'index'])->name('pages-settings-community');
 
 // authentication
 Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
@@ -128,6 +129,7 @@ Route::post('/topics', [TopicController::class, 'store'])->name('topics.store');
 Route::get('/topic/{id}', [TopicController::class, 'show'])->name('topic.show');
 Route::post('topics/{topic}/join', [TopicController::class, 'join'])->name('topics.join');
 Route::resource('topics', TopicController::class);
+Route::get('/topics/{topic}', [TopicController::class, 'show'])->name('topics.show');
 
 //Bookmarks
 Route::get('/bookmarks', [BookmarksController::class, 'index'])->name('bookmarks.index');

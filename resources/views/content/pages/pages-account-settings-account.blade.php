@@ -48,36 +48,34 @@
 
             <div class="row mt-2 gy-4">
               <!-- Username -->
-<div class="col-md-6">
-    <div class="form-floating form-floating-outline">
-        <input class="form-control" type="text" id="username" name="username" 
-               maxlength="30" 
-               value="{{ old('username', Auth::user()->username) }}" 
-               oninput="validateMaxLength(this, 30, 'usernameError')" />
-        <label for="username">Username</label>
-        @error('username')
-            <small class="text-danger">{{ $message }}</small>
-        @enderror
-        <small id="usernameError" class="text-danger" style="display:none;">Username tidak boleh lebih dari 30 karakter.</small>
-    </div>
-</div>
-
-<!-- Display Name -->
-<div class="col-md-6">
-    <div class="form-floating form-floating-outline">
-        <input class="form-control" type="text" id="name" name="name" 
-               maxlength="30" 
-               value="{{ old('name', Auth::user()->name) }}" 
-               oninput="validateMaxLength(this, 30, 'nameError')" />
-        <label for="name">Display Name</label>
-        @error('name')
-            <small class="text-danger">{{ $message }}</small>
-        @enderror
-        <small id="nameError" class="text-danger" style="display:none;">Display name tidak boleh lebih dari 30 karakter.</small>
-    </div>
-</div>
-
-
+              <div class="col-md-6">
+                  <div class="form-floating form-floating-outline">
+                      <input class="form-control" type="text" id="username" name="username" 
+                             maxlength="30" 
+                             value="{{ old('username', Auth::user()->username) }}" 
+                             oninput="validateMaxLength(this, 30, 'usernameError')" />
+                      <label for="username">Username</label>
+                      @error('username')
+                          <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                      <small id="usernameError" class="text-danger" style="display:none;">Username tidak boleh lebih dari 30 karakter.</small>
+                  </div>
+              </div>
+              
+              <!-- Display Name -->
+              <div class="col-md-6">
+                  <div class="form-floating form-floating-outline">
+                      <input class="form-control" type="text" id="name" name="name" 
+                             maxlength="30" 
+                             value="{{ old('name', Auth::user()->name) }}" 
+                             oninput="validateMaxLength(this, 30, 'nameError')" />
+                      <label for="name">Display Name</label>
+                      @error('name')
+                          <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                      <small id="nameError" class="text-danger" style="display:none;">Display name tidak boleh lebih dari 30 karakter.</small>
+                  </div>
+              </div>
 
               <!-- Email -->
               <div class="col-md-6">

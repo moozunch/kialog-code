@@ -17,6 +17,10 @@
   width: 100%;
 }
 
+.profile-identitas {
+  width: 100%;
+}
+
 #profileImage {
   margin: 0px auto;
   height: 100px;
@@ -39,6 +43,11 @@
   flex-direction: column;
   justify-content: center; /* Mengatur agar Display Name sejajar di tengah */
 }
+
+.profile-info h1, 
+.profile-info h2 {
+  overflow-wrap: break-word;
+} 
 
 div.profile-info h1 {
   font-weight: bold;
@@ -278,7 +287,7 @@ p.bio {
 
 .row-post .post-profile-info {
   overflow: hidden;
-  min-width: 100px;
+  overflow-wrap: normal;
 }
 
 div.row-post .post-profile-info h5 {
@@ -294,6 +303,8 @@ div.row-post .post-profile-info h6{
 }
 
 .row-post .tombol-delete {
+  width: 50px;
+  height: 50px;
   margin-left: auto;
 }
 
@@ -336,6 +347,25 @@ textarea {
 
 
 /* Responsive */
+@media (max-width: 1450px) {
+  .profile-header {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .profile-identitas {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .profile-info h1, 
+  .profile-info h2{
+    text-align: center;
+  }
+
+}
+
 @media (max-width: 992px) {
   header {
     max-width: 100%;
@@ -405,15 +435,17 @@ textarea {
   }
 
   .profile-info {
-    display: flex;
+    width: 100%;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
   }
 
-  div.profile-info h1, div.profile-info h2 {
+  div.profile-info h1, 
+  div.profile-info h2 {
     text-align: center;
+    width: 100%;
   }
 
   #profileImage {
@@ -459,7 +491,7 @@ textarea {
   }
 
   .post-profile-info {
-    min-width: 203px;
+    min-width: 100px;
     overflow: hidden;
   }
 
@@ -471,15 +503,6 @@ textarea {
 
   .row-post .dropdown-menu {
     flex-wrap: nowrap;
-  }
-  
-  @keyframes scroll-text {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
   }
   
   .interactive-button {
@@ -497,30 +520,6 @@ textarea {
   }
 
 
-}
-
-@media (max-width: 480px) {
-  .row-post .post-profile-picture {
-    order: 1;
-  }
-
-  .row-post .post-profile-info {
-    order: 3;
-
-  }
-
-  .row-post .tombol-delete {
-    order: 4;
-  }
-
-/* Ketika terjadi overflow, urutan elemen akan berubah */
-.row-post .item-row.order-changed {
-  order: 2;
-}
-
-  .row-post a.btn {
-    padding: 7px 7px;
-  }
 }
 
 /* Ukuran Terkecil */

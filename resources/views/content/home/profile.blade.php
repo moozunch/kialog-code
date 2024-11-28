@@ -21,7 +21,7 @@
           <!-- Foto Profil dan Info -->
           <div class="profile-identitas d-flex align-items-center flex-wrap">
             <img id="profileImage" src="{{ $user->profile_image ? $user->profile_image : asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="profile-picture">
-            <div class="profile-info">
+            <div class="profile-info d-flex">
               <h1>{{ $user->name }}</h1>
               <h2>{{ $user->username }}</h2>
             </div>
@@ -81,7 +81,7 @@
                 <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
               </div>
               @if (auth()->id() === $post->user_id)
-              <div class="tombol-delete item-row delete-button">
+              <div class="tombol-delete d-flex item-row delete-button justify-content-center align-items-center">
                 <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                   <i class="mdi mdi-dots-horizontal"></i>
                 </a>

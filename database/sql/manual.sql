@@ -170,14 +170,29 @@ create table blocks (
 );
 
 -- Create comments table
-create table comments (
-    id bigserial primary key,
-    post_id bigint not null,
-    user_id bigint not null,
-    content text not null,
-    created_at timestamp default current_timestamp,
-    updated_at timestamp default current_timestamp,
-    constraint fk_post_id foreign key (post_id) references posts (id) on delete cascade,
-    constraint fk_user_id foreign key (user_id) references users (id) on delete cascade
+CREATE TABLE comments (
+    id BIGSERIAL PRIMARY KEY, -- Primary key with auto increment (BIGSERIAL for PostgreSQL)
+    post_id BIGINT NOT NULL, -- Foreign key to posts
+    user_id BIGINT NOT NULL, -- Foreign key to users
+    content TEXT NOT NULL, -- Column for comment content
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Created at timestamp
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Updated at timestamp
+    CONSTRAINT fk_post_id FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE, -- Foreign key constraint for post_id
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE -- Foreign key constraint for user_id
 );
+
+-- Add trigger to automatically update the updated_at field on record updates
+CREATE OR REPLACE FUNCTION update_updated_at() 
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = CURRENT_TIMESTAMP;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_comments_updated_at
+BEFORE UPDATE ON comments
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at();
+
  

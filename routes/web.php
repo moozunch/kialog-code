@@ -111,7 +111,6 @@ Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('
 
 //LandingPage
 Route::get('/', [LandingPageController::class, 'index'])->name('landingpage');
-Route::get('/', [LandingPageController::class, 'index']);
 
 //signup signin landing
 Route::post('/signin', [AuthController::class, 'signin']);
@@ -206,5 +205,6 @@ Route::middleware(['auth'])->group(function () {
   // Comment
   Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
   Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+  Route::get('/posts/{post}/comments', [PostController::class, 'getComments']);
   
 });

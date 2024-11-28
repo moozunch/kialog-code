@@ -472,6 +472,10 @@ textarea {
   .row-post .dropdown-menu {
     flex-wrap: nowrap;
   }
+
+  .img-crop {
+    object-fit: cover;
+  }
   
   @keyframes scroll-text {
     0% {

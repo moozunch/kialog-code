@@ -195,10 +195,41 @@ class PostController extends Controller
         return view('content.home.blocked_users', compact('blockedUsers'));
     }
 
-    public function show($id) {
-    $post = Post::with('comments.user')->findOrFail($id); // Memuat comments dan user yang terkait
+    public function show($id)
+    {
+        // Ambil post dengan komentar terkait
+        $post = Post::with('comments.user')->findOrFail($id);
+        
+        return view('post.show', compact('post'));
+    }
 
-    return view('post.show', compact('post'));
+    public function storeComment(Request $request, $postId)
+    {
+        $request->validate([
+            'content' => 'required|string|max:500', // Validasi konten komentar
+        ]);
+
+        // Simpan komentar ke database
+        Comment::create([
+            'post_id' => $postId,
+            'user_id' => auth()->id(), // ID pengguna yang sedang login
+            'content' => $request->input('content'),
+        ]);
+
+        return back()->with('success', 'Komentar berhasil ditambahkan!');
+    }
+
+    public function destroyComment($id) {
+    $comment = Comment::findOrFail($id);
+
+    // Pastikan hanya pengguna yang membuat komentar bisa menghapusnya
+    if (auth()->id() !== $comment->user_id) {
+        return back()->with('error', 'Anda tidak diizinkan menghapus komentar ini.');
+    }
+
+    $comment->delete();
+
+    return back()->with('success', 'Komentar berhasil dihapus.');
     }
 
 }

@@ -26,8 +26,8 @@
     <div class="col-lg-8 col-md-8 col-sm-12">
       <div class="above d-flex justify-content-between align-items-center mb-2">
         <div class="option d-flex">
-          <button class="btn btn-style btn-outline-primary btn-sm">For You</button>
-          <button class="btn btn-style btn-outline-secondary btn-sm ms-2">Mutual</button>
+          <button class="btn btn-style btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#comingSoonModal">For You</button>
+          <button class="btn btn-style btn-outline-secondary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#comingSoonModal">Mutual</button>
         </div>
         <div class="create-post-button d-block d-md-none">
           <button type="button" class="btn btn-style btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
@@ -236,6 +236,24 @@
             <button type="submit" class="btn btn-primary">Post</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Coming Soon Modal -->
+<div class="modal fade" id="comingSoonModal" tabindex="-1" aria-labelledby="comingSoonModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="comingSoonModalLabel">Coming Soon</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        This feature is coming soon. Stay tuned!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

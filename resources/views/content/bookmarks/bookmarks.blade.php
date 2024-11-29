@@ -115,6 +115,36 @@
 </div>
 @endforeach
 
+{{-- Modal for report post --}}
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reportModalLabel">Report Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="https://formspree.io/f/mvgoweoq">
+          <!-- Hidden Field for Post ID -->
+          <input type="hidden" name="post_id" id="report-post-id">
+
+          <!-- Textarea for Reason -->
+          <div class="mb-3">
+            <label for="report-reason" class="col-form-label">Reason:</label>
+            <textarea class="form-control" id="report-reason" name="reason" placeholder="Describe the reason for reporting this post" required></textarea>
+          </div>
+
+          <!-- Footer Buttons -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit Report</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
   {{-- @foreach($bookmarks as $bookmark)
     <div class="card mt-2">
       <div class="card-body">

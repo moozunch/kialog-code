@@ -73,6 +73,7 @@
 </div>
 
 @foreach($topics as $topic)
+@if(!$topic->users->contains(auth()->id()))
 <div class="modal fade" id="joinConfirmationModal" tabindex="-1" aria-labelledby="joinConfirmationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -93,6 +94,7 @@
     </div>
   </div>
 </div>
+@endif
 @endforeach
 
 <script>

@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use App\Models\Comment;
-=======
 use App\Models\Comment; // Ensure you have the Comment model
 use Illuminate\Support\Facades\Auth;
->>>>>>> 2b886cbd933ffed857952e0b9acdbd29a3ab6d40
+
 
 class CommentController extends Controller
 {
@@ -32,6 +30,4 @@ class CommentController extends Controller
 
         return back();
     }
-
-    
 }

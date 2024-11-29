@@ -317,28 +317,93 @@ div.row-post .post-profile-info h6{
 
 /* Comment Section */
 .comment-container {
-  background-color: #f8f9fa;
-  padding: 10px;
-  border-radius: 10px;
+  background-color: rgb(222, 222, 222);
+  padding: 7px;
   display: none; /* Default: none */
-  flex-direction: column; /* Ubah menjadi flex saat ditampilkan */
-  gap: 10px;
-  margin-top: 10px;
+  flex-direction: column;
 }
 
+.card-comment {
+  width: 100%;
+  background-color: var(--white);
+}
 
-.profile-info {
-  display: flex;
+.header-comment {
+  width: 100%;
+  flex-direction: row;
+  padding: 10px 20px; 
   align-items: center;
-  gap: 10px; /* Menambahkan jarak antar elemen dalam .profile-info */
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
+
+.header-comment h5 {
+  margin: 0px;
+}
+
+.display-comment {
+  flex-direction: column;
+  padding: 0px 15px;
+  gap: 15px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.row-comment {
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-bottom: 1px solid black;
+  gap: 10px;
+}
+
+.header-row-comment {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.header-row-comment h4 {
+ margin: 0;
+}
+
+.delete-row-comment {
+  margin-left: auto !important;
+  padding: 7px;
+}
+
+.index-row-comment {
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.index-row-comment p {
+  width: 100%;
+  overflow-wrap: break-word;
+  margin: 0px;
 }
 
 .comment-input {
-  display: flex;
+  background-color: var(--white);
+  wid
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 15px 5px;
+  border-top: 1px solid black;
   gap: 10px; /* Memberikan jarak antar textarea dan tombol */
 }
 
+.comment-input textarea {
+  flex: 1;
+  min-width: 180px;
+}
 
+.comment-input button {
+  flex-shrink: 0;
+}
 
 /* Responsive */
 @media (max-width: 1450px) {

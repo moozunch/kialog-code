@@ -104,10 +104,10 @@
                           </div>
                       @endif
                   </div>
-      
+
                   <p class="card-text">{{ $post->message }}</p>
               </div>
-      
+
               <!-- Footer Post -->
               <div class="card-footer d-flex justify-content-between align-items-center flex-wrap">
                   <small class="text-muted">Posted on {{ $post->created_at->format('F j, Y') }}</small>
@@ -124,12 +124,12 @@
                               {{ $post->userLikes->count() }}
                           </button>
                       </form>
-      
+
                       <!-- Comment Section -->
                       <button class="btn btn-comment btn-no-bg btn-light btn-sm mx-1" onclick="toggleCommentContainer(this)">
                           <i class="mdi mdi-chat-outline"></i> {{ $post->comments()->count() }}
                       </button>
-      
+
                       <!-- Bookmark -->
                       <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
                           @csrf
@@ -141,25 +141,55 @@
                               @endif
                           </button>
                       </form>
-      
+
                       <!-- Share -->
                       <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1">
                           <i class="mdi mdi-share-outline"></i>
                       </button>
                   </div>
               </div>
-      
+
               <!-- Comment Container -->
-              <div class="comment-container" style="display: none; flex-direction: column; gap: 10px; margin-top: 10px;">
-                  <div class="profile-info d-flex align-items-center mb-3">
-                      <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User Profile" />
-                      <h5>Username</h5>
+              <div class="comment-container">
+                  <div class="card-comment shadow-lg">
+                    <div class="header-comment d-flex shadow">
+                      <h5>Comment</h5>
+                    </div>
+                    <div class="display-comment d-flex">
+                      <!-- Comment List -->
+                      <!-- Comment 1 -->
+                      <div class="row-comment d-flex">
+                        <div class="header-row-comment ">
+                          <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User Profile" />
+                          <h4>Username</h4>
+                          <div class="delete-row-comment">
+                            <i class="mdi mdi-dots-horizontal"></i>
+                          </div>
+                        </div>
+                        <div class="index-row-comment d-flex">
+                          <P>Komentarnya di sini</P>
+                        </div>
+                      </div>
+                      <!-- Comment 2 -->
+                        <div class="header-row-comment ">
+                          <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User Profile" />
+                          <h4>Username</h4>
+                          <div class="delete-row-comment">
+                            <i class="mdi mdi-dots-horizontal"></i>
+                          </div>
+                        </div>
+                        <div class="index-row-comment d-flex">
+                          <P>Komentarnya di sinisDfhasdjfhasdjkfhasdfsdfjaskldfjlkasdjfklasjdkflasjdlkfjaslkdfjlkasdjflkasdjflkasjdflk;asjdlk;fja;sd</P>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Comment Input -->
+                    <div class="comment-input d-flex align-items-start flex-wrap">
+                        <textarea class="form-control"  placeholder="Tambahkan komentar..."></textarea>
+                        <button class="btn btn-primary" onclick="addComment(this)">Kirim</button>
+                    </div>
                   </div>
-                  <div class="comment-input d-flex align-items-start">
-                      <textarea class="form-control" rows="2" placeholder="Tambahkan komentar..."></textarea>
-                      <button class="btn btn-primary ms-2" onclick="addComment(this)">Kirim</button>
-                  </div>
-                  <div class="comments-list mt-3"></div>
               </div>
           </div>
       @endforeach

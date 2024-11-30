@@ -189,7 +189,6 @@ img {
   box-sizing: border-box;
     word-wrap: break-word;
     word-break: break-word;
-
 }
 
 .time_date {
@@ -213,7 +212,6 @@ img {
   padding: 10px;
   position: relative;
   display: inline-block;
-
 }
 
 .mesgs {
@@ -397,7 +395,7 @@ img {
   text-align: left;
   line-height: 50px;
   font-size: 14px;
-  color: #555;
+  color: #b3b3b3;
   height: 100%;
   display: flex;
   align-items: center;

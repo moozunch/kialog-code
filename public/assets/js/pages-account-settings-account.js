@@ -27,3 +27,15 @@ document.addEventListener('DOMContentLoaded', function (e) {
     }
   })();
 });
+
+// Pesan Error Karakter
+function validateMaxLength(input, maxLength, errorId) {
+  const errorElement = document.getElementById(errorId);
+  
+  if (input.value.length >= maxLength) {
+      errorElement.style.display = 'block';  // Tampilkan pesan error
+  } else {
+      errorElement.style.display = 'none';   // Sembunyikan pesan error
+  }
+}
+

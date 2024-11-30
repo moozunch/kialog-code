@@ -17,9 +17,10 @@
   <div class="row">
     <div class="col-md-12">
       <ul class="nav nav-pills flex-column flex-md-row mb-4 gap-2 gap-lg-0">
-        <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class="mdi mdi-account-outline mdi-20px me-1"></i>Account</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url('pages/account-settings-notifications') }}"><i class="mdi mdi-bell-outline mdi-20px me-1"></i>Notifications</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url('pages/account-settings-blocked-accounts') }}"><i class="mdi mdi-link mdi-20px me-1"></i>Blocked Accounts</a></li>
+        <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class="mdi mdi-account-outline mdi-20px me-1"></i> Account</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url('pages/account-settings-notifications') }}"><i class="mdi mdi-bell-outline mdi-20px me-1"></i> Notifications</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url('pages/account-settings-blocked-accounts') }}"><i class="mdi mdi-account-cancel-outline mdi-20px me-1"></i> Blocked Accounts</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url('/pages/settings-community')}}"><i class="mdi mdi-account-group-outline mdi-20px me-1"></i> Community</a></li>
       </ul>
 
       <div class="card mb-4">
@@ -47,20 +48,37 @@
             </div>
 
             <div class="row mt-2 gy-4">
+              <!-- Username -->
               <div class="col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <input class="form-control" type="text" id="username" name="username" autofocus value="{{ Auth::user()->username }}" />
-                  <label for="username">Username</label>
-                </div>
+                  <div class="form-floating form-floating-outline">
+                      <input class="form-control" type="text" id="username" name="username" 
+                             maxlength="30" 
+                             value="{{ old('username', Auth::user()->username) }}" 
+                             oninput="validateMaxLength(this, 30, 'usernameError')" />
+                      <label for="username">Username</label>
+                      @error('username')
+                          <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                      <small id="usernameError" class="text-danger" style="display:none;">Username tidak boleh lebih dari 30 karakter.</small>
+                  </div>
+              </div>
+              
+              <!-- Display Name -->
+              <div class="col-md-6">
+                  <div class="form-floating form-floating-outline">
+                      <input class="form-control" type="text" id="name" name="name" 
+                             maxlength="30" 
+                             value="{{ old('name', Auth::user()->name) }}" 
+                             oninput="validateMaxLength(this, 30, 'nameError')" />
+                      <label for="name">Display Name</label>
+                      @error('name')
+                          <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                      <small id="nameError" class="text-danger" style="display:none;">Display name tidak boleh lebih dari 30 karakter.</small>
+                  </div>
               </div>
 
-              <div class="col-md-6">
-                <div class="form-floating form-floating-outline">
-                  <input class="form-control" type="text" name="name" id="name" value="{{ Auth::user()->name }}" placeholder="set display name"/>
-                  <label for="name">Display Name</label>
-                </div>
-              </div>
-
+              <!-- Email -->
               <div class="col-md-6">
                 <div class="form-floating form-floating-outline">
                   <input class="form-control" type="text" id="email" name="email" value="{{ Auth::user()->email }}" placeholder="email@domain.com" />
@@ -68,6 +86,7 @@
                 </div>
               </div>
 
+              <!-- Institution -->
               <div class="col-md-6">
                 <div class="form-floating form-floating-outline">
                   <input type="text" class="form-control" id="institution" name="institution" placeholder="Institution" value="{{ Auth::user()->institution }}" />
@@ -75,6 +94,7 @@
                 </div>
               </div>
 
+              <!-- Description -->
               <div class="col-md-6">
                 <div class="form-floating form-floating-outline">
                   <input class="form-control" type="text" id="bio" name="bio" placeholder="add a little information" value="{{ Auth::user()->bio }}" />
@@ -82,6 +102,7 @@
                 </div>
               </div>
 
+              <!-- Country -->
               <div class="col-md-6">
                 <div class="form-floating form-floating-outline">
                   <select id="country" class="select2 form-select" name="country">

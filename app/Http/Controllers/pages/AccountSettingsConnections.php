@@ -13,4 +13,5 @@ class AccountSettingsConnections extends Controller
         $blockedUsers = Block::where('user_id', Auth::id())->with('blockedUser')->get();
         return view('content.pages.pages-account-settings-connections', compact('blockedUsers'));
     }
+
 }

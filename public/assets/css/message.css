@@ -166,18 +166,14 @@ img {
 .incoming_msg_img img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Memastikan gambar menyesuaikan kontainer */
+  object-fit: cover;
 }
-
-
 
 .received_msg {
   display: inline-flex;
   padding: 0 10px;
   max-width: 75%;
 }
-
-
 
 .received_withd_msg p {
   background: #c4c4c4 none repeat scroll 0 0;
@@ -186,7 +182,7 @@ img {
   margin: 0;
   height: auto;
   border-radius: 10px;
-  /*font-size: 14px;*/
+  font-size: 14px;
   padding: 5px 10px;
   width: auto;
   max-width: 100%;
@@ -229,7 +225,7 @@ img {
 .sent_msg p {
   background: #2C6822 none repeat scroll 0 0;
   border-radius: 10px;
-  /*font-size: 14px;*/
+  font-size: 14px;
   margin: 0;
   color: #fff;
   padding: 5px 10px 5px 10px;
@@ -254,7 +250,7 @@ img {
 .sent_msg p {
   background: #2C6822;
   border-radius: 10px;
-  /*font-size: 14px;*/
+  font-size: 14px;
   margin: 0;
   color: #fff;
   padding: 5px 10px;
@@ -300,10 +296,10 @@ img {
   border: none;
   color: white;
   border-radius: 50%;
-  font-size: 14px;
+  font-size: 17px;
   cursor: pointer;
-  height: 27px;
-  width: 27px;
+  height: 33px;
+  width: 33px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -347,25 +343,27 @@ img {
 }
 
 .input_msg_write {
+  position: relative;
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 0 5px;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 20px;
   background-color: #f8f8f8;
-  height: 40px;
+  height: 50px;
   box-sizing: border-box;
 }
 
 .write_msg {
-  width: 100%;
-  padding: 0 10px;
+  flex: 1;
   border: none;
+  outline: none;
+  font-size: 14px;
   background-color: transparent;
   color: #4c4c4c;
-  outline: none;
-  box-sizing: border-box;
+  height: 100%;
+  line-height: 50px;
 }
 
 .type_msg.no-messages {
@@ -393,6 +391,18 @@ img {
   height: auto;
 }
 
+.no-messages p {
+  margin: 0;
+  padding: 0;
+  text-align: left; /* Teks sejajar ke kiri */
+  line-height: 50px; /* Sesuaikan agar teks berada di tengah secara vertikal */
+  font-size: 14px; /* Ukuran font opsional */
+  color: #555; /* Warna teks opsional */
+  height: 100%; /* Mengisi tinggi kontainer */
+  display: flex; /* Gunakan flexbox */
+  align-items: center; /* Tengah secara vertikal */
+}
+
 .input_msg_write:focus-within {
   border-color: #2C6822;
 }
@@ -403,6 +413,6 @@ img {
 
 .write_msg::placeholder {
   color: #b3b3b3;
-  /*font-size: 14px;*/
+  font-size: 14px;
   line-height: normal;
 }

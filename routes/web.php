@@ -10,6 +10,7 @@ use App\Http\Controllers\layouts\Blank;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\pages\AccountSettingsConnections;
+use App\Http\Controllers\pages\AccountSettingsCommunity;
 use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\pages\MiscUnderMaintenance;
 use App\Http\Controllers\authentications\LoginBasic;
@@ -52,9 +53,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\BlockController;
-use Illuminate\Support\Facades\Broadcast;
 use App\Http\Controllers\CommentController;
-
+use Illuminate\Support\Facades\Broadcast;
 
 // layout
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
@@ -63,7 +63,12 @@ Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
 Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
 Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 
-
+// pages
+Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
+Route::post('/account-settings/update', [AuthController::class, 'updateAccountSettings'])->name('account-settings.update');
+Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
+Route::get('/pages/account-settings-blocked-accounts', [AccountSettingsConnections::class, 'index'])->name('pages-account-settings-blocked-accounts');
+Route::get('/pages/settings-community', [AccountSettingsCommunity::class, 'index'])->name('pages-settings-community');
 
 // authentication
 Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
@@ -133,22 +138,22 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/account-settings/update', [AuthController::class, 'updateAccountSettings'])->name('account-settings.update');
   Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
   Route::get('/pages/account-settings-blocked-accounts', [AccountSettingsConnections::class, 'index'])->name('pages-account-settings-blocked-accounts');
-  Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
-  Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name('pages-misc-under-maintenance');
 
-  
+
+
   //home
   Route::get('/home', [PostController::class, 'index'])->name('home');
 
   //Messages
   Route::get('/message', [MessageController::class, 'index'])->name('messages');
 
-  //Topic
-  Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
-  Route::post('/topics', [TopicController::class, 'store'])->name('topics.store');
-  Route::get('/topic/{id}', [TopicController::class, 'show'])->name('topic.show');
-  Route::post('topics/{topic}/join', [TopicController::class, 'join'])->name('topics.join');
-  Route::resource('topics', TopicController::class);
+//Topic
+Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
+Route::post('/topics', [TopicController::class, 'store'])->name('topics.store');
+Route::get('/topic/{id}', [TopicController::class, 'show'])->name('topic.show');
+Route::post('topics/{topic}/join', [TopicController::class, 'join'])->name('topics.join');
+Route::resource('topics', TopicController::class);
+Route::get('/topics/{topic}', [TopicController::class, 'show'])->name('topics.show');
 
   //Bookmarks
   Route::get('/bookmarks', [BookmarksController::class, 'index'])->name('bookmarks.index');
@@ -206,5 +211,5 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
   Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
   Route::get('/posts/{post}/comments', [PostController::class, 'getComments']);
-  
+
 });

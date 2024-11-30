@@ -50,4 +50,36 @@ class BookmarksController extends Controller
     // Optionally, redirect or return a response
     return redirect()->route('posts.index')->with('success', 'Bookmark toggled successfully!');
   }
+
+  public function store(Request $request, $postId)
+  {
+      $request->validate([
+          'topic_id' => 'nullable|exists:topics,id',
+      ]);
+
+      $userId = auth()->id();
+
+      // Check if the bookmark exists
+      $bookmark = Bookmarks::where([
+          'user_id' => $userId,
+          'post_id' => $postId,
+      ])->first();
+
+      if ($bookmark) {
+        // Delete the bookmark if it exists
+        $bookmark->delete();
+    } else {
+        // Create a new bookmark if it doesn't exist
+        Bookmarks::create([
+            'user_id' => $userId,
+            'post_id' => $postId,
+        ]);
+    }
+
+    if ($request->filled('topic_id')) {
+        return redirect()->route('topics.show', ['topic' => $request->topic_id])->with('success', 'Bookmark toggled successfully!');
+    }
+
+    return redirect()->back()->with('success', 'Bookmark toggled successfully!');
+}
 }

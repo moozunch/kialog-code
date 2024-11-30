@@ -394,13 +394,13 @@ img {
 .no-messages p {
   margin: 0;
   padding: 0;
-  text-align: left; /* Teks sejajar ke kiri */
-  line-height: 50px; /* Sesuaikan agar teks berada di tengah secara vertikal */
-  font-size: 14px; /* Ukuran font opsional */
-  color: #555; /* Warna teks opsional */
-  height: 100%; /* Mengisi tinggi kontainer */
-  display: flex; /* Gunakan flexbox */
-  align-items: center; /* Tengah secara vertikal */
+  text-align: left;
+  line-height: 50px;
+  font-size: 14px;
+  color: #555;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .input_msg_write:focus-within {

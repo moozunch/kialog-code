@@ -67,7 +67,7 @@
                   </li>
                   @else
                   <li>
-                    <a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#reportModal" data-post-id="{{ $post->id }}">
+                    <a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#reportModal" data-post-id="{{ $post->id }}" data-username="{{ $post->user->username }}" data-content="{{ $post->message }}">
                       <i class="mdi mdi-account-alert-outline me-2"></i> Report
                     </a>
                   </li>
@@ -268,9 +268,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="https://formspree.io/f/mvgoweoq">
+        <form method="POST" action="https://formspree.io/f/xrbgoanp">
           <!-- Hidden Field for Post ID -->
           <input type="hidden" name="post_id" id="report-post-id">
+          <!-- Hidden Field for Username -->
+          <input type="hidden" name="reported_username" id="reported-username">
+          <!-- Hidden Field for Content -->
+          <input type="hidden" name="reported_content" id="reported-content">
+          <!-- Hidden Field for Timestamp -->
+          <input type="hidden" name="reported_timestamp" id="reported-timestamp">
 
           <!-- Textarea for Reason -->
           <div class="mb-3">
@@ -330,11 +336,18 @@
     });
 
     var reportModal = document.getElementById('reportModal');
-    reportModal.addEventListener('show.bs.modal', function (event) {
+    reportModal.addEventListener('show.bs.modal', function(event) {
       var button = event.relatedTarget;
       var postId = button.getAttribute('data-post-id');
+      var username = button.getAttribute('data-username');
+      var content = button.getAttribute('data-content');
+      var timestamp = new Date().toISOString();
+
       var modal = this;
       modal.querySelector('#report-post-id').value = postId;
+      modal.querySelector('#reported-username').value = username;
+      modal.querySelector('#reported-content').value = content;
+      modal.querySelector('#reported-timestamp').value = timestamp;
     });
   });
 </script>

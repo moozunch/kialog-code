@@ -39,8 +39,6 @@ function toggleCommentContainer(button) {
         : "none";
 }
 
-
-
 // document.querySelectorAll('.btn-comment').forEach(button => {
 //     button.addEventListener('click', function () {
 //         const target = document.querySelector(this.getAttribute('data-bs-target'));

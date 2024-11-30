@@ -388,7 +388,6 @@ div.row-post .post-profile-info h6{
 
 .comment-input {
   background-color: var(--white);
-  wid
   flex-direction: row;
   justify-content: flex-start;
   padding: 15px 5px;

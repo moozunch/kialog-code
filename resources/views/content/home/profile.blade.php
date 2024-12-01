@@ -36,6 +36,9 @@
               </div>
            </div>
 
+           <!-- Tombol Ikuti -->
+           <button class="btn btn-follow" id="follow-button">Ikuti</button>
+
           <!-- Profile Stats Section -->
           <div class="profile-stats d-flex">
             <div class="stat-container">
@@ -204,57 +207,76 @@
               <!-- End Comment Section -->
           </div>
       @endforeach
-
-
     </div>
   </div>
 
   <!-- Modal for Followers -->
   <div class="modal fade" id="followersModal" tabindex="-1" aria-labelledby="followersModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content d-flex">
-        <div class="modal-header d-flex p-3 shadow">
-          <h5 class="modal-title" id="followersModalLabel">Followers</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body d-flex">
-          <!-- User 1 -->
-          <div class="data-user d-flex align-items-center shadow">
-            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
-            <div class="modal-profile-info">
-              <h3>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h3>
-              <h4>@username1</h4>
-            </div>
-            <button class="delete-modal-button" id="modal-followers-id" class="modal-button-delete btn ms-auto" onclick="toggleFollow()">DELETE</button>
+      <div class="modal-dialog">
+          <div class="modal-content d-flex">
+              <div class="modal-header d-flex p-3 shadow">
+                  <h5 class="modal-title" id="followersModalLabel">Followers</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body d-flex flex-column">
+                  <h6>Followers yang Anda Ikuti Balik:</h6>
+                  @forelse($mutualFollowers as $follower)
+                      <div class="data-user d-flex align-items-center shadow mb-2">
+                          <img src="{{ $follower->profile_image ?? 'https://via.placeholder.com/40' }}" 
+                               class="rounded-circle me-3" alt="Follower" />
+                          <div class="modal-profile-info">
+                              <h3>{{ $follower->name }}</h3>
+                              <h4>{{ '@' . $follower->username }}</h4>
+                          </div>
+                      </div>
+                  @empty
+                      <p class="text-muted">Belum ada followers yang Anda ikuti balik.</p>
+                  @endforelse
+  
+                  <h6 class="mt-3">Followers yang Tidak Anda Ikuti Balik:</h6>
+                  @forelse($nonMutualFollowers as $follower)
+                      <div class="data-user d-flex align-items-center shadow mb-2">
+                          <img src="{{ $follower->profile_image ?? 'https://via.placeholder.com/40' }}" 
+                               class="rounded-circle me-3" alt="Follower" />
+                          <div class="modal-profile-info">
+                              <h3>{{ $follower->name }}</h3>
+                              <h4>{{ '@' . $follower->username }}</h4>
+                          </div>
+                          <button class="btn btn-primary ms-auto">Follow Back</button>
+                      </div>
+                  @empty
+                      <p class="text-muted">Semua followers sudah diikuti balik.</p>
+                  @endforelse
+              </div>
           </div>
-          <!-- End User 1 -->
-        </div>
       </div>
-    </div>
   </div>
-
+  
   <!-- Modal for Following -->
   <div class="modal fade" id="followingModal" tabindex="-1" aria-labelledby="followingModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header p-3 shadow">
-          <h5 class="modal-title" id="followingModalLabel">Following</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- User 1 -->
-          <div class="data-user d-flex align-items-center mt-3">
-            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Following 1" />
-            <div class="modal-profile-info">
-              <h3>Display Name 1</h3>
-              <h4>@username1</h>
-            </div>
-            <button id="modal-followed-id" class="modal-button-followed btn">Unfollow</button>
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header p-3 shadow">
+                  <h5 class="modal-title" id="followingModalLabel">Following</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body d-flex flex-column">
+                  @forelse($user->following as $followed)
+                      <div class="data-user d-flex align-items-center mt-3">
+                          <img src="{{ $followed->profile_image ?? 'https://via.placeholder.com/40' }}" 
+                               class="rounded-circle me-3" alt="Following" />
+                          <div class="modal-profile-info">
+                              <h3>{{ $followed->name }}</h3>
+                              <h4>{{ '@' . $followed->username }}</h4>
+                          </div>
+                          <button class="btn btn-secondary ms-auto">Unfollow</button>
+                      </div>
+                  @empty
+                      <p class="text-muted">Anda belum mengikuti siapapun.</p>
+                  @endforelse
+              </div>
           </div>
-          <!-- End User 1 -->
-        </div>
       </div>
-    </div>
   </div>
-  <!-- End Modal Section Following -->
+  <!-- End Modal For Following -->
 @endsection

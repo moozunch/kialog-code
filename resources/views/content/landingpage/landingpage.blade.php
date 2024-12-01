@@ -29,10 +29,10 @@
             <a class="nav-link" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Discussion</a>
+            <a class="nav-link" href="#" id="signupbutton3">Discussion</a>
           </li>
         </ul>
         <div class="form-inline">
@@ -45,38 +45,6 @@
 </header>
 
 <main>
-
-
-
-
-{{--  <div class="container py-5">--}}
-{{--    <h1 class="display-4 fw-bold text-center" style="font-weight: 700">The Hub for Lifelong Learners</h1>--}}
-
-{{--    <div class="row mt-4">--}}
-{{--      <!-- Left Section with Image and Text -->--}}
-{{--      <div class="col-md-6">--}}
-{{--        <div class=" mb-3" style="height: 200px; width: 100%; border-radius: 12px "></div>--}}
-{{--        <img src="{{ asset('assets/img/illustrations/illustration2.png') }}" alt="Illustration" class="img-fluid">--}}
-{{--        <p class="text-muted">--}}
-{{--          We support a platform to empower students through dynamic forum that fosters collaboration, brilliant ideas, and accelerates growth.--}}
-{{--        </p>--}}
-{{--        <h1 class="" style="font-weight: 600; font-family: 'Cedarville Cursive', cursive; color: #1b3e15">Cendikia Dialog--}}
-{{--          <span style="font-size: inherit; line-height: inherit; font-family: 'Cedarville Cursive', cursive;">kia</span>--}}
-{{--        </h1>--}}
-{{--        <h1 class="" style="font-weight: 600; font-family: 'Cedarville Cursive', cursive;">Dialog--}}
-{{--          <span style="font-size: inherit; line-height: inherit; font-family: 'Cedarville Cursive', cursive;">log</span>--}}
-{{--        </h1>--}}
-
-{{--      </div>--}}
-
-{{--      <!-- Right Section with Large Image -->--}}
-{{--      <div class="col-md-6">--}}
-{{--        <div class="" style="height: 400px; width: 100%; border-radius: 12px">--}}
-{{--          <img src="{{ asset('assets/img/illustrations/illustration3.png') }}" alt="Illustration" class="img-fluid">--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--    </div>--}}
-
   {{--First Section--}}
 
   <div class="container py-5 transform-bottom">
@@ -90,7 +58,7 @@
           A place where knowledge meets collaboration. Share, learn, and grow together. <span style="color: #1b3e15">From Student For Student</span>
         </p>
         <div class="d-flex mt-4">
-          <a href="#" class="btn px-4 py-2" style="margin-right: 10px; border-radius: 12px; background-color: #2a6320; color: #fff; ">Get Started</a>
+          <button id="signupbutton2" class="btn px-4 py-2" style="margin-right: 10px; border-radius: 12px; background-color: #2a6320; color: #fff; ">Get Started</button>
           {{--          <a href="#" class="btn btn-outline-secondary px-4 py-2" style="border-radius: 12px" >How it works</a>--}}
         </div>
       </div>
@@ -99,7 +67,7 @@
       <div class="col-lg-6 text-center">
         <div class="position-relative d-inline-block">
           <div class=" position-absolute top-0 start-0 w-100 h-100 rounded-3" style="z-index: -1; opacity: 0.1; "></div>
-          <img src="{{ asset('assets/svg/illust.svg') }}" alt="Annisa" class="img-fluid rounded">
+          <img src="{{ asset('assets/svg/illust.svg') }}" alt="illustration" class="img-fluid rounded">
         </div>
       </div>
     </div>
@@ -107,7 +75,9 @@
 
   {{-- Second Section --}}
 {{-- background-color: #2c6822;--}}
-  <div class="container my-5 transform-bottom">
+  <div class="container my-5 transform-bottom " id="about">
+   <h2 style="font-weight: 600" class="text-center">Our Value</h2>
+   <p class="text-muted text-center">The Value We Believe And Provide</p>
     <div class="row text-center align-items-center py-4" style="border-radius: 12px;">
       <!-- First Feature: Free Live Support -->
       <div class="col-md-4">
@@ -180,90 +150,6 @@
 
 @include('layouts.sections.footer.footer')
 
-
-
-
-
-  {{--  <section class="section1">--}}
-{{--    <div class="containersec1">--}}
-{{--      <article class="content">--}}
-{{--        <h1>The Hub For Lifelong Learners</h1>--}}
-{{--        <div class="illustration1"></div>--}}
-{{--        <div class="image-container">--}}
-{{--          <img src="{{ asset('assets/img/illustrations/illustration1.png') }}" class="imagehori" alt="image">--}}
-{{--          <img src="{{ asset('assets/img/illustrations/illustration2.png') }}" class="imagevertical" alt="image">--}}
-{{--        </div>--}}
-{{--        <div class="textlanding">--}}
-{{--          <p class="paraghraph1">Explore, discuss, and evolve your understanding in a community built for education.</p>--}}
-{{--          <p class="paraghraph2">From Student For Student.</p>--}}
-{{--        </div>--}}
-{{--      </article>--}}
-{{--    </div>--}}
-{{--  </section>--}}
-{{--  <section class="section2">--}}
-{{--    <div class="containersec2">--}}
-{{--      <article>--}}
-{{--        <div class="image">--}}
-{{--          <img src="{{ asset('assets/img/illustrations/illustration3.png') }}" class="imagehori" alt="image">--}}
-{{--        </div>--}}
-{{--        <div class="text">--}}
-{{--          <h2>About Us</h2>--}}
-{{--          <p>We support a platform to empower  students through dynamic forum that fosters collaboration, brilliant ideas, and accelerates growth.</p>--}}
-{{--        </div>--}}
-{{--      </article>--}}
-{{--    </div>--}}
-{{--  </section>--}}
-
-{{--  <section class="section3">--}}
-{{--    <div class="containersec3">--}}
-{{--      <h2>Our Values</h2>--}}
-{{--      <img src="{{ asset('assets/svg/values.svg') }}" alt="Value" class="img-fluid">--}}
-{{--    </div>--}}
-{{--  </section>--}}
-
-{{--  <section class="section4">--}}
-{{--    <div class="containersec4">--}}
-{{--      <h2>Meet The Team</h2>--}}
-{{--      <p>The People Behind Kialog </p>--}}
-{{--      <div class = rowloc>--}}
-{{--        <div class="person">--}}
-{{--          <img src="{{ asset('assets/img/landing-page/annisa.png') }}" alt="Annisa">--}}
-{{--          <p><strong>Annisa</strong> Putri Aprilia</p>--}}
-{{--        </div>--}}
-{{--        <div class="person">--}}
-{{--          <img src="{{ asset('assets/img/landing-page/sabrina.png') }}" alt="Sabrina">--}}
-{{--          <p>Atikah <strong>Shabrina</strong> Siregar</p>--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--      <div class = rowloc>--}}
-{{--        <div class="person natasya">--}}
-{{--          <img src="{{ asset('assets/img/landing-page/natasya.png') }}" alt="Natasya">--}}
-{{--          <p><strong>Natasya</strong> Sabina Br. Ginting</p>--}}
-{{--        </div>--}}
-{{--        <div class="person fathan">--}}
-{{--          <img src="{{ asset('assets/img/landing-page/fathan.png') }}" alt="Alfathan">--}}
-{{--          <p><strong>Alfathan</strong> Bagas Kurnia</p>--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--    </div>--}}
-{{--  </section>--}}
-{{--</main>--}}
-
-{{--<footer class="bg-dark text-white py-4 text-center">--}}
-{{--  <div class="container">--}}
-{{--    <div class="row justify-content-center">--}}
-{{--      <!-- Company Info -->--}}
-{{--      <div class="col-md-6 mb-3">--}}
-{{--        <h5>Kialog</h5>--}}
-{{--        <p>Discussing hub made from student for students.</p>--}}
-{{--        <p>&copy; 2024 Kialog. All Rights Reserved.</p>--}}
-{{--      </div>--}}
-{{--    </div>--}}
-{{--  </div>--}}
-{{--</footer>--}}
-
-
-
 <!-- Sign-In Modal -->
 <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered-absolute">
@@ -276,6 +162,7 @@
       </div>
       <div class="modal-body">
         <div id="signinError" class="alert alert-danger" style="display: none;"></div>
+        <div id="signinMessage" class="alert alert-warning" style="display: none;"><p class="text-muted" ></p></div>
         <form id="signinForm">
           @csrf
           <div class="form-group">
@@ -301,6 +188,28 @@
   });
 </script>
 @endif
+
+<script>
+  document.getElementById('signupbutton2').addEventListener('click', function() {
+    $('#signupModal').modal('show');
+  });
+
+  document.getElementById('signinbutton4').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    var signinMessage = document.getElementById('signinMessage');
+    signinMessage.textContent = 'You need to sign in to proceed';
+    signinMessage.style.display = 'block';
+    $('#signinModal').modal('show');
+  });
+
+  document.getElementById('signupbutton3').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    var signinMessage = document.getElementById('signinMessage');
+    signinMessage.textContent = 'You need to sign in to proceed';
+    signinMessage.style.display = 'block';
+    $('#signinModal').modal('show');
+  });
+</script>
 
 <!-- Form Submission Script -->
 <script>

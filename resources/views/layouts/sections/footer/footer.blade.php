@@ -4,9 +4,9 @@
     <div class="container" >
       <div class="d-flex justify-content-between align-items-center">
         <div class="footer-nav">
-          <a href="#" class="text-dark px-3">ABOUT US</a>
-          <a href="#" class="text-dark px-3">DISCUSSION</a>
-          <a href="#" class="text-dark px-3">CONTACTS</a>
+          <a href="{{ url('/#about') }}" class="text-dark px-3">ABOUT US</a>
+          <a  href="{{ url('/#signinbutton4') }}" class="text-dark px-3" id="signinbutton4">DISCUSSION</a>
+          <a href="mailto:kialog123@gmail.com" class="text-dark px-3">CONTACTS</a>
         </div>
         <div class="footer-logo">
           <img src="{{ asset('assets/svg/logo.svg') }}" alt="Logo" style="height: 24px;">

@@ -138,6 +138,8 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/account-settings/update', [AuthController::class, 'updateAccountSettings'])->name('account-settings.update');
   Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
   Route::get('/pages/account-settings-blocked-accounts', [AccountSettingsConnections::class, 'index'])->name('pages-account-settings-blocked-accounts');
+  Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+
 
 
 

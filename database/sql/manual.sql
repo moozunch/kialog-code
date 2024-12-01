@@ -195,4 +195,31 @@ BEFORE UPDATE ON comments
 FOR EACH ROW
 EXECUTE FUNCTION update_updated_at();
 
+
+-- Create followers table
+CREATE TABLE followers (
+    id BIGSERIAL PRIMARY KEY, -- Primary key dengan auto increment
+    user_id BIGINT NOT NULL, -- Foreign key ke users.id (pengguna yang diikuti)
+    follower_id BIGINT NOT NULL, -- Foreign key ke users.id (pengguna yang mengikuti)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp pembuatan
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp pembaruan
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT fk_follower FOREIGN KEY (follower_id) REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT unique_follow UNIQUE (user_id, follower_id) -- Constraint unik untuk mencegah duplikasi
+);
+
+-- Trigger untuk memperbarui kolom updated_at
+CREATE OR REPLACE FUNCTION update_updated_at_followers() 
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = CURRENT_TIMESTAMP;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_update_followers_updated_at
+BEFORE UPDATE ON followers
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_followers();
+
  

@@ -2965,7 +2965,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _popperjs_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/index.js");
 /* harmony import */ var _popperjs_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/popper.js");
-function _superPropGet(t, e, o, r) { var p = _get(_getPrototypeOf(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = _get(_getPrototypeOf(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 function _get() { return _get = "undefined" != typeof Reflect && Reflect.get ? Reflect.get.bind() : function (e, t, r) { var p = _superPropBase(e, t); if (p) { var n = Object.getOwnPropertyDescriptor(p, t); return n.get ? n.get.call(arguments.length < 3 ? e : r) : n.value; } }, _get.apply(null, arguments); }
 function _superPropBase(t, o) { for (; !{}.hasOwnProperty.call(t, o) && null !== (t = _getPrototypeOf(t));); return t; }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
@@ -2996,7 +2996,7 @@ function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 /*!
-  * Bootstrap v5.3.2 (https://getbootstrap.com/)
+  * Bootstrap v5.3.0 (https://getbootstrap.com/)
   * Copyright 2011-2023 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
@@ -3707,7 +3707,7 @@ var Config = /*#__PURE__*/function () {
 /**
  * Constants
  */
-var VERSION = '5.3.2';
+var VERSION = '5.3.0';
 
 /**
  * Class definition
@@ -3819,9 +3819,9 @@ var getSelector = function getSelector(element) {
     if (hrefAttribute.includes('#') && !hrefAttribute.startsWith('#')) {
       hrefAttribute = "#".concat(hrefAttribute.split('#')[1]);
     }
-    selector = hrefAttribute && hrefAttribute !== '#' ? parseSelector(hrefAttribute.trim()) : null;
+    selector = hrefAttribute && hrefAttribute !== '#' ? hrefAttribute.trim() : null;
   }
-  return selector;
+  return parseSelector(selector);
 };
 var SelectorEngine = {
   find: function find(selector) {
@@ -7871,15 +7871,13 @@ var ARROW_LEFT_KEY = 'ArrowLeft';
 var ARROW_RIGHT_KEY = 'ArrowRight';
 var ARROW_UP_KEY = 'ArrowUp';
 var ARROW_DOWN_KEY = 'ArrowDown';
-var HOME_KEY = 'Home';
-var END_KEY = 'End';
 var CLASS_NAME_ACTIVE = 'active';
 var CLASS_NAME_FADE$1 = 'fade';
 var CLASS_NAME_SHOW$1 = 'show';
 var CLASS_DROPDOWN = 'dropdown';
 var SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle';
 var SELECTOR_DROPDOWN_MENU = '.dropdown-menu';
-var NOT_SELECTOR_DROPDOWN_TOGGLE = ":not(".concat(SELECTOR_DROPDOWN_TOGGLE, ")");
+var NOT_SELECTOR_DROPDOWN_TOGGLE = ':not(.dropdown-toggle)';
 var SELECTOR_TAB_PANEL = '.list-group, .nav, [role="tablist"]';
 var SELECTOR_OUTER = '.nav-item, .list-group-item';
 var SELECTOR_INNER = ".nav-link".concat(NOT_SELECTOR_DROPDOWN_TOGGLE, ", .list-group-item").concat(NOT_SELECTOR_DROPDOWN_TOGGLE, ", [role=\"tab\"]").concat(NOT_SELECTOR_DROPDOWN_TOGGLE);
@@ -7991,21 +7989,15 @@ var Tab = /*#__PURE__*/function (_BaseComponent10) {
   }, {
     key: "_keydown",
     value: function _keydown(event) {
-      if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY, HOME_KEY, END_KEY].includes(event.key)) {
+      if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY].includes(event.key)) {
         return;
       }
       event.stopPropagation(); // stopPropagation/preventDefault both added to support up/down keys without scrolling the page
       event.preventDefault();
-      var children = this._getChildren().filter(function (element) {
+      var isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
+      var nextActiveElement = getNextActiveElement(this._getChildren().filter(function (element) {
         return !isDisabled(element);
-      });
-      var nextActiveElement;
-      if ([HOME_KEY, END_KEY].includes(event.key)) {
-        nextActiveElement = children[event.key === HOME_KEY ? 0 : children.length - 1];
-      } else {
-        var isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
-        nextActiveElement = getNextActiveElement(children, event.target, isNext, true);
-      }
+      }), event.target, isNext, true);
       if (nextActiveElement) {
         nextActiveElement.focus({
           preventScroll: true
@@ -8566,7 +8558,7 @@ __webpack_require__.r(__webpack_exports__);
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -8580,17 +8572,17 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	!function() {
@@ -8625,7 +8617,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			return result;
 /******/ 		};
 /******/ 	}();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
@@ -8637,12 +8629,12 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			}
 /******/ 		};
 /******/ 	}();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	!function() {
 /******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
 /******/ 	}();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	!function() {
 /******/ 		// define __esModule on exports
@@ -8653,11 +8645,11 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	}();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	!function() {
 /******/ 		// no baseURI
-/******/
+/******/ 		
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
@@ -8676,19 +8668,19 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			"assets/vendor/libs/apex-charts/apex-charts": 0,
 /******/ 			"assets/vendor/css/theme-default": 0
 /******/ 		};
-/******/
+/******/ 		
 /******/ 		// no chunk on demand loading
-/******/
+/******/ 		
 /******/ 		// no prefetching
-/******/
+/******/ 		
 /******/ 		// no preloaded
-/******/
+/******/ 		
 /******/ 		// no HMR
-/******/
+/******/ 		
 /******/ 		// no HMR manifest
-/******/
+/******/ 		
 /******/ 		__webpack_require__.O.j = function(chunkId) { return installedChunks[chunkId] === 0; };
-/******/
+/******/ 		
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = function(parentChunkLoadingFunction, data) {
 /******/ 			var chunkIds = data[0];
@@ -8715,14 +8707,14 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
-/******/
-    /******/ var chunkLoadingGlobal = self["webpackChunkkialog"] = self["webpackChunkkialog"] || [];
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunkkialog"] = self["webpackChunkkialog"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	}();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
@@ -8740,7 +8732,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.O(undefined, ["assets/vendor/libs/highlight/highlight-github","assets/vendor/css/pages/page-misc","assets/vendor/css/pages/page-icons","assets/vendor/css/pages/page-auth","assets/vendor/css/pages/page-account-settings","assets/vendor/css/core","assets/vendor/fonts/materialdesignicons","assets/vendor/libs/perfect-scrollbar/perfect-scrollbar","assets/vendor/libs/node-waves/node-waves","assets/vendor/libs/highlight/highlight","assets/vendor/libs/apex-charts/apex-charts","assets/vendor/css/theme-default"], function() { return __webpack_require__("./resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.scss"); })
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/vendor/libs/highlight/highlight-github","assets/vendor/css/pages/page-misc","assets/vendor/css/pages/page-icons","assets/vendor/css/pages/page-auth","assets/vendor/css/pages/page-account-settings","assets/vendor/css/core","assets/vendor/fonts/materialdesignicons","assets/vendor/libs/perfect-scrollbar/perfect-scrollbar","assets/vendor/libs/node-waves/node-waves","assets/vendor/libs/highlight/highlight","assets/vendor/libs/apex-charts/apex-charts","assets/vendor/css/theme-default"], function() { return __webpack_require__("./resources/assets/vendor/fonts/materialdesignicons.scss"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/
+/******/ 	
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;

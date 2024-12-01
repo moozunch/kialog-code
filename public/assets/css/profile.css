@@ -17,7 +17,8 @@
   width: 100%;
   flex-direction: row !important;
   justify-content: flex-start;
-  margin-bottom: 15px;
+  max-resolution: 10px;
+  margin-bottom: 10px;
 }
 
 #profileImage {
@@ -28,7 +29,7 @@
 .profile-picture {
   width: 100px;
   height: 100px;
-  padding: 25px; /* White space di semua sisi */
+  padding: 25px 25px 10px 25px; /* White space di semua sisi */
   border-radius: 50%; /* Membuat gambar bulat */
   object-fit: cover; /* Memastikan gambar proporsional */
   display: block; /* Pastikan gambar ditampilkan */
@@ -133,21 +134,17 @@ div.profile-info h2 {
 /* Modal Profil Stats Styling */
 /* Modal Content */
 .modal-content {
+  width: 100%;
   min-width: 280px;
-  max-height: 500px;
+  max-height: 650px;
   padding-bottom: 10px;
-  overflow: hidden; /* Hanya scroll bagian modal-body */
-  display: flex;
   flex-direction: column;
 }
 
 /* Modal Header */
 .modal-header {
   width: 100%;
-  position: sticky; /* Buat header tetap terlihat */
-  top: 0;
   background-color: white; /* Pastikan header terlihat jelas */
-  z-index: 10;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
@@ -178,11 +175,12 @@ div.profile-info h2 {
 
 /* Data User */
 .data-user {
-  display: flex;
-  align-items: center;
   width: 100%;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   padding: 10px 0;
   border-bottom: 1px solid #eee; /* Garis pemisah antar data */
+  gap: 10px;
 }
 
 div.data-user img {
@@ -195,8 +193,10 @@ div.data-user img {
 
 .modal-profile-info {
   flex: 1; /* Memastikan teks responsif */
-  margin-right: auto;
-  min-width: 180px;
+  min-width: 100px;
+  overflow: auto;
+  margin-right: 10px;
+  flex: 1;
 }
 
 .modal-profile-info h3,
@@ -204,32 +204,33 @@ div.data-user img {
   margin: 0;
   font-size: 1rem;
   line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Delete Button */
-.modal-button-delete {
-  width: 120px;
+.delete-modal-button{
   background-color: var(--primary-color);
   color: #fff;
   border: none;
   border-radius: 12px;
-  padding: 0.5rem 1rem;
+  padding: 8px 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 120px;
+  justify-self: flex-end;
+  flex: 0;
 }
 
-.modal-button-delete:hover {
+.delete-modal-button:hover {
   background-color: var(--primary-secondary-color);
   border: none;
   outline: none;
   box-shadow: none;
   color: var(--white);
+  transition: background-color 0.3s ease;
 }
 
 /* followed button */
 .modal-button-followed {
-  width: 120px;
   background-color: var(--primary-color);
   color: #fff;
   border: none;
@@ -237,7 +238,6 @@ div.data-user img {
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 120px;
 }
 
 .modal-button-followed:hover {
@@ -254,6 +254,33 @@ div.data-user img {
   border: 2.5px solid var(--primary-color);
 }
 
+/* Follow Button */
+#follow-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 150px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+#follow-button:hover {
+  background-color: var(--primary-secondary-color);
+  box-shadow: none;
+}
+
+#follow-button.active {
+  background-color: #ffffff; /* Ubah latar belakang tombol menjadi putih */
+  color: rgb(0, 0, 0); /* Ubah warna font menjadi abu-abu */
+  border: 2.5px solid var(--primary-color);
+  box-shadow: none;
+}
+
 /* Bio */
 p.bio {
   width: 100%; /* Menyesuaikan lebar penuh container */
@@ -261,7 +288,7 @@ p.bio {
   white-space: normal; /* Memastikan teks melakukan wrapping */
   overflow-wrap: break-word; /* Mencegah kata-kata yang terlalu panjang melanggar batas */
   font-size: 16px;
-  margin: 0px !important;
+  margin: 0px 0px 10px 0px !important;
 }
 
 /* Post Section */
@@ -387,6 +414,9 @@ div.row-post .post-profile-info h6{
 }
 
 .comment-input {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
   background-color: var(--white);
   flex-direction: row;
   justify-content: flex-start;
@@ -395,13 +425,14 @@ div.row-post .post-profile-info h6{
   gap: 10px; /* Memberikan jarak antar textarea dan tombol */
 }
 
-.comment-input textarea {
+.comment-input form {
   flex: 1;
   min-width: 180px;
 }
 
 .comment-input button {
   flex-shrink: 0;
+  max-height: fit-content;
 }
 
 /* Responsive */
@@ -445,7 +476,6 @@ div.row-post .post-profile-info h6{
   }
 
   .profile-picture {
-    margin-bottom: 10px;
     width: 120px; /* Atur ukuran untuk tampilan lebih kecil */
     height: 120px;
   }
@@ -507,7 +537,6 @@ div.row-post .post-profile-info h6{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
   }
 
   div.profile-info h1, 
@@ -533,8 +562,7 @@ div.row-post .post-profile-info h6{
     width: 80vw;
     min-width: 180px;      
     min-height: 180px;
-    transition:0.3s;
-    border-radius: 5%;
+    border-radius: 5% ;
   }
 
   .profile-stats {
@@ -590,7 +618,6 @@ div.row-post .post-profile-info h6{
   .interactive-button i {
     font-size: 0.8rem;
   }
-
 
 }
 

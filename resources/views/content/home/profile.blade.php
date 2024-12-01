@@ -10,6 +10,8 @@
   <script src="{{ asset('assets/js/profile.js') }}"></script>
 @endsection
 
+
+
 @section('title', 'Profile')
 
 @section('content')
@@ -45,18 +47,23 @@
               <p>Followers</p>
             </div>
             <div class="stat-container" data-bs-toggle="modal" data-bs-target="#followingModal">
-              <h6 class="following-count">0</h6>
-              <p>Following</p>
+                <h6 class="following-count">0</h6>
+                <p>Following</p>
             </div>
           </div>
         </div>
+
+        <!-- Tombol Ikuti -->
+        @if(Route::currentRouteName() == 'profile.showOther')
+        <button class="btn btn-follow" id="follow-button">Follow</button>
+        @endif
 
         <!-- Bio -->
         <p class="bio text-muted mt-2">{{ $user->bio }}</p>
 
         <!-- Chat Button -->
         @if(Route::currentRouteName() == 'profile.showOther')
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-start">
             <a href="{{ route('chat', ['user_id' => $user->id]) }}" class="btn btn-primary">Chat</a>
           </div>
         @endif
@@ -125,7 +132,7 @@
                           </button>
                       </form>
 
-                      <!-- Comment Section -->
+                      <!-- Comment  -->
                       <button class="btn btn-comment btn-no-bg btn-light btn-sm mx-1" onclick="toggleCommentContainer(this)">
                           <i class="mdi mdi-chat-outline"></i> {{ $post->comments()->count() }}
                       </button>
@@ -153,15 +160,15 @@
               <div class="comment-container">
                   <div class="card-comment shadow-lg">
                       <div class="header-comment d-flex shadow">
-                          <h5>Comments ({{ $post->comments->count() }})</h5>
-                      </div>
+                        <h5>Comments </h5>
+                  </div>
 
-                      <div class="display-comment d-flex flex-column">
-                          <!-- Loop melalui komentar dari database -->
+                  <div class="display-comment d-flex flex-column">
+                      @if($post->comments && $post->comments->count() > 0)
                           @foreach($post->comments as $comment)
                               <div class="row-comment d-flex">
                                   <div class="header-row-comment">
-                                      <img src="{{ $comment->user->profile_image ?? 'https://via.placeholder.com/40' }}" 
+                                      <img src="{{ $comment->user->profile_image ?? 'https://via.placeholder.com/40' }}"
                                            class="rounded-circle me-2" alt="User Profile" />
                                       <h4>{{ $comment->user->name }}</h4>
 
@@ -183,23 +190,25 @@
                                   </div>
                               </div>
                           @endforeach
-                      </div>
-
-                      <!-- Comment Input -->
-                      <div class="comment-input d-flex align-items-start flex-wrap">
-                          <form action="{{ route('comments.store', $post->id) }}" method="POST" class="w-100 d-flex">
-                              @csrf
-                              <textarea class="form-control me-2" name="content" placeholder="Tambahkan komentar..."></textarea>
-                              <button class="btn btn-primary" type="submit">Kirim</button>
-                          </form>
-                      </div>
+                      @else
+                          <p class="text-muted">Belum ada komentar.</p>
+                      @endif
                   </div>
+
+                  <!-- Comment Input -->
+                  <div class="comment-input align-items-start">
+                    <form action="{{ route('comments.store', $post->id) }}" method="POST" class="w-100 d-flex">
+                        @csrf
+                        <textarea class="form-control me-2" name="content" placeholder="Tambahkan komentar..."></textarea>
+                    </form>
+                    <button class="btn btn-primary" type="submit">Kirim</button>
+                  </div>
+                  <!-- End Comment Input -->
+                </div>
               </div>
               <!-- End Comment Section -->
           </div>
       @endforeach
-
-
     </div>
   </div>
 
@@ -216,21 +225,12 @@
           <div class="data-user d-flex align-items-center shadow">
             <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
             <div class="modal-profile-info">
-              <h3>Display Name 1</h3>
+              <h3>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h3>
               <h4>@username1</h4>
             </div>
-              <button id="modal-followers-id" class="modal-button-delete btn ms-auto" onclick="toggleFollow()">Hapus</button>
-            </div>
-          <!-- User 2 -->
-          <div class="data-user d-flex align-items-center mt-3">
-            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Follower 1" />
-            <div class="modal-profile-info">
-              <h3>Display Name 1</h3>
-              <h4>@username1</h4>
-            </div>
-            <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Follow</button>
+            <button class="delete-modal-button" id="modal-followers-id" class="modal-button-delete btn ms-auto" onclick="toggleFollow()">DELETE</button>
           </div>
-
+          <!-- End User 1 -->
         </div>
       </div>
     </div>
@@ -252,20 +252,12 @@
               <h3>Display Name 1</h3>
               <h4>@username1</h>
             </div>
-            <button id="modal-followed-id" class="modal-button-followed btn ms-auto">Unfollow</button>
+            <button id="modal-followed-id" class="modal-button-followed btn">Unfollow</button>
           </div>
-          <!-- User 2 -->
-          <div class="data-user d-flex align-items-center mt-3">
-            <img src="https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&P=0&h=180" class="rounded-circle me-3" alt="Following 1" />
-            <div class="modal-profile-info">
-              <h3>Display Name 1</h3>
-              <h4>@username1</h>
-            </div>
-            <button id="modal-follow-id" class="modal-button-follow btn ms-auto">Followed</button>
-          </div>
+          <!-- End User 1 -->
         </div>
       </div>
     </div>
   </div>
-
+  <!-- End Modal Section Following -->
 @endsection

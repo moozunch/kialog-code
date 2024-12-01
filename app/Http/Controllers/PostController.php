@@ -13,6 +13,7 @@ use App\Models\Comment;
 use App\Models\PostUserLike;
 use Kreait\Firebase\Factory;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -196,8 +197,7 @@ class PostController extends Controller
         return view('content.home.blocked_users', compact('blockedUsers'));
     }
 
-    public function show($id)
-    {
+    public function show($id) {
         // Ambil post dengan komentar terkait
         $post = Post::with('comments.user')->findOrFail($id);
 

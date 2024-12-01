@@ -31,6 +31,7 @@ class Post extends Model
   }
   public function comments()
   {
+<<<<<<< HEAD
       return $this->hasMany(Comment::class);
   }
 
@@ -38,5 +39,9 @@ class Post extends Model
 {
     return $this->belongsTo(Topic::class);
 }
+=======
+      return $this->hasMany(Comment::class); 
+  }
+>>>>>>> 5baf51e1ff70d70511c02df22e9ea819613db3a1
 
 }

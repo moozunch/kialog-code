@@ -1,3 +1,4 @@
+// Profil Section
 // Buka modal saat gambar profil diklik
 document.getElementById("profileImage").addEventListener("click", function () {
     const profileModal = document.getElementById("profileImageModal");
@@ -10,6 +11,24 @@ document.getElementById("profileImageModal").addEventListener("click", function 
         this.style.display = "none"; // Sembunyikan modal
     }
 });
+
+// Profil Section - Follow Button
+document.getElementById("follow-button").addEventListener("click", function () {
+    const followButton = this;
+    const followersCount = document.querySelector(".followers-count");
+    let followers = parseInt(followersCount.textContent);
+
+    if (followButton.classList.toggle("active")) {
+        followButton.textContent = "FOLLOWED";
+        followers++;
+    } else {
+        followButton.textContent = "FOLLOW";
+        followers--;
+    }
+
+    followersCount.textContent = followers;
+});
+
 
 // Modal profile stats Section
 // Follow button
@@ -38,37 +57,3 @@ function toggleCommentContainer(button) {
         ? "flex" 
         : "none";
 }
-
-// document.querySelectorAll('.btn-comment').forEach(button => {
-//     button.addEventListener('click', function () {
-//         const target = document.querySelector(this.getAttribute('data-bs-target'));
-//         target.classList.toggle('show');
-//     });
-// });
-// // Add and Delete Comment
-// document.querySelectorAll('.comment-form').forEach(form => {
-//     form.addEventListener('submit', function (e) {
-//         e.preventDefault();
-        
-//         const formData = new FormData(this);
-//         const actionUrl = this.getAttribute('action');
-
-//         fetch(actionUrl, {
-//             method: 'POST',
-//             body: formData,
-//             headers: {
-//                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-//             }
-//         })
-//         .then(response => response.json())
-//         .then(data => {
-//             // Update komentar tanpa reload
-//             if (data.success) {
-//                 const commentsContainer = this.nextElementSibling;
-//                 commentsContainer.innerHTML += data.commentHtml;
-//                 this.reset();
-//             }
-//         })
-//         .catch(error => console.error('Error:', error));
-//     });
-// });

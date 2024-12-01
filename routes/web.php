@@ -138,6 +138,8 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/account-settings/update', [AuthController::class, 'updateAccountSettings'])->name('account-settings.update');
   Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
   Route::get('/pages/account-settings-blocked-accounts', [AccountSettingsConnections::class, 'index'])->name('pages-account-settings-blocked-accounts');
+  Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+
 
 
 
@@ -213,5 +215,6 @@ Route::delete('/topics/{id}/quit', [TopicController::class, 'quit'])->name('topi
   Route::post('/posts/{id}/comments', [PostController::class, 'storeComment'])->name('comments.store');
   Route::delete('/comments/{id}', [PostController::class, 'destroyComment'])->name('comments.destroy');
 
-
+  // // Follower
+  // Route::get('/profile/{id}', [UserController::class, 'show'])->name('profile.show');
 });

@@ -141,8 +141,6 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
 
-
-
   //home
   Route::get('/home', [PostController::class, 'index'])->name('home');
 

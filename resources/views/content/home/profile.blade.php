@@ -157,7 +157,7 @@
               </div>
 
               <!-- Comment Container -->
-              <div class="comment-container">
+              {{-- <div class="comment-container">
                   <div class="card-comment shadow-lg">
                       <div class="header-comment d-flex shadow">
                         <h5>Comments </h5>
@@ -205,7 +205,7 @@
                   </div>
                   <!-- End Comment Input -->
                 </div>
-              </div>
+              </div> --}}
               <!-- End Comment Section -->
           </div>
       @endforeach
@@ -213,7 +213,7 @@
   </div>
 
   <!-- Modal for Followers -->
-  <div class="modal fade" id="followersModal" tabindex="-1" aria-labelledby="followersModalLabel" aria-hidden="true">
+  {{-- <div class="modal fade" id="followersModal" tabindex="-1" aria-labelledby="followersModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content d-flex">
         <div class="modal-header d-flex p-3 shadow">
@@ -234,10 +234,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
   <!-- Modal for Following -->
-  <div class="modal fade" id="followingModal" tabindex="-1" aria-labelledby="followingModalLabel" aria-hidden="true">
+  {{-- <div class="modal fade" id="followingModal" tabindex="-1" aria-labelledby="followingModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header p-3 shadow">
@@ -258,6 +258,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- End Modal Section Following -->
 @endsection

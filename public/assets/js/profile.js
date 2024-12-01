@@ -19,10 +19,10 @@ document.getElementById("follow-button").addEventListener("click", function () {
     let followers = parseInt(followersCount.textContent);
 
     if (followButton.classList.toggle("active")) {
-        followButton.textContent = "Mengikuti";
+        followButton.textContent = "FOLLOWED";
         followers++;
     } else {
-        followButton.textContent = "Ikuti";
+        followButton.textContent = "FOLLOW";
         followers--;
     }
 

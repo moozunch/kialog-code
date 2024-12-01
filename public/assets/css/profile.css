@@ -17,7 +17,8 @@
   width: 100%;
   flex-direction: row !important;
   justify-content: flex-start;
-  margin-bottom: 15px;
+  max-resolution: 10px;
+  margin-bottom: 10px;
 }
 
 #profileImage {
@@ -28,7 +29,7 @@
 .profile-picture {
   width: 100px;
   height: 100px;
-  padding: 25px; /* White space di semua sisi */
+  padding: 25px 25px 10px 25px; /* White space di semua sisi */
   border-radius: 50%; /* Membuat gambar bulat */
   object-fit: cover; /* Memastikan gambar proporsional */
   display: block; /* Pastikan gambar ditampilkan */
@@ -96,31 +97,6 @@ div.profile-info h2 {
 /* Zoom-in saat di-hover */
 .profile-large-image:hover {
   transform: scale(3.1);
-}
-
-/* Follow Button */
-#follow-button {
-  background-color: var(--primary-color);
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 150px;
-  font-size: 20px;
-}
-
-#follow-button:hover {
-  background-color: var(--primary-secondary-color);
-  box-shadow: none;
-}
-
-#follow-button.active {
-  background-color: #ffffff; /* Ubah latar belakang tombol menjadi putih */
-  color: rgb(0, 0, 0); /* Ubah warna font menjadi abu-abu */
-  border: 2.5px solid var(--primary-color);
-  box-shadow: none;
 }
 
 /* Profile Stats */
@@ -278,6 +254,33 @@ div.data-user img {
   border: 2.5px solid var(--primary-color);
 }
 
+/* Follow Button */
+#follow-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 150px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+#follow-button:hover {
+  background-color: var(--primary-secondary-color);
+  box-shadow: none;
+}
+
+#follow-button.active {
+  background-color: #ffffff; /* Ubah latar belakang tombol menjadi putih */
+  color: rgb(0, 0, 0); /* Ubah warna font menjadi abu-abu */
+  border: 2.5px solid var(--primary-color);
+  box-shadow: none;
+}
+
 /* Bio */
 p.bio {
   width: 100%; /* Menyesuaikan lebar penuh container */
@@ -285,7 +288,7 @@ p.bio {
   white-space: normal; /* Memastikan teks melakukan wrapping */
   overflow-wrap: break-word; /* Mencegah kata-kata yang terlalu panjang melanggar batas */
   font-size: 16px;
-  margin: 0px !important;
+  margin: 0px 0px 10px 0px !important;
 }
 
 /* Post Section */
@@ -473,7 +476,6 @@ div.row-post .post-profile-info h6{
   }
 
   .profile-picture {
-    margin-bottom: 10px;
     width: 120px; /* Atur ukuran untuk tampilan lebih kecil */
     height: 120px;
   }
@@ -535,7 +537,6 @@ div.row-post .post-profile-info h6{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
   }
 
   div.profile-info h1, 

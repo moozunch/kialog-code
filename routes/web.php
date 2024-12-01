@@ -214,6 +214,6 @@ Route::get('/topics/{topic}', [TopicController::class, 'show'])->name('topics.sh
   Route::post('/posts/{id}/comments', [PostController::class, 'storeComment'])->name('comments.store');
   Route::delete('/comments/{id}', [PostController::class, 'destroyComment'])->name('comments.destroy');
 
-  // Follower
-  Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+  // // Follower
+  // Route::get('/profile/{id}', [UserController::class, 'show'])->name('profile.show');
 });

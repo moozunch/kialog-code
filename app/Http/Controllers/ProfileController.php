@@ -22,20 +22,20 @@ class ProfileController extends Controller
   }
 
   public function show($id)
-  {
-      $user = User::with(['followers', 'following'])->findOrFail($id);
+    {
+        $user = User::with(['followers', 'following'])->findOrFail($id);
 
-      // Followers yang diikuti balik
-      $mutualFollowers = $user->followers->filter(function ($follower) use ($user) {
-          return $user->following->contains($follower);
-      });
+        // Followers yang diikuti balik
+        $mutualFollowers = $user->followers->filter(function ($follower) use ($user) {
+            return $user->following->contains($follower);
+        });
 
-      // Followers yang tidak diikuti balik
-      $nonMutualFollowers = $user->followers->filter(function ($follower) use ($user) {
-          return !$user->following->contains($follower);
-      });
+        // Followers yang tidak diikuti balik
+        $nonMutualFollowers = $user->followers->filter(function ($follower) use ($user) {
+            return !$user->following->contains($follower);
+        });
 
-      return view('content.home.profile', compact('user', 'mutualFollowers', 'nonMutualFollowers'));
-  }
+        return view('content.home.profile', compact('user', 'mutualFollowers', 'nonMutualFollowers'));
+    }
 }
 

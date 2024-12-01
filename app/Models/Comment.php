@@ -9,7 +9,6 @@ class Comment extends Model
 {
     use HasFactory;
 
-    // Allow mass assignment for these attributes
     protected $fillable = [
         'post_id',
         'user_id',

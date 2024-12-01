@@ -56,8 +56,8 @@
             <form action="{{ route('blocks.store') }}" method="POST" style="display: inline;">
                 @csrf
                 <input type="hidden" name="blocked_user_id" value="{{ $bookmark->post->user->id }}">
-                <button type="submit" class="dropdown-item text-danger">
-                    <i class="mdi mdi-block-helper me-2"></i> Block
+                <button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#blockConfirmationModal" data-user-id="{{ $bookmark->post->user->id }}">
+                  <i class="mdi mdi-block-helper me-2"></i> Block
                 </button>
             </form>
           </li>
@@ -163,6 +163,28 @@
   </div>
 </div>
 
+<div class="modal fade" id="blockConfirmationModal" tabindex="-1" aria-labelledby="blockConfirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-bottom text-center p-3">
+        <h5 class="modal-title" id="blockConfirmationModalLabel">Confirm Block</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body border-bottom p-3">
+        Are you sure you want to block this user?
+      </div>
+      <div class="modal-footer text-center p-3">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form id="blockForm" action="{{ route('blocks.store') }}" method="POST">
+          @csrf
+          <input type="hidden" name="blocked_user_id" id="blockedUserId">
+          <button type="submit" class="btn btn-danger">Yes, Block</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Delete Confirmation Modal -->
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -198,6 +220,17 @@
       if (formToSubmit) {
         formToSubmit.submit();
       }
+    });
+
+    //block confirmation modal
+    var blockConfirmationModal = document.getElementById('blockConfirmationModal');
+    var blockForm = document.getElementById('blockForm');
+    var blockedUserIdInput = document.getElementById('blockedUserId');
+
+    blockConfirmationModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Button that triggered the modal
+        var userId = button.getAttribute('data-user-id'); // Extract info from data-* attributes
+        blockedUserIdInput.value = userId; // Update the input with the user ID
     });
   });
 </script>

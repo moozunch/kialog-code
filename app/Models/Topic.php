@@ -25,8 +25,8 @@ class Topic extends Model
       return $this->belongsToMany(User::class, 'topic_user', 'topic_id', 'user_id');
   }
 
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
+  public function posts()
+  {
+      return $this->hasMany(Post::class);
+  }
 }

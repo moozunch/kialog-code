@@ -59,4 +59,15 @@ class TopicController extends Controller
 
         return redirect()->route('topics.index')->with('success', 'Topic deleted successfully.');
     }
+
+    public function quit($id)
+    {
+        // Fetch the topic by ID
+        $topic = Topic::findOrFail($id);
+
+        // Remove the user from the topic's members
+        $topic->users()->detach(Auth::id());
+
+        return redirect()->route('topics.index')->with('success', 'You have successfully quit the community.');
+    }
 }

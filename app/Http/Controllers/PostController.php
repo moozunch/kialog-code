@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Topic;
 use App\Models\Block;
+use App\Models\Comment;
 use App\Models\PostUserLike;
 use Kreait\Firebase\Factory;
 use Illuminate\Support\Facades\Auth;
@@ -98,8 +99,8 @@ class PostController extends Controller
       return redirect()->route('topics.show', ['topic' => $request->topic_id])->with('success', 'Post created successfully!');
   }
 
-    return redirect()->back()->with('success', 'Post created successfully!');
-  }
+  return redirect()->back()->with('success', 'Post created successfully!');
+}
 
 
   public function like($id)

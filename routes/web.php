@@ -154,6 +154,7 @@ Route::get('/topic/{id}', [TopicController::class, 'show'])->name('topic.show');
 Route::post('topics/{topic}/join', [TopicController::class, 'join'])->name('topics.join');
 Route::resource('topics', TopicController::class);
 Route::get('/topics/{topic}', [TopicController::class, 'show'])->name('topics.show');
+Route::delete('/topics/{id}/quit', [TopicController::class, 'quit'])->name('topics.quit');
 
   //Bookmarks
   Route::get('/bookmarks', [BookmarksController::class, 'index'])->name('bookmarks.index');

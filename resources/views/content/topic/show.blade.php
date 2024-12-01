@@ -14,18 +14,23 @@
         <div class="col-lg-8 col-md-8 col-sm-12">
           <div class="d-flex justify-content-between align-items-center">
               <h1>{{ $topic->title }}</h1>
-              @if($topic->users->contains(auth()->id()))
-              <form action="{{ route('topics.quit', $topic->id) }}" method="POST" style="display: inline;">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" style="border: none; background: none; padding: 0;" title="Quit">
-                      <i class="mdi mdi-exit-to-app" style="font-size: 24px"></i>
+              <div class="d-flex align-items-center">
+                  @if($topic->users->contains(auth()->id()))
+                  <form action="{{ route('topics.quit', $topic->id) }}" method="POST" style="display: inline;">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" style="border: none; background: none; padding: 0;" title="Quit">
+                          <i class="mdi mdi-exit-to-app" style="font-size: 24px"></i>
+                      </button>
+                  </form>
+                  @endif
+                  <!-- Toggle Button for Small Screens -->
+                  <button type="button" class="btn btn-primary btn-sm ms-2 d-md-none" data-bs-toggle="modal" data-bs-target="#createPostModal">
+                      <i class="mdi mdi-plus"></i>
                   </button>
-              </form>
-              @endif
+              </div>
           </div>
           <p>{{ $topic->description }}</p>
-
 
           <h2>Topic Posts</h2>
           @foreach($topic->posts as $post)
@@ -190,16 +195,17 @@
 </div>
 
 <!-- Modal for Creating a Post -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="createPostModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Share Your Thoughts</h1>
+        <h1 class="modal-title fs-5" id="createPostModalLabel">Share Your Thoughts</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
           @csrf
+          <input type="hidden" name="topic_id" value="{{ $topic->id }}">
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Message:</label>
             <textarea class="form-control" id="message-text" name="message" placeholder="What's going on!"></textarea>

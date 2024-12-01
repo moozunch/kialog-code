@@ -55,7 +55,7 @@
           <form action="{{ route('topics.destroy', $topic->id) }}" method="POST" style="display: inline;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="dropdown-item text-danger">
+            <button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" data-topic-id="{{ $topic->id }}" data-topic-title="{{ $topic->title }}">
               <i class="mdi mdi-trash-can-outline me-2"></i> Delete
             </button>
           </form>
@@ -65,7 +65,11 @@
       <div class="card-body d-flex flex-column">
         <h5 class="card-title">{{ $topic->title }}</h5>
         <p class="card-text">{{ $topic->description }}</p>
-        <button type="submit" class="btn btn-primary mt-auto w-50" data-bs-toggle="modal" data-bs-target="#joinConfirmationModal" data-topic-id="{{ $topic->id }}" data-topic-title="{{ $topic->title }}">Join</button>
+        @if(!$topic->users->contains(auth()->id()))
+        <button type="button" class="btn btn-primary mt-auto w-50" data-bs-toggle="modal" data-bs-target="#joinConfirmationModal" data-topic-id="{{ $topic->id }}" data-topic-title="{{ $topic->title }}">JOIN</button>
+        @else
+        <a href="{{ route('topics.show', $topic->id) }}" class="btn btn-primary mt-auto w-50">OPEN</a>
+        @endif
       </div>
     </div>
   </div>
@@ -73,7 +77,7 @@
 </div>
 
 @foreach($topics as $topic)
-@if(!$topic->users->contains(auth()->id()))
+<!-- Modal for joining a community -->
 <div class="modal fade" id="joinConfirmationModal" tabindex="-1" aria-labelledby="joinConfirmationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -82,49 +86,72 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body border-bottom p-3">
-        Are you sure you want to join <span id="communityTitle"></span> community?
+        Are you sure you want to join the <span id="communityTitle"></span> community?
       </div>
       <div class="modal-footer text-center p-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <form action="{{ route('topics.join', $topic->id) }}" method="POST">
+        <form id="joinForm" action="" method="POST">
           @csrf
-          <button type="button" class="btn btn-primary" id="confirmJoinButton">Yes, Join</button>
+          <button type="submit" class="btn btn-primary">Yes, Join</button>
         </form>
       </div>
     </div>
   </div>
 </div>
-@endif
 @endforeach
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete the <span id="deleteCommunityTitle"></span> community?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var joinConfirmationModal = document.getElementById('joinConfirmationModal');
-    var confirmJoinButton = document.getElementById('confirmJoinButton');
-    var communityTitle = document.getElementById('communityTitle');
-    var topicId;
+  var joinConfirmationModal = document.getElementById('joinConfirmationModal');
+  var communityTitle = document.getElementById('communityTitle');
+  var joinForm = document.getElementById('joinForm');
 
-    joinConfirmationModal.addEventListener('show.bs.modal', function (event) {
+  joinConfirmationModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget; // Button that triggered the modal
+    var topicId = button.getAttribute('data-topic-id'); // Extract info from data-* attributes
+    var topicTitle = button.getAttribute('data-topic-title'); // Get the topic title
+
+    communityTitle.textContent = topicTitle; // Set the community title
+    joinForm.action = '/topics/' + topicId + '/join'; // Update the form action
+  });
+
+  var deleteConfirmationModal = document.getElementById('deleteConfirmationModal');
+    var confirmDeleteButton = document.getElementById('confirmDeleteButton');
+    var deleteCommunityTitle = document.getElementById('deleteCommunityTitle');
+    var formToSubmit;
+
+    deleteConfirmationModal.addEventListener('show.bs.modal', function (event) {
       var button = event.relatedTarget; // Button that triggered the modal
-      topicId = button.getAttribute('data-topic-id'); // Extract info from data-* attributes
+      var topicId = button.getAttribute('data-topic-id'); // Extract info from data-* attributes
       var topicTitle = button.getAttribute('data-topic-title'); // Get the topic title
-      communityTitle.textContent = topicTitle; // Set the community title
-      joinForm.action = '/topics/' + topicId + '/join'; // Update the form action
+      deleteCommunityTitle.textContent = topicTitle; // Set the community title
+      formToSubmit = button.closest('form'); // Get the form to submit
     });
 
-    confirmJoinButton.addEventListener('click', function () {
-      var form = document.createElement('form');
-      form.method = 'POST';
-      form.action = '/topics/' + topicId + '/join';
-      var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-      var csrfInput = document.createElement('input');
-      csrfInput.type = 'hidden';
-      csrfInput.name = '_token';
-      csrfInput.value = csrfToken;
-      form.appendChild(csrfInput);
-      document.body.appendChild(form);
-      form.submit();
+    confirmDeleteButton.addEventListener('click', function () {
+      if (formToSubmit) {
+        formToSubmit.submit();
+      }
     });
-    });
+});
 </script>
 @endsection

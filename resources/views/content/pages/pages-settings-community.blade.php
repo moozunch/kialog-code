@@ -27,7 +27,7 @@
               <div>
                   <span>{{ $topic->title }}</span>
               </div>
-              <a href="{{ route('topics.show', $topic->id) }}" class="btn btn-primary">View</a>
+              <a href="{{ route('topics.show', $topic->id) }}" class="btn btn-primary">OPEN</a>
           </div>
           @endforeach
         </div>

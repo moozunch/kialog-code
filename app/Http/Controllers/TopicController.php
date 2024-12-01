@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
@@ -25,6 +26,8 @@ class TopicController extends Controller
         $topic->user_id = auth()->id();
         $topic->save();
 
+        $topic->users()->attach(auth()->id());
+
         return redirect()->back()->with('success', 'Topic created successfully!');
     }
 
@@ -35,9 +38,18 @@ class TopicController extends Controller
         return redirect()->route('topics.show', $topic->id)->with('success', 'Joined topic successfully!');
     }
 
-    public function show(Topic $topic)
+    public function show($id)
     {
-        return view('content.topic.show', compact('topic'));
+        // Fetch the topic by ID
+        $topic = Topic::findOrFail($id);
+
+        // Fetch trending topics (example logic, adjust as needed)
+        $trendingTopics = Topic::whereDoesntHave('users', function ($query) {
+          $query->where('user_id', Auth::id());
+      })->orderBy('created_at', 'desc')->take(4)->get();
+
+
+        return view('content.topic.show', compact('topic', 'trendingTopics'));
     }
 
     public function destroy($id)

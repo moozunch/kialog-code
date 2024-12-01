@@ -1,3 +1,4 @@
 body {
   font-family: 'Plus Jakarta Sans Medium', sans-serif !important ;
 }
+@import "~bootstrap/scss/bootstrap";

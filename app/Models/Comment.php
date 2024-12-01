@@ -16,15 +16,14 @@ class Comment extends Model
         'content',
     ];
     
-    // Relasi Comment milik satu Post
     public function post()
     {
         return $this->belongsTo(Post::class);
     }
-
-    // Relasi Comment milik satu User
+    
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+    
 }

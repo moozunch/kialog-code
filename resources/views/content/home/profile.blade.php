@@ -152,45 +152,50 @@
               <!-- Comment Container -->
               <div class="comment-container">
                   <div class="card-comment shadow-lg">
-                    <div class="header-comment d-flex shadow">
-                      <h5>Comment</h5>
-                    </div>
-                    <div class="display-comment d-flex">
-                      <!-- Comment List -->
-                      <!-- Comment 1 -->
-                      <div class="row-comment d-flex">
-                        <div class="header-row-comment ">
-                          <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User Profile" />
-                          <h4>Username</h4>
-                          <div class="delete-row-comment">
-                            <i class="mdi mdi-dots-horizontal"></i>
-                          </div>
-                        </div>
-                        <div class="index-row-comment d-flex">
-                          <P>Komentarnya di sini</P>
-                        </div>
+                      <div class="header-comment d-flex shadow">
+                          <h5>Comments ({{ $post->comments->count() }})</h5>
                       </div>
-                      <!-- Comment 2 -->
-                        <div class="header-row-comment ">
-                          <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User Profile" />
-                          <h4>Username</h4>
-                          <div class="delete-row-comment">
-                            <i class="mdi mdi-dots-horizontal"></i>
-                          </div>
-                        </div>
-                        <div class="index-row-comment d-flex">
-                          <P>Komentarnya di sinisDfhasdjfhasdjkfhasdfsdfjaskldfjlkasdjfklasjdkflasjdlkfjaslkdfjlkasdjflkasdjflkasjdflk;asjdlk;fja;sd</P>
-                        </div>
-                      </div>
-                    </div>
 
-                    <!-- Comment Input -->
-                    <div class="comment-input d-flex align-items-start flex-wrap">
-                        <textarea class="form-control"  placeholder="Tambahkan komentar..."></textarea>
-                        <button class="btn btn-primary" onclick="addComment(this)">Kirim</button>
-                    </div>
+                      <div class="display-comment d-flex flex-column">
+                          <!-- Loop melalui komentar dari database -->
+                          @foreach($post->comments as $comment)
+                              <div class="row-comment d-flex">
+                                  <div class="header-row-comment">
+                                      <img src="{{ $comment->user->profile_image ?? 'https://via.placeholder.com/40' }}" 
+                                           class="rounded-circle me-2" alt="User Profile" />
+                                      <h4>{{ $comment->user->name }}</h4>
+
+                                      <!-- Tombol Hapus Komentar -->
+                                      @if(auth()->id() === $comment->user_id)
+                                          <div class="delete-row-comment">
+                                              <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline;">
+                                                  @csrf
+                                                  @method('DELETE')
+                                                  <button type="submit" class="btn btn-sm text-danger">
+                                                      <i class="mdi mdi-trash-can-outline"></i>
+                                                  </button>
+                                              </form>
+                                          </div>
+                                      @endif
+                                  </div>
+                                  <div class="index-row-comment">
+                                      <p>{{ $comment->content }}</p>
+                                  </div>
+                              </div>
+                          @endforeach
+                      </div>
+
+                      <!-- Comment Input -->
+                      <div class="comment-input d-flex align-items-start flex-wrap">
+                          <form action="{{ route('comments.store', $post->id) }}" method="POST" class="w-100 d-flex">
+                              @csrf
+                              <textarea class="form-control me-2" name="content" placeholder="Tambahkan komentar..."></textarea>
+                              <button class="btn btn-primary" type="submit">Kirim</button>
+                          </form>
+                      </div>
                   </div>
               </div>
+              <!-- End Comment Section -->
           </div>
       @endforeach
 

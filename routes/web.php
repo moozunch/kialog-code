@@ -208,8 +208,9 @@ Route::get('/topics/{topic}', [TopicController::class, 'show'])->name('topics.sh
   Route::post('/blocks/unblock', [PostController::class, 'unblock'])->name('blocks.unblock');
 
   // Comment
-  Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
-  Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
-  Route::get('/posts/{post}/comments', [PostController::class, 'getComments']);
+  Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
+  Route::post('/posts/{id}/comments', [PostController::class, 'storeComment'])->name('comments.store');
+  Route::delete('/comments/{id}', [PostController::class, 'destroyComment'])->name('comments.destroy');
+
 
 });

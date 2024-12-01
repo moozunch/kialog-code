@@ -189,27 +189,36 @@
 </script>
 @endif
 
-<script>
-  document.getElementById('signupbutton2').addEventListener('click', function() {
-    $('#signupModal').modal('show');
-  });
+    <script>
+        document.getElementById('signupbutton2').addEventListener('click', function() {
+            $('#signupModal').modal('show');
+        });
 
-  document.getElementById('signinbutton4').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default link behavior
-    var signinMessage = document.getElementById('signinMessage');
-    signinMessage.textContent = 'You need to sign in to proceed';
-    signinMessage.style.display = 'block';
-    $('#signinModal').modal('show');
-  });
 
-  document.getElementById('signupbutton3').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default link behavior
-    var signinMessage = document.getElementById('signinMessage');
-    signinMessage.textContent = 'You need to sign in to proceed';
-    signinMessage.style.display = 'block';
-    $('#signinModal').modal('show');
-  });
-</script>
+        document.getElementById('signupbutton3').addEventListener('click', function(event) {
+            event.preventDefault();
+            @if(auth()->check())
+                window.location.href = "{{ route('home') }}";
+            @else
+                var signinMessage = document.getElementById('signinMessage');
+                signinMessage.textContent = 'You need to log in to proceed';
+                signinMessage.style.display = 'block';
+                $('#signinModal').modal('show');
+            @endif
+        });
+
+        document.getElementById('signinbutton4').addEventListener('click', function(event) {
+            event.preventDefault();
+            @if(auth()->check())
+                window.location.href = "{{ route('home') }}";
+            @else
+                var signinMessage = document.getElementById('signinMessage');
+                signinMessage.textContent = 'You need to log in to proceed';
+                signinMessage.style.display = 'block';
+                $('#signinModal').modal('show');
+            @endif
+        });
+    </script>
 
 <!-- Form Submission Script -->
 <script>

@@ -81,10 +81,10 @@
                   <div class="row-post d-flex align-items-center">
                       <div class="post-profile-picture item-row">
                           <a href="{{ route('profile.show', ['user_id' => $post->user->id]) }}">
-                              <img src="{{ $post->user->profile_image ? $post->user->profile_image : asset('assets/img/avatars/1.png') }}" 
-                                   alt="Profile Picture" 
-                                   class="rounded-circle" 
-                                   width="50px" height="50px" 
+                              <img src="{{ $post->user->profile_image ? $post->user->profile_image : asset('assets/img/avatars/1.png') }}"
+                                   alt="Profile Picture"
+                                   class="rounded-circle"
+                                   width="50px" height="50px"
                                    style="object-fit:cover;">
                           </a>
                       </div>

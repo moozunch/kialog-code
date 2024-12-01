@@ -70,7 +70,7 @@
 
   @if($bookmark->post->images)
     @php
-      $images = json_decode($post->images);
+      $images = json_decode($bookmark->post->images);
       $imageCount = count($images);
     @endphp
     <div class="d-flex justify-content-center">
@@ -84,9 +84,9 @@
     </div>
   @endif
 
-  <div class="card-footer d-flex justify-content-between align-items-center flex-nowrap">
-    <small class="text-muted">Posted on {{ $bookmark->post->created_at->format('F j, Y') }}</small>
-    <div class="d-flex justify-content-end flex-nowrap">
+  <div class="card-footer d-flex flex-column flex-md-row justify-content-between align-items-center flex-nowrap">
+    <small class="text-muted order-2 order-md-1 mb-2 mb-md-0">Posted on {{ $bookmark->post->created_at->format('F j, Y') }}</small>
+    <div class="d-flex justify-content-end flex-nowrap order-1 order-md-2">
       <form action="{{ route('posts.like', $bookmark->post->id) }}" method="POST" style="display: inline;">
         @csrf
         <button type="submit" class="btn btn-like btn-no-bg btn-light btn-sm mx-1">
@@ -167,14 +167,14 @@
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header border-bottom text-center p-3">
         <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body border-bottom p-3">
         Are you sure you want to delete this post?
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer text-center p-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-danger" id="confirmDeleteButton">Yes, Delete</button>
       </div>

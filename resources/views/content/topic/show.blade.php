@@ -34,101 +34,101 @@
 
           <h2>Topic Posts</h2>
           @foreach($topic->posts as $post)
-          <div class="card mt-2">
-            <div class="card-body">
-              <div class="row mb-2 align-items-center">
-                <div class="col-auto">
-                  <a href="{{ route('profile.showOther', ['username' => $post->user->username]) }}">
-                    <img src="{{ $post->user->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px" id="profileImage">
+      <div class="card mt-2">
+        <div class="card-body">
+          <div class="row mb-2 align-items-center">
+            <div class="col-auto">
+            <a href="{{ route('profile.showOther', ['username' => $post->user->username]) }}">
+              <img src="{{ $post->user->profile_image ?? asset('assets/img/avatars/1.png') }}" alt="Profile Picture" class="rounded-circle" width="50px" height="50px" style="object-fit: cover;" id="profileImage">
+            </a>
+            </div>
+            <div class="col">
+              <h5 class="card-title">{{ $post->user->name }}</h5>
+              <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
+            </div>
+            <div class="col-auto ml-auto delete-button">
+              <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="mdi mdi-dots-horizontal"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                @if(auth()->id() === $post->user_id)
+                <li>
+                  <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" data-post-id="{{ $post->id }}">
+                      <i class="mdi mdi-trash-can-outline me-2"></i> Delete
+                    </button>
+                  </form>
+                </li>
+                @else
+                <li>
+                  <a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#reportModal" data-post-id="{{ $post->id }}" data-username="{{ $post->user->username }}" data-content="{{ $post->message }}">
+                    <i class="mdi mdi-account-alert-outline me-2"></i> Report
                   </a>
-                </div>
-                <div class="col">
-                  <h5 class="card-title">{{ $post->user->name }}</h5>
-                  <h6 class="card-title text-muted">{{ $post->user->username }}</h6>
-                </div>
-                <div class="col-auto ml-auto delete-button">
-                  <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="mdi mdi-dots-horizontal"></i>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    @if(auth()->id() === $post->user_id)
-                    <li>
-                      <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" data-post-id="{{ $post->id }}">
-                          <i class="mdi mdi-trash-can-outline me-2"></i> Delete
-                        </button>
-                      </form>
-                    </li>
-                    @else
-                    <li>
-                      <a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#reportModal" data-post-id="{{ $post->id }}">
-                        <i class="mdi mdi-account-alert-outline me-2"></i> Report
-                      </a>
-                    </li>
-                    <li>
-                      <form action="{{ route('blocks.store') }}" method="POST" style="display: inline;">
-                        @csrf
-                        <input type="hidden" name="blocked_user_id" value="{{ $post->user->id }}">
-                        <button type="submit" class="dropdown-item text-danger">
+                </li>
+                <li>
+                  <form action="{{ route('blocks.store') }}" method="POST" style="display: inline;">
+                      @csrf
+                      <input type="hidden" name="blocked_user_id" value="{{ $post->user->id }}">
+                      <button type="submit" class="dropdown-item text-danger">
                           <i class="mdi mdi-block-helper me-2"></i> Block
-                        </button>
-                      </form>
-                    </li>
-                  @endif
-                  </ul>
-                </div>
-              </div>
-              <p class="card-text">{{ $post->message }}</p>
-            </div>
-            @if($post->images)
-            @php
-              $images = json_decode($post->images);
-              $imageCount = count($images);
-            @endphp
-            <div class="d-flex justify-content-center">
-              <div class="post-images {{ $imageCount == 2 ? 'grid-2' : ($imageCount > 2 ? 'grid-4' : '') }}">
-                @foreach($images as $image)
-                  @if($loop->index < 4)
-                    <img src="{{ $image }}" class="mb-2" alt="Post Image {{ $loop->index + 1 }}" style="max-height: 200px; object-fit: cover;">
-                  @endif
-                @endforeach
-              </div>
-            </div>
-          @endif
-
-          <div class="card-footer d-flex justify-content-between align-items-center flex-nowrap">
-            <small class="text-muted">Posted on {{ $post->created_at->format('F j, Y') }}</small>
-            <div class="d-flex justify-content-end flex-nowrap">
-              <form action="{{ route('posts.like', $post->id) }}" method="POST" style="display: inline;">
-                @csrf
-                <button type="submit" class="btn btn-like btn-no-bg btn-light btn-sm mx-1">
-                  @if($post->userLikes->contains('user_id', auth()->id()))
-                    <i class="mdi mdi-cards-heart text-danger"></i>
-                  @else
-                    <i class="mdi mdi-cards-heart-outline"></i>
-                  @endif
-                  {{ $post->userLikes->count() }}
-                </button>
-              </form>
-              <button class="btn btn-comment btn-no-bg btn-light btn-sm mx-1"><i class="mdi mdi-chat-outline"></i> {{ $post->comments }}</button>
-              <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
-                @csrf
-                <input type="hidden" name="topic_id" value="{{ $topic->id }}">
-                <button type="submit" class="btn btn-bookmark btn-no-bg btn-light btn-sm mx-1">
-                    @if($post->bookmarks->contains('user_id', auth()->id()))
-                        <i class="mdi mdi-bookmark text-primary"></i>
-                    @else
-                        <i class="mdi mdi-bookmark-outline"></i>
-                    @endif
-                </button>
-            </form>
-              <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1"  data-bs-toggle="modal" data-bs-target="#comingSoonModal"><i class="mdi mdi-share-outline"></i></button>
+                      </button>
+                  </form>
+                </li>
+              @endif
+              </ul>
             </div>
           </div>
+          <p class="card-text">{{ $post->message }}</p>
         </div>
-        @endforeach
+
+        @if($post->images)
+          @php
+            $images = json_decode($post->images);
+            $imageCount = count($images);
+          @endphp
+          <div class="d-flex justify-content-center">
+            <div class="post-images {{ $imageCount == 2 ? 'grid-2' : ($imageCount > 2 ? 'grid-4' : '') }}">
+              @foreach($images as $image)
+                @if($loop->index < 4)
+                  <img src="{{ $image }}" class="mb-2" alt="Post Image {{ $loop->index + 1 }}" style="max-height: 200px; object-fit: cover;">
+                @endif
+              @endforeach
+            </div>
+          </div>
+        @endif
+
+        <div class="card-footer d-flex flex-column flex-md-row justify-content-between align-items-center flex-nowrap">
+          <small class="text-muted order-2 order-md-1 mb-2 mb-md-0">Posted on {{ $post->created_at->format('F j, Y') }}</small>
+          <div class="d-flex justify-content-end flex-nowrap order-1 order-md-2">
+            <form action="{{ route('posts.like', $post->id) }}" method="POST" style="display: inline;">
+              @csrf
+              <button type="submit" class="btn btn-like btn-no-bg btn-light btn-sm mx-1">
+                @if($post->userLikes->contains('user_id', auth()->id()))
+                  <i class="mdi mdi-cards-heart text-danger"></i>
+                @else
+                  <i class="mdi mdi-cards-heart-outline"></i>
+                @endif
+                {{ $post->userLikes->count() }}
+              </button>
+            </form>
+            <button class="btn btn-comment btn-no-bg btn-light btn-sm mx-1"><i class="mdi mdi-chat-outline"></i> {{ $post->comments }}</button>
+            <form action="{{ route('bookmarks.store', $post->id) }}" method="POST" style="display: inline;">
+              @csrf
+              <button type="submit" class="btn btn-bookmark btn-no-bg btn-light btn-sm mx-1">
+                @if($post->bookmarks->contains('user_id', auth()->id()))
+                  <i class="mdi mdi-bookmark text-primary"></i>
+                @else
+                <i class="mdi mdi-bookmark-outline"></i>
+                @endif
+              </button>
+            </form>
+            <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1"  data-bs-toggle="modal" data-bs-target="#comingSoonModal"><i class="mdi mdi-share-outline"></i></button>
+          </div>
+        </div>
+      </div>
+    @endforeach
         </div>
 
         <!-- Sidebar for Trending Topics and Create Post -->
@@ -245,14 +245,14 @@
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header border-bottom p-3 text-center">
         <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body border-bottom p-3">
         Are you sure you want to delete this post?
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer text-center p-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-danger" id="confirmDeleteButton">Yes, Delete</button>
       </div>

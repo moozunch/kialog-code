@@ -98,6 +98,31 @@ div.profile-info h2 {
   transform: scale(3.1);
 }
 
+/* Follow Button */
+#follow-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 150px;
+  font-size: 20px;
+}
+
+#follow-button:hover {
+  background-color: var(--primary-secondary-color);
+  box-shadow: none;
+}
+
+#follow-button.active {
+  background-color: #ffffff; /* Ubah latar belakang tombol menjadi putih */
+  color: rgb(0, 0, 0); /* Ubah warna font menjadi abu-abu */
+  border: 2.5px solid var(--primary-color);
+  box-shadow: none;
+}
+
 /* Profile Stats */
 .profile-stats {
   flex-direction: row;

@@ -12,6 +12,7 @@ use App\Models\Block;
 use App\Models\PostUserLike;
 use Kreait\Firebase\Factory;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -197,11 +198,10 @@ class PostController extends Controller
 
     public function show($id)
     {
-        // Ambil post dengan komentar terkait
-        $post = Post::with('comments.user')->findOrFail($id);
-        
-        return view('post.show', compact('post'));
-    }
+        $post = Post::with('comments.user')->findOrFail($id); // Muat komentar beserta data pengguna
+        return view('content.home.profile', compact('post'));
+    }    
+    
 
     public function storeComment(Request $request, $postId)
     {

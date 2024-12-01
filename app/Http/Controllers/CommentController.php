@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Comment;
-use App\Models\Comment; // Ensure you have the Comment model
-use Illuminate\Support\Facades\Auth;
 
 
 class CommentController extends Controller

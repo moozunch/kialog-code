@@ -120,7 +120,7 @@
       <div class="sticky-top mb-3" style="top: 20px; z-index: 1050;">
         <div class="card mb-2">
           <div class="card-body">
-            <h5 class="card-title">Trending</h5>
+            <h5 class="card-title">Recommendation</h5>
             <ul class="list-group">
               @foreach($trendingTopics as $topic)
                 <li class="list-group-item d-flex justify-content-between align-items-center">

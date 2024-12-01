@@ -66,9 +66,9 @@
         <h5 class="card-title">{{ $topic->title }}</h5>
         <p class="card-text">{{ $topic->description }}</p>
         @if(!$topic->users->contains(auth()->id()))
-        <button type="button" class="btn btn-primary mt-auto w-50" data-bs-toggle="modal" data-bs-target="#joinConfirmationModal" data-topic-id="{{ $topic->id }}" data-topic-title="{{ $topic->title }}">Join</button>
+        <button type="button" class="btn btn-primary mt-auto w-50" data-bs-toggle="modal" data-bs-target="#joinConfirmationModal" data-topic-id="{{ $topic->id }}" data-topic-title="{{ $topic->title }}">JOIN</button>
         @else
-        <a href="{{ route('topics.show', $topic->id) }}" class="btn btn-primary mt-auto w-50">Open</a>
+        <a href="{{ route('topics.show', $topic->id) }}" class="btn btn-primary mt-auto w-50">OPEN</a>
         @endif
       </div>
     </div>

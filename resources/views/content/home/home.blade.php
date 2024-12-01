@@ -143,10 +143,14 @@
             <h5 class="card-title">Trending</h5>
             <ul class="list-group">
               @foreach($trendingTopics as $topic)
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  {{ $topic->title }}
-                  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#joinConfirmationModal" data-topic-id="{{ $topic->id }}">JOIN</button>
-                </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ $topic->title }}
+                @if(!$topic->users->contains(auth()->id()))
+                  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#joinConfirmationModal" data-topic-id="{{ $topic->id }}" data-topic-title="{{ $topic->title }}">JOIN</button>
+                @else
+                  <a href="{{ route('topics.show', $topic->id) }}" class="btn btn-primary btn-sm">OPEN</a>
+                @endif
+              </li>
               @endforeach
             </ul>
           </div>

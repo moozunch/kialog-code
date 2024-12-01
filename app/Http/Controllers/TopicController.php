@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
@@ -43,7 +44,10 @@ class TopicController extends Controller
         $topic = Topic::findOrFail($id);
 
         // Fetch trending topics (example logic, adjust as needed)
-        $trendingTopics = Topic::orderBy('created_at', 'desc')->take(4)->get();
+        $trendingTopics = Topic::whereDoesntHave('users', function ($query) {
+          $query->where('user_id', Auth::id());
+      })->orderBy('created_at', 'desc')->take(4)->get();
+
 
         return view('content.topic.show', compact('topic', 'trendingTopics'));
     }

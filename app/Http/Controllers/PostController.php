@@ -34,7 +34,7 @@ class PostController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-    $trendingTopics = Topic::orderBy('created_at', 'desc')->take(5)->get();
+    $trendingTopics = Topic::orderBy('created_at', 'desc')->take(4)->get();
 
     foreach ($posts as $post) {
       if (!$post->user->profile_image) {
@@ -199,7 +199,7 @@ class PostController extends Controller
     {
         // Ambil post dengan komentar terkait
         $post = Post::with('comments.user')->findOrFail($id);
-        
+
         return view('post.show', compact('post'));
     }
 

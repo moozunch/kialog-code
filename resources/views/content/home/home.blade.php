@@ -60,7 +60,7 @@
                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
                       @csrf
                       @method('DELETE')
-                      <button type="submit" class="dropdown-item text-danger">
+                      <button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" data-post-id="{{ $post->id }}">
                         <i class="mdi mdi-trash-can-outline me-2"></i> Delete
                       </button>
                     </form>
@@ -269,13 +269,9 @@
       </div>
       <div class="modal-body">
         <form method="POST" action="https://formspree.io/f/xrbgoanp">
-          <!-- Hidden Field for Post ID -->
           <input type="hidden" name="post_id" id="report-post-id">
-          <!-- Hidden Field for Username -->
           <input type="hidden" name="reported_username" id="reported-username">
-          <!-- Hidden Field for Content -->
           <input type="hidden" name="reported_content" id="reported-content">
-          <!-- Hidden Field for Timestamp -->
           <input type="hidden" name="reported_timestamp" id="reported-timestamp">
 
           <!-- Textarea for Reason -->
@@ -295,7 +291,24 @@
   </div>
 </div>
 
-
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this post?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
   document.getElementById('post-images').addEventListener('change', function(event) {
@@ -335,6 +348,7 @@
       form.submit();
     });
 
+    //report modal
     var reportModal = document.getElementById('reportModal');
     reportModal.addEventListener('show.bs.modal', function(event) {
       var button = event.relatedTarget;
@@ -348,6 +362,23 @@
       modal.querySelector('#reported-username').value = username;
       modal.querySelector('#reported-content').value = content;
       modal.querySelector('#reported-timestamp').value = timestamp;
+    });
+
+    //delete confirmation modal
+    var deleteConfirmationModal = document.getElementById('deleteConfirmationModal');
+    var confirmDeleteButton = document.getElementById('confirmDeleteButton');
+    var formToSubmit;
+
+    deleteConfirmationModal.addEventListener('show.bs.modal', function (event) {
+      var button = event.relatedTarget; // Button that triggered the modal
+      var postId = button.getAttribute('data-post-id'); // Extract info from data-* attributes
+      formToSubmit = button.closest('form'); // Get the form to submit
+    });
+
+    confirmDeleteButton.addEventListener('click', function () {
+      if (formToSubmit) {
+        formToSubmit.submit();
+      }
     });
   });
 </script>

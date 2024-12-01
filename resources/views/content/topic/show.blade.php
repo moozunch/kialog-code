@@ -39,7 +39,7 @@
                         <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
                           @csrf
                           @method('DELETE')
-                          <button type="submit" class="dropdown-item text-danger">
+                          <button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" data-post-id="{{ $post->id }}">
                             <i class="mdi mdi-trash-can-outline me-2"></i> Delete
                           </button>
                         </form>
@@ -115,28 +115,131 @@
             @endforeach
         </div>
 
-        <!-- Sidebar for Create Post -->
-        <div class="col-lg-4 col-md-4 d-none d-md-block">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="topic_id" value="{{ $topic->id }}">
-                        <div class="mb-3">
-                            <label for="message" class="form-label">What's on your mind?</label>
-                            <textarea class="form-control" id="message" name="message" rows="3" placeholder="Write something..."></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="post-images" class="form-label">Upload Image (optional)</label>
-                            <input type="file" class="form-control" id="post-images" name="images[]" multiple accept="image/png, image/jpeg">
-                            <div id="image-preview" class="d-flex flex-wrap mt-2"></div> <!-- Preview container -->
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Post</button>
-                    </form>
-                </div>
-            </div>
+        <!-- Sidebar for Trending Topics and Create Post -->
+    <div class="col-lg-4 col-md-4 d-none d-md-block">
+      <div class="sticky-top mb-3" style="top: 20px; z-index: 1050;">
+        <div class="card mb-2">
+          <div class="card-body">
+            <h5 class="card-title">Trending</h5>
+            <ul class="list-group">
+              @foreach($trendingTopics as $topic)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  {{ $topic->title }}
+                  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#joinConfirmationModal" data-topic-id="{{ $topic->id }}">JOIN</button>
+                </li>
+              @endforeach
+            </ul>
+          </div>
         </div>
+        <div class="create-post-container" style="position: sticky; top: 200px; z-index: 1049;">
+          <div class="card mb-3">
+            <div class="card-body">
+              <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                  <label for="message" class="form-label">What's on your mind?</label>
+                  <textarea class="form-control" id="message" name="message" rows="3" placeholder="Write something..."></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="post-images" class="form-label">Upload Image (optional)</label>
+                  <input type="file" class="form-control" id="post-images" name="images[]" multiple accept="image/png, image/jpeg">
+                  <div id="image-preview" class="d-flex flex-wrap mt-2"></div> <!-- Preview container -->
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Post</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+{{-- join confirmation modal --}}
+<div class="modal fade" id="joinConfirmationModal" tabindex="-1" aria-labelledby="joinConfirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-bottom text-center p-3">
+        <h5 class="modal-title fw-medium" id="joinConfirmationModalLabel">Join Community</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body border-bottom p-3">
+        Are you sure you want to join this community?
+      </div>
+      <div class="modal-footer text-center p-3">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form action="{{ route('topics.join', $topic->id) }}" method="POST">
+          @csrf
+          <button type="button" class="btn btn-primary" id="confirmJoinButton">Yes, Join</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Creating a Post -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Share Your Thoughts</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+          @csrf
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text" name="message" placeholder="What's going on!"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="post-images" class="col-form-label">Upload Images:</label>
+            <input type="file" class="form-control" id="post-images" name="images[]" multiple accept="image/png, image/jpeg">
+            <div id="image-preview" class="d-flex flex-wrap mt-2"></div> <!-- Preview container -->
+          </div>
+          <script>
+            document.getElementById('post-images').addEventListener('change', function(event) {
+              const previewContainer = document.getElementById('image-preview');
+              previewContainer.innerHTML = ''; // Clear previous previews
+              const files = event.target.files;
+              for (const file of files) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                img.classList.add('img-thumbnail', 'm-2');
+                img.style.maxHeight = '150px';
+                previewContainer.appendChild(img);
+              }
+            });
+          </script>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this post?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 {{-- Modal for report post --}}
@@ -200,5 +303,25 @@
             previewContainer.appendChild(img);
         }
     });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var deleteConfirmationModal = document.getElementById('deleteConfirmationModal');
+    var confirmDeleteButton = document.getElementById('confirmDeleteButton');
+    var formToSubmit;
+
+    deleteConfirmationModal.addEventListener('show.bs.modal', function (event) {
+      var button = event.relatedTarget; // Button that triggered the modal
+      var postId = button.getAttribute('data-post-id'); // Extract info from data-* attributes
+      formToSubmit = button.closest('form'); // Get the form to submit
+    });
+
+    confirmDeleteButton.addEventListener('click', function () {
+      if (formToSubmit) {
+        formToSubmit.submit();
+      }
+    });
+  });
 </script>
 @endsection

@@ -3,6 +3,9 @@
   margin: auto;
   border-radius: 10px;
   overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
 }
 
 img {
@@ -10,11 +13,11 @@ img {
 }
 
 .inbox_people {
-  background: #f8f8f8 none repeat scroll 0 0;
+  background-color: #f8f9fa;
   float: left;
-  overflow: hidden;
-  width: 40%;
-  border-right: 1px solid #c4c4c4;
+  overflow-y: auto;
+  width: 30%;
+  border-right: 1px solid #ddd;
   border-radius: 10px;
 }
 
@@ -93,9 +96,10 @@ img {
 
 .chat_img {
   float: left;
-  width: 11%;
+  width: 12%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  border-radius: 50%;
 }
 
 .chat_img img {
@@ -156,23 +160,50 @@ img {
   background: #ebebeb;
 }
 
+.incoming_msg {
+  display: flex;
+  margin: 10px 0;
+  align-items: flex-end;
+}
+
 .incoming_msg_img {
   display: inline-block;
-  width: 6%;
+  width: 5%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  margin-right: 10px;
 }
 
 .incoming_msg_img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .received_msg {
   display: inline-flex;
-  padding: 0 10px;
+  padding: 10px;
   max-width: 75%;
+  background-color: #ebebeb;
+  border-radius: 10px;
+  position: relative;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.received_msg p {
+  margin: 0;
+  font-size: 14px;
+  color: #2e2e2e;
+}
+
+.received_msg .time_date {
+  display: block;
+  font-size: 12px;
+  color: #747474;
+  margin-top: 5px;
+  text-align: right;
 }
 
 .received_withd_msg p {
@@ -215,9 +246,10 @@ img {
 }
 
 .mesgs {
-  float: left;
-  padding: 30px 15px 0 25px;
-  width: 60%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
 }
 
 .sent_msg p {
@@ -232,17 +264,22 @@ img {
 
 .outgoing_msg {
   overflow: hidden;
-  margin: 26px 0 26px;
   height: auto;
   border-radius: 10px;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0;
 }
 
 .sent_msg {
-  display: inline-block;
-  max-width: 46%;
-  float: right;
+  max-width: 75%;
+  background-color: #2C6822;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
   word-wrap: break-word;
-  box-sizing: border-box;
+  word-break: break-word;
+  color: #fff;
 }
 
 .sent_msg p {
@@ -256,6 +293,14 @@ img {
   max-width: 100%;
   box-sizing: border-box;
   font-weight: lighter;
+}
+
+.sent_msg .time_date {
+  display: block;
+  font-size: 12px;
+  color: #dcdcdc;
+  margin-top: 5px;
+  text-align: right;
 }
 
 .time_date {
@@ -327,6 +372,7 @@ img {
   box-sizing: border-box;
   padding: 10px;
   border-radius: 10px;
+  background-color: #f7f7f7;
 }
 
 .icon-plane {
@@ -413,4 +459,44 @@ img {
   color: #b3b3b3;
   font-size: 14px;
   line-height: normal;
+}
+
+/* Responsivitas untuk layar kecil */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .inbox_people {
+    width: 100%;
+    display: none; /* Sembunyikan sidebar secara default */
+  }
+
+  .inbox_people.active {
+    display: block; /* Tampilkan sidebar jika aktif */
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+
+  .mesgs {
+    width: 100%;
+  }
+}
+
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+  }
 }

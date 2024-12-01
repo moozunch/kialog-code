@@ -128,7 +128,7 @@
                   @endif
                 </button>
               </form>
-              <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1"><i class="mdi mdi-share-outline"></i></button>
+              <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1"  data-bs-toggle="modal" data-bs-target="#comingSoonModal"><i class="mdi mdi-share-outline"></i></button>
             </div>
           </div>
         </div>

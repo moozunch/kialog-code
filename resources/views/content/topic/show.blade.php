@@ -108,7 +108,7 @@
                         @endif
                     </button>
                 </form>
-                  <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1"><i class="mdi mdi-share-outline"></i></button>
+                  <button class="btn btn-no-bg btn-share btn-light btn-sm mx-1"  data-bs-toggle="modal" data-bs-target="#comingSoonModal"><i class="mdi mdi-share-outline"></i></button>
                 </div>
               </div>
             </div>
@@ -148,7 +148,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="https://formspree.io/f/mvgoweoq">
+        <form method="POST" action="https://formspree.io/f/xrbgoanp">
           <!-- Hidden Field for Post ID -->
           <input type="hidden" name="post_id" id="report-post-id">
 
@@ -164,6 +164,24 @@
             <button type="submit" class="btn btn-primary">Submit Report</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Coming Soon Modal -->
+<div class="modal fade" id="comingSoonModal" tabindex="-1" aria-labelledby="comingSoonModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="comingSoonModalLabel">Coming Soon</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        This feature is coming soon. Stay tuned!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

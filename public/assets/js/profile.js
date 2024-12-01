@@ -1,3 +1,4 @@
+// Profil Section
 // Buka modal saat gambar profil diklik
 document.getElementById("profileImage").addEventListener("click", function () {
     const profileModal = document.getElementById("profileImageModal");
@@ -10,6 +11,24 @@ document.getElementById("profileImageModal").addEventListener("click", function 
         this.style.display = "none"; // Sembunyikan modal
     }
 });
+
+// Profil Section - Follow Button
+document.getElementById("follow-button").addEventListener("click", function () {
+    const followButton = this;
+    const followersCount = document.querySelector(".followers-count");
+    let followers = parseInt(followersCount.textContent);
+
+    if (followButton.classList.toggle("active")) {
+        followButton.textContent = "Mengikuti";
+        followers++;
+    } else {
+        followButton.textContent = "Ikuti";
+        followers--;
+    }
+
+    followersCount.textContent = followers;
+});
+
 
 // Modal profile stats Section
 // Follow button

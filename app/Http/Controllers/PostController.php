@@ -35,7 +35,7 @@ class PostController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-    $trendingTopics = Topic::orderBy('created_at', 'desc')->take(5)->get();
+    $trendingTopics = Topic::orderBy('created_at', 'desc')->take(4)->get();
 
     foreach ($posts as $post) {
       if (!$post->user->profile_image) {
@@ -196,12 +196,12 @@ class PostController extends Controller
         return view('content.home.blocked_users', compact('blockedUsers'));
     }
 
-    public function show($id)
-    {
-        $post = Post::with('comments.user')->findOrFail($id); // Muat komentar beserta data pengguna
-        return view('content.home.profile', compact('post'));
-    }    
-    
+    public function show($id) {
+        // Ambil post dengan komentar terkait
+        $post = Post::with('comments.user')->findOrFail($id);
+
+        return view('post.show', compact('post'));
+    }
 
     public function storeComment(Request $request, $postId)
     {

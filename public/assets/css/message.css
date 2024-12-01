@@ -163,7 +163,7 @@ img {
 .incoming_msg {
   display: flex;
   margin: 10px 0;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .incoming_msg_img {
@@ -182,14 +182,16 @@ img {
 }
 
 .received_msg {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   max-width: 75%;
-  background-color: #ebebeb;
+  color: #2e2e2e;
   border-radius: 10px;
   position: relative;
   word-wrap: break-word;
   word-break: break-word;
+  margin-right: 20px;
 }
 
 .received_msg p {
@@ -203,7 +205,19 @@ img {
   font-size: 12px;
   color: #747474;
   margin-top: 5px;
-  text-align: right;
+  text-align: left;
+  padding: 5px;
+  border-radius: 5px;
+  align-self: flex-start;
+}
+
+.received_withd_msg {
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  display: inline-block;
 }
 
 .received_withd_msg p {
@@ -236,13 +250,14 @@ img {
 }
 
 .received_withd_msg {
-  width: fit-content;
-  max-width: 100%;
-  background: #ebebeb;
+  color: #2e2e2e;
   border-radius: 10px;
-  padding: 10px;
-  position: relative;
-  display: inline-block;
+  padding: 5px 10px;
+  width: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .mesgs {
@@ -253,13 +268,17 @@ img {
 }
 
 .sent_msg p {
-  background: #2C6822 none repeat scroll 0 0;
+  background: #2C6822;
+  color: #fff;
   border-radius: 10px;
   font-size: 14px;
   margin: 0;
   color: #fff;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 10px;
   width: 100%;
+  position: relative;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .outgoing_msg {
@@ -273,13 +292,12 @@ img {
 
 .sent_msg {
   max-width: 75%;
-  background-color: #2C6822;
+  color: #fff;
   border-radius: 10px;
   padding: 10px;
   position: relative;
   word-wrap: break-word;
   word-break: break-word;
-  color: #fff;
 }
 
 .sent_msg p {
@@ -298,9 +316,12 @@ img {
 .sent_msg .time_date {
   display: block;
   font-size: 12px;
-  color: #dcdcdc;
+  color: #747474;
   margin-top: 5px;
   text-align: right;
+  padding: 5px;
+  border-radius: 5px;
+  align-self: flex-end;
 }
 
 .time_date {
@@ -469,11 +490,11 @@ img {
 
   .inbox_people {
     width: 100%;
-    display: none; /* Sembunyikan sidebar secara default */
+    display: none;
   }
 
   .inbox_people.active {
-    display: block; /* Tampilkan sidebar jika aktif */
+    display: block;
     position: absolute;
     z-index: 10;
     top: 0;
